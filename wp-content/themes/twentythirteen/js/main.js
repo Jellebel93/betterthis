@@ -34,20 +34,4 @@ $( function() {
 	} );
 	
 	
-$.fn.nextOrFirst = function(selector) {
-    var next = this.next(selector);
-    return (next.length) ? next : this.prevAll(selector).last();
-}
-
-$(function() {
-    $('.fadein li:eq(0)').addClass("active");
-    $('.fadein li:gt(0)').hide();
-    setInterval(function() {
-        $('.active:eq(0)').fadeOut().removeClass("active").nextOrFirst('li').addClass("active").fadeIn().end()
-    }, 6000);
-});
-
-
-	
-
 } )( jQuery );

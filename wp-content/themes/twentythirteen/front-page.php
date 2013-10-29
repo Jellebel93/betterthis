@@ -90,7 +90,7 @@ get_header(); ?>
 									<?php  
 										$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 										if ( !empty($full_img )) : ?>
-										   <a class="sectionItem" id="select<?php echo get_the_ID(); ?>" href="#<?php echo get_the_ID(); ?>" title="<?php the_title_attribute(); ?>" >
+										   <a class="sectionItem" data-id="select<?php echo get_the_ID(); ?>" href="#<?php echo get_the_ID(); ?>" title="<?php the_title_attribute(); ?>" >
 											 <img src="<?php echo $full_img[0]; ?>" width="<?php echo $full_img[1] ?>" height="<?php echo $full_img[2] ?>"/>
 										   </a>
 										 <?php else :?>
@@ -150,7 +150,7 @@ get_header(); ?>
 								$index ++;
 							?>
 							
-							 <li style="<?php echo  $display; ?>">
+							 <li data-id="select<?php echo get_the_ID(); ?>" class="sectionItem" id="thumnail_select<?php echo get_the_ID(); ?>" style="<?php echo  $display; ?>">
 								
 								<?php  
 									$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
@@ -180,7 +180,7 @@ get_header(); ?>
 								if($index === 0) {$display="display:block";}
 								$index ++;
 							?>
-							<div class="main-frame" style="<?php echo  $display; ?>">
+							<div class="main-frame" id="select<?php echo get_the_ID(); ?>" style="<?php echo  $display; ?>">
 								 <div class="thumnail">
 									<h3><?php the_title(); ?></h3>
 									<?php  

@@ -29,7 +29,7 @@
 	<![endif]-->
 	<?php wp_head(); ?>   
 		<script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
-<script type="text/javascript" src="http://192.168.1.45/copy/trung-ui/betterthis-base.js"></script>
+<script type="text/javascript" src="wp-content/themes/twentythirteen/js/betterthis-base.js"></script>
 
 
 </head>

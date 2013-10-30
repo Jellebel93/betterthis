@@ -23,10 +23,10 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 			<div class="portfolio-box first-section " id="section1">
 				<div class="social khaki">				
-					<div class="container">							
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
-						<span class="iconSocial heart">
+					<div class="container">		
+						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
+							<span class="iconSocial heart">
 							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
 					</div>
@@ -49,8 +49,8 @@ get_header(); ?>
 			<div class="portfolio-box " id="section2">
 				<div class="social khaki">				
 					<div class="container clearfix">							
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
 						<span class="iconSocial heart">
 							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
@@ -103,8 +103,8 @@ get_header(); ?>
 			<div class="portfolio-box "  id="section3">
 				<div class="social khaki">				
 					<div class="container">							
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
 						<span class="iconSocial heart">
 							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
@@ -196,8 +196,8 @@ get_header(); ?>
 				
 				<div class="social khaki">				
 					<div class="container">							
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
 						<span class="iconSocial heart">
 							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
@@ -241,8 +241,8 @@ get_header(); ?>
 					</div>
 				</div><div class="social khaki">				
 					<div class="container">							
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
 						<span class="iconSocial heart">
 							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	

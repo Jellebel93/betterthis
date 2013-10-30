@@ -906,8 +906,11 @@ div.nav-menu > ul {
 .nav-menu li a {
 	color: #141412;
 	display: block;
-	font-size: 15px;
 	line-height: 1;
+	font-family: "Conv_FuturaExtended";
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
 	padding: 15px 20px;
 	text-decoration: none;
 }
@@ -3305,9 +3308,6 @@ display: inline-block;
 }
 #section1 .nav-menus {padding:0;margin-top:50px}
 #section1 nav ul li a {
-	text-transform: uppercase;
-	font-size: 15px;
-	font-weight: bold;
 	color: #6d6e70;
 }
 #section1 nav ul li:last-child a {
@@ -3332,19 +3332,18 @@ display: inline-block;
 .heart span ,.heart a{ position: absolute;left:0;  bottom: -18px;}
 .heart a{ 
 	color: #FFFFFF;
-    left: 50%;
-    margin-left: -10px;
+    left: 0;
     position: absolute;
     text-align: center;
     top: -22px;
-    width: 20px;
+    width: 46px;
 }
 .heart a:hover {text-decoration: none;}
 .social .iconSocial {	
 	display: block;
 	float: right;
     margin: 20px 10px;
-	cursor: pointer;
+	cursor: pointer;position:relative;z-index:9;
 }
 
 .social .iconSocial.twitter {
@@ -3413,9 +3412,6 @@ display: inline-block;
 }
 #section2 nav ul li a {
 	color: #bbbdbf;
-	text-transform: uppercase;
-	font-size: 15px;
-	font-weight: bold;
 }
 
 #section2 nav ul li a:hover {
@@ -3453,6 +3449,7 @@ display: inline-block;
 	clear: both;
 	color: #fff;
 	font-size: 12px;
+	text-align: right;
 }
 
 
@@ -3550,9 +3547,6 @@ display: inline-block;
 .wrap3 {width: 90%;position:relative;top: -60px;clear:both}
 #section3 nav ul li a {
 	 color: #BBBDBF;
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 #section3 nav ul li.menu-item-12  a {
 	color: #6d6e70;
@@ -3605,11 +3599,13 @@ display: inline-block;
 
 #section4 nav ul li a {
 	color: #bbbdbf;
-	text-transform: uppercase;
-	font-size: 15px;
-    font-weight: bold;
-}nav ul li a {
+}
+
+.navigations  ul li a {
 	font-family: "Conv_FuturaExtended";
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
 }
 #section4 nav ul li.menu-item-13 a{color : #808184 ;}
 #section4 nav ul li a:hover {
@@ -3690,9 +3686,6 @@ text-align: right;
 
 #section5 nav ul li a {
 	color: #bbbdbf;
-	text-transform: uppercase;
-	font-size: 15px;
-    font-weight: bold
 }
 
 #section5 nav ul li a:hover {
@@ -3718,13 +3711,14 @@ text-align: right;
 }
 
 #section5 .su-row .su-column .colgroup .col{
-	width: 100px;
+	width: 120px;
 	font-size: 12px;
 	text-transform: uppercase;
 	display: inline-block;
 	color: #fff;
 	text-align: right;
 	padding-right: 5px;
+	font-weight: bold;
 }
 #section5 .su-row .su-column .colgroup {
 	float: left;
@@ -3755,10 +3749,10 @@ text-align: right;
 #section5 .su-row .su-column .colgroup  input[type="submit"] {
 	background: url('images/btn_send_it.png') no-repeat top left;
 	width: 71px;
-	height: 53px;
+	height: 62px;
 	border:none;
 	float: right;
-	margin-right: 190px;
+	margin-right: 190px;font-weight: bold;
 }
 
 .list-item-thumb {
@@ -3825,6 +3819,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	width: 55px;
 	height: 122px;
 }
+.list-thumnail li  + li {margin-left:10px;}
 .product-section2 .no-thumb{
 	height: 200px;line-height: 200px; font-size: 24px;
 }
@@ -3832,7 +3827,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 .thumnail {
 	float: right;
 	width: 260px;
-	text-align:center;    height: 610px;
+	text-align:center;    height: 630px;
 	padding-left: 20px;
 	background: url('images/dotted-light.png') repeat-y  left top;
 	margin-top: 20px;
@@ -3841,16 +3836,23 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	  color: #00A44F;
     font-size: 16px;
     font-weight: normal;
-    margin: 30px auto 20px;
+    margin: 60px auto 20px;
     text-transform: uppercase;
-    width: 68%;
 	
 }
+.list-thumnail li p {text-transform:uppercase;}
+.the_excerpt {font-size: 12px;line-height: 18px;}
 .thumnail   .the_excerpt {
 color:#bbbdbf;
 	
 }
-
+.st_twitter_hcount .stArrow,.stButton .stArrow {
+	display: none!important;
+}
+.stButton .st-twitter-counter, .stButton .st-facebook-counter {
+	height: 43px!important; width: 40px!important;
+	background: none!important;
+}
 
 .slider {
 	overflow: hidden;

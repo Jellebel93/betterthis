@@ -74,7 +74,8 @@ jQuery(document).ready(function($){
 
 
 </script>
-
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cc6a5b8-6f47-4831-95ae-8368305bb28f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 
 <body <?php body_class(); ?>>

@@ -147,25 +147,25 @@ get_header(); ?>
 							</li>							
 							<?php endwhile; ?>							
 						</ul>
-					</div>					
-					<div class="list-item-content">
+					</div>
+					<div class="list-item-content slider-container slider clearfix">
 						<?php
 							$catquery = new WP_Query( 'cat=3&posts_per_page=4' );
 							$index = 0;
 							while($catquery->have_posts()) : $catquery->the_post();
-							  $display="display:none";
-								if($index === 0) {$display="display:block";}
+							  $display="";
+								if($index === 0) {$display="item-active";}
 								$index ++;
 							?>
-							<div class="main-frame" id="select<?php echo get_the_ID(); ?>" style="<?php echo  $display; ?>">
+							<div class="main-frame page-slider item-slider <?php echo $display;?>" id="select<?php echo get_the_ID(); ?>">
 								 <div class="thumnail">
 									<h3><?php the_title(); ?></h3>
 									<?php  
 									$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 									if ( !empty($full_img )) : ?>
-									   <a href="" title="<?php the_title_attribute(); ?>" >
-										 <img src="<?php echo $full_img[0] ?>" width="<?php echo $full_img[1] ?>" height="<?php echo $full_img[2] ?>"/>
-									   </a>
+                    <a href="" title="<?php the_title_attribute(); ?>" >
+                      <img src="<?php echo $full_img[0] ?>" width="<?php echo $full_img[1] ?>" height="<?php echo $full_img[2] ?>"/>
+                    </a>
 									 <?php else :?>
 									 <div class="no-thumb"></div>
 									 <?php endif; ?>

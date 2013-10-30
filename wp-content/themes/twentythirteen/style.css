@@ -3850,3 +3850,21 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 color:#bbbdbf;
 	
 }
+
+
+.slider {
+	overflow: hidden;
+	position:relative;
+}
+
+.slider .item-slider {
+  float: left;
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.slider .item-active {
+  display: block;
+}

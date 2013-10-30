@@ -3194,7 +3194,7 @@ border-right: 1px solid #fff;
 float: left;
 margin: -15px 15px 0 0;  max-width: auto!important;
 }
- .overlay,.container {width: 980px;margin: 0 auto;}
+ 
  .container {width: 1080px;margin: 0 auto;}
 #section4 .data-content ul li.active {
 	width: 676px;
@@ -3219,10 +3219,11 @@ a.home-link {
 
 .navigation{
 	padding-bottom: 25px;
+	text-align: right;
 }
 .navigation a{
-	float: right;
-	text-indent: -9999px;
+	display: inline-block;
+	font-size:0;
 }
 
 .navigation a{
@@ -3271,10 +3272,10 @@ display: inline-block;
 .section-home span {
 	color: #ddd;
 }
-#section1 .nav-menus {padding:0;margin-top:100px}
+#section1 .nav-menus {padding:0;margin-top:50px}
 #section1 nav ul li a {
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	color: #6d6e70;
 }
@@ -3285,35 +3286,37 @@ display: inline-block;
 	color: #ddd;
 	text-decoration: none;
 }
-.social{
-	position: relative;
-}
-.social .watch-action {
-	position: absolute;
-	right: 155px;
-	width: 4%;
-	float: none;
-	top: 20px;
-	height: auto;
+.site-main .widget-area {
+	width: 100%;
 }
 
-.social .watch-action .watch-position {
+.social .heart {
 	background: url('images/icon-heart.png') no-repeat top left;
 	width: 47px;
+	position: relative;
 	height: 40px;
+	color: white;
 }
 
-.social .watch-action .watch-position .action-unlike a img,
-.social .watch-action .watch-position .action-like a img{
-	background: none !important;
+.heart span ,.heart a{ position: absolute;left:0;  bottom: -18px;}
+.heart a{ 
+	color: #FFFFFF;
+    left: 50%;
+    margin-left: -10px;
+    position: absolute;
+    text-align: center;
+    top: -22px;
+    width: 20px;
 }
-.social a.iconSocial {
-	
-	 display: inline-block;
+.heart a:hover {text-decoration: none;}
+.social .iconSocial {	
+	display: block;
+	float: right;
     margin: 20px 10px;
+	cursor: pointer;
 }
 
-.social a.iconSocial.twitter {
+.social .iconSocial.twitter {
 	background: url('images/icon-tw-red.png') no-repeat top left;
 	width: 40px;
 	height: 40px;
@@ -3321,13 +3324,13 @@ display: inline-block;
 }
 .social .container {text-align: right;}
 
-.social a.iconSocial.facebook {
+.social .iconSocial.facebook {
 	background: url('images/icon-FB-red.png') no-repeat top left;
 	width: 22px;
 	height: 44px;
+	margin-right: 0;
 	text-indent: -9999px;
 }
-
 
 
 #section2 {
@@ -3346,13 +3349,12 @@ display: inline-block;
 	background: #ed245c;
 }
 
-#section2 .social .watch-action  {
-	right: 240px;
-}
-#section2 .social .watch-action  .watch-position{
+
+#section2 .social .heart{
 	background: url('images/icon-heart-blue.png') no-repeat top left;
 }
 
+#section2 .social  .iconSocial {position: relative;z-index: 10;}
 
 #section2 .social a.iconSocial.twitter {
 	background: url('images/icon-tw-blue.png') no-repeat top left;
@@ -3361,19 +3363,19 @@ display: inline-block;
 #section2 .social a.iconSocial.facebook {
 	background: url('images/icon-FB-blue.png') no-repeat top left;
 }
-#section2 .title_section {position: absolute;}
+#section2 .title_section {
+	float: left;
+}
 .title_section {
 	margin:  0 auto;
 	display: block;
 }
  .container-2 {
-	position: relative;top: -60px;
+	position: relative;
 }
 #section2 nav {
-	position: absolute;
-	right: 0px;
-	top: 50px;
-	padding-right: 20px;
+	float: right;
+	text-align: right;
 }
 #section2 nav ul li.menu-item-12 a {
 	color:#f1f1f2;
@@ -3381,7 +3383,7 @@ display: inline-block;
 #section2 nav ul li a {
 	color: #bbbdbf;
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 }
 
@@ -3404,7 +3406,6 @@ display: inline-block;
 
 #section2 .content-section2 {
 	float: right;
-	padding-top: 250px;
 	width: 35%;
 }
 
@@ -3412,11 +3413,9 @@ display: inline-block;
 	background: url('images/title_section2.jpg') no-repeat top left;
 	width: 220px;
 	height: 218px;
-	right: 0px;
 	text-indent: -9999px;
 	float: right;
-	margin-right: 20px;	
-	margin-bottom: 10px;
+	margin: 0px;
 }
 
 #section2 .content-section2 p {
@@ -3431,15 +3430,13 @@ display: inline-block;
 	max-width: 940px;
 	position: relative;
 }
-
+#section2 { background:url("images/frame-product-section2.png") no-repeat  206px 88px #ED245C}
 #section2 .wrap-section2 .product-section2 {
     float: left;
     width: 600px;
-    background: url('images/frame-product-section2.png') no-repeat top left;
-    min-height: 630px;
-  
-    left: 0px;
-    padding-top: 240px;
+}
+#section2 .wrap-2  {
+    min-height: 655px;
 }
 #section2 .wrap-section2 .product-section2 ul {
 	list-style: none;
@@ -3449,7 +3446,7 @@ display: inline-block;
 #section2 .wrap-section2 .product-section2 ul li {
 	float: left;
 	width: 135px;
-	margin-top: 30px;
+	margin-top: 60px;
 	margin-right: 10px;
 }
 #section2 .wrap-section2 .product-section2 ul li a {
@@ -3490,13 +3487,14 @@ display: inline-block;
 #section4 .social .watch-action  {
 	right: 200px;
 }
-#section3 .social .watch-action  .watch-position,
-#section4 .social .watch-action  .watch-position{
+#section3 .container {position: relative;}
+#section3 .social .heart,
+#section4 .social .heart{
 	background: url('images/icon-heart-gray.png') no-repeat top left;
 	width: 45px;
 	height: 37px;
 }
-
+#section4 .container {position: relative;}
 
 #section3 .social a.iconSocial.twitter,
 #section4 .social a.iconSocial.twitter {
@@ -3513,20 +3511,22 @@ display: inline-block;
 }
 
 #section3 nav {
-	padding-right: 20px;
+	text-align: right;
     position: absolute;
     right: 0;
-    top: 100px;
+	z-index:9;
 }
-
+.wrap3 {width: 90%;position:relative;top: -60px;clear:both}
 #section3 nav ul li a {
 	 color: #BBBDBF;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
 }
-
-#section3 nav ul li a:hover {
+#section3 nav ul li.menu-item-12  a {
+	color: #6d6e70;
+}
+#section3 nav ul li a:hover{
 	color: #6d6e70;
 	text-decoration: none;
 }
@@ -3535,9 +3535,7 @@ display: inline-block;
 	color: #00adee;
 }
 #section3 .social{
-	position: absolute;
-	top: 0px;
-	right: 0px;
+	background: none;
 }
 
 #section3 .title_section h3 {
@@ -3552,18 +3550,19 @@ display: inline-block;
 }
 
 #section4 .title_section {
-	padding-top: 15px;
+	position: absolute;
+	top:0;
+	left:0;
 }
-#section4 .social,#section4 nav {
+#section4 nav {
 	position: absolute;
 	right: 0;
 }
 #section4 .social {
-	top: 0px;
+	background: none;
 }
 #section4 nav {
-	top: 100px;
-	padding-right: 20px;
+	z-index: 10;text-align: right;
 }
 
 #section4 .title_section h3 {
@@ -3576,9 +3575,10 @@ display: inline-block;
 #section4 nav ul li a {
 	color: #bbbdbf;
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 18px;
     font-weight: bold;
 }
+#section4 nav ul li.menu-item-13 a{color : #808184 ;}
 #section4 nav ul li a:hover {
 	color: #808184;
 	text-decoration: none;
@@ -3588,7 +3588,7 @@ display: inline-block;
 }
 
 #section4 .data-content {
-	 margin: 0 auto;
+	 margin:160px auto 0;
     max-width: 1080px;
     width: 980px;
 }
@@ -3607,7 +3607,15 @@ display: inline-block;
 	color: #BBBDBF;
 	text-decoration: none;
 }
+#section4 .navigation a {
+	background: url('images/arrow-4.png') no-repeat top left;
+	width: 75px;
+	height: 37px;
+}
 
+#section4 .navigation a + a {
+    background-position: -80px 5px;
+}
 #section5 .title_section h3 {
 	background: url('images/is_just_next_to_you.png') no-repeat top left;
 	width: 636px;
@@ -3628,7 +3636,7 @@ text-align: right;
 	background: #ed245c;
 }
 
-#section5 .social .watch-action  .watch-position{
+#section5 .social .heart{
 	background: url('images/icon-heart-yellow.png') no-repeat top left;
 	width: 46px;
 	height: 38px;
@@ -3650,7 +3658,7 @@ text-align: right;
 #section5 nav ul li a {
 	color: #bbbdbf;
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 18px;
     font-weight: bold
 }
 
@@ -3658,7 +3666,7 @@ text-align: right;
 	color: #fff;
 	text-decoration: none;
 }
-
+#section5 nav ul li.menu-item-14 a {color:white;}
 #section5 nav ul li:last-child  a {
 	color: #fff100;
 }
@@ -3668,6 +3676,10 @@ text-align: right;
 	margin: 0 auto;
 }
 
+#section5 .navigation a {
+    background: url("images/icon-down-blue.png") no-repeat scroll left top ;
+	width: 70px;height: 44px;
+}
 #section5 .su-row .su-column {
 	margin-top: 20px;
 }
@@ -3736,9 +3748,17 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	background: url('images/icon-down.png') no-repeat top left;
 	width: 70px;
 	height: 35px;
-
+	clear: both;
 }
-
+#section1  .container-body {
+	position: relative;
+	min-height: 360px;
+}
+#section1  .container-body  .navigation {
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+}
 #section1 .navigation a   + a ,.is-just-next-to  .navigation a  {
 	display: block;
 }

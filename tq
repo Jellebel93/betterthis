@@ -1,0 +1,824 @@
+[1mdiff --git a/wp-content/plugins/accordion-image-menu/accordion-image-menu.php b/wp-content/plugins/accordion-image-menu/accordion-image-menu.php[m
+[1mdeleted file mode 100644[m
+[1mindex 343d4d1..0000000[m
+[1m--- a/wp-content/plugins/accordion-image-menu/accordion-image-menu.php[m
+[1m+++ /dev/null[m
+[36m@@ -1,959 +0,0 @@[m
+[31m-<?php[m
+[31m-/*[m
+[31m-Plugin Name: Accordion Image Menu[m
+[31m-Plugin URI: http://web-argument.com/category/accordion-image-menu-2/[m
+[31m-Description: Versatile Accordion Image Menu. Allows to use the post's feature images as links. You can combine and order pages, categories and recent posts.  [m
+[31m-Version: 3.1.3[m
+[31m-Author: Alain Gonzalez[m
+[31m-Author URI: http://web-argument.com/[m
+[31m-*/[m
+[31m-[m
+[31m- [m
+[31m-/**[m
+[31m- *  Default Options [m
+[31m- */[m
+[31m-[m
+[31m-define( 'AIM_VERSION','3.1.0'); [m
+[31m- [m
+[31m-$d_aim_options = array([m
+[31m-						'position' => 'vertical',[m
+[31m-						'type' => 'post',[m
+[31m-						'post_number' => 5,[m
+[31m-						'effect' => 'swing',[m
+[31m-						'opened_d' => 200,[m
+[31m-						'closed_d' => 100,[m
+[31m-						'width' => get_option('medium_size_w'),[m
+[31m-						'height' => get_option('medium_size_h'),						[m
+[31m-						'duration' => 300,						[m
+[31m-						'border' => 1,[m
+[31m-						'border_color' => '#000000',[m
+[31m-						'title'=>'over',[m
+[31m-						'open' => '',[m
+[31m-						'include_jquery' => 1,[m
+[31m-						'version' => AIM_VERSION[m
+[31m- 						);[m
+[31m-[m
+[31m-[m
+[31m-function aim_options ($default = false){[m
+[31m-[m
+[31m-	global $d_aim_options;[m
+[31m-[m
+[31m-    $options = get_option('a_i_m');	[m
+[31m-	if ($default) {[m
+[31m-	update_option('a_i_m', $d_aim_options);[m
+[31m-	return $d_aim_options;[m
+[31m-	}[m
+[31m-	if (isset($options)){	[m
+[31m-		$chk_version = version_compare(AIM_VERSION,$options['version']);[m
+[31m-		if ($chk_version == 0) return $options;[m
+[31m-		else if ($chk_version > 0) {[m
+[31m-			$options = $d_aim_options;[m
+[31m-		}	[m
+[31m-	} else {[m
+[31m-		$options = $d_aim_options;[m
+[31m-	}	[m
+[31m-	update_option('a_i_m', $options);	[m
+[31m-[m
+[31m-	return $options;[m
+[31m-}[m
+[31m-[m
+[31m-/**[m
+[31m- *  Header  [m
+[31m- */[m
+[31m-function a_image_menu_head() {	[m
+[31m-[m
+[31m-    $options = aim_options ();[m
+[31m-[m
+[31m-    $a_image_menu_header =  "\n<!-- Accordion Image Menu ".$options['version']."-->\n";[m
+[31m-	if ($options['include_jquery'] == "1") [m
+[31m-	$a_image_menu_header .= "<script type=\"text/javascript\" src=\"".get_bloginfo('wpurl')."/wp-content/plugins/accordion-image-menu/js/jquery.min.js\"></script>\n";[m
+[31m-    $a_image_menu_header .= "<script type=\"text/javascript\" src=\"".get_bloginfo('wpurl')."/wp-content/plugins/accordion-image-menu/js/jquery-ui-1.8.10.custom.min.js\"></script>\n";[m
+[31m-	$a_image_menu_header .= "<script type=\"text/javascript\" src=\"".get_bloginfo('wpurl')."/wp-content/plugins/accordion-image-menu/js/accordionImageMenu-0.4.js\"></script>\n";			[m
+[31m-	$a_image_menu_header .= "\n<link href=\"".get_bloginfo('wpurl')."/wp-content/plugins/accordion-image-menu/css/accordionImageMenu.css\" rel=\"stylesheet\" type=\"text/css\" />\n";		[m
+[31m-    $a_image_menu_header .=  "\n<!-- / Accordion Image Menu -->\n";	[m
+[31m-            [m
+[31m-	print($a_image_menu_header);[m
+[31m-}[m
+[31m-[m
+[31m-add_action('wp_head', 'a_image_menu_head');[m
+[31m-[m
+[31m-/**[m
+[31m- *  The widget [m
+[31m- */[m
+[31m- [m
+[31m-class AccordionImageMenuWidget extends WP_Widget {[m
+[31m-    /** constructor */[m
+[31m-    function AccordionImageMenuWidget() {[m
+[31m-		$widget_ops = array('classname' => 'accordion_image_menu', 'title' => __( 'Accordion Image Menu'), 'description' => __( 'Accordion Image Menu using the parameters saved on the Plugin Settings Page') );[m
+[31m-		$this->WP_Widget('accordion_image_menu', __('Accordion Image Menu'), $widget_ops);[m
+[31m-	}[m
+[31m-[m
+[31m-    /** @see WP_Widget::widget */[m
+[31m-    function widget($args, $instance) {		[m
+[31m-        extract( $args );[m
+[31m-        $title = apply_filters('widget_title', $instance['title']);[m
+[31m-        ?>[m
+[31m-              <?php echo $before_widget; ?>[m
+[31m-                  <?php if ( $title )[m
+[31m-                        echo $before_title . $title . $after_title; [m
+[31m-                  		echo do_shortcode('[a_image_menu]');[m
+[31m-             	 		echo $after_widget; ?>[m
+[31m-        <?php[m
+[31m-    }[m
+[31m-[m
+[31m-    /** @see WP_Widget::update */[m
+[31m-    function update($new_instance, $old_instance) {				[m
+[31m-	$instance = $old_instance;[m
+[31m-	$instance['title'] = strip_tags($new_instance['title']);[m
+[31m-        return $instance;[m
+[31m-    }[m
+[31m-[m
+[31m-    /** @see WP_Widget::form */[m
+[31m-    function form($instance) {				[m
+[31m-        $title = esc_attr($instance['title']);[m
+[31m-        ?>[m
+[31m-         <p>[m
+[31m-          <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> [m
+[31m-          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />          [m
+[31m-        </p>[m
+[31m-        <p> <?php _e('The Widget will use the parameters saved on the Plugin Settings Page') ?> </p>[m
+[31m-        <?php [m
+[31m-    }[m
+[31m-[m
+[31m-} // class AccordionImageMenuWidget[m
+[31m-[m
+[31m-[m
+[31m-// register AccordionImageMenuWidget widget[m
+[31m-add_action('widgets_init', create_function('', 'return register_widget("AccordionImageMenuWidget");'));[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-/**[m
+[31m- * Get thumbnails[m
+[31m- */	[m
+[31m-[m
+[31m-function a_m_image_url($the_parent){[m
+[31m-[m
+[31m-	if( function_exists('has_post_thumbnail') && has_post_thumbnail($the_parent)) {[m
+[31m-	    $thumbnail_id = get_post_thumbnail_id( $the_parent );[m
+[31m-		if(!empty($thumbnail_id))[m
+[31m-		$img = wp_get_attachment_image_src( $thumbnail_id, 'medium' );	[m
+[31m-	} else {[m
+[31m-	$attachments = get_children( array([m
+[31m-										'post_parent' => $the_parent, [m
+[31m-										'post_type' => 'attachment', [m
+[31m-										'post_mime_type' => 'image',[m
+[31m-										'orderby' => 'menu_order', [m
+[31m-										'order' => 'ASC', [m
+[31m-										'numberposts' => 1) );[m
+[31m-	if($attachments == true) :[m
+[31m-		foreach($attachments as $id => $attachment) :[m
+[31m-			$img = wp_get_attachment_image_src($id, 'medium');			[m
+[31m-		endforeach;		[m
+[31m-	endif;[m
+[31m-	}[m
+[31m-	if (isset($img[0])) return $img[0];[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-/**[m
+[31m- * Get the items[m
+[31m- */	[m
+[31m-function a_image_m_items($num, $cat, $type){[m
+[31m-[m
+[31m-	$options = aim_options ();[m
+[31m-	[m
+[31m-	/**[m
+[31m-	 * Recent Posts[m
+[31m-	 */		[m
+[31m-	if ($type == 'post'){[m
+[31m-	[m
+[31m-		$i = 0;	[m
+[31m-	[m
+[31m-		if 	(empty($cat)) $my_query = get_posts(array('numberposts'=>$num));[m
+[31m-		else if (!is_array($cat)){				[m
+[31m-					[m
+[31m-					$mcat = explode (",",$cat);[m
+[31m-					[m
+[31m-					$my_query = get_posts(array('category__in'=>$mcat,'numberposts'=>$num));[m
+[31m-		} else {[m
+[31m-		[m
+[31m-					$my_query = get_posts(array('category__in'=>$cat,'numberposts'=>$num));	[m
+[31m-		}    [m
+[31m-		[m
+[31m-		foreach ($my_query  as $post) {	[m
+[31m-			[m
+[31m-			$the_image = a_m_image_url($post -> ID);[m
+[31m-			$the_title = get_the_title($post -> ID);[m
+[31m-			$the_link = get_permalink($post -> ID);[m
+[31m-			[m
+[31m-			$item[$i] = array("img" => $the_image,"title" => $the_title,"link" => $the_link);[m
+[31m-			[m
+[31m-			$i ++;		[m
+[31m-	[m
+[31m-		} [m
+[31m-	[m
+[31m-	} else if ($type == 'page'){	[m
+[31m-[m
+[31m-		/**[m
+[31m-		 * Pages[m
+[31m-		 */[m
+[31m-		[m
+[31m-		if(isset($options['pag_or'])){[m
+[31m-		[m
+[31m-			foreach ($options['pag_or'] as $m_pages => $order){			[m
+[31m-[m
+[31m-				 if (is_numeric($order) and ($order != 0)) {[m
+[31m-					 [m
+[31m-					$the_image = a_m_image_url($m_pages);[m
+[31m-					$the_title = get_the_title($m_pages);[m
+[31m-					$the_link = get_permalink($m_pages);	[m
+[31m-					[m
+[31m-					$item[$order] = array("img" => $the_image,"title" => $the_title,"link" => $the_link);				[m
+[31m-				}				[m
+[31m-			}		[m
+[31m-         }[m
+[31m-		 [m
+[31m-		/**[m
+[31m-		 * Categories[m
+[31m-		 */[m
+[31m-         if(isset($options['cat_or'])){[m
+[31m-			foreach ($options['cat_or'] as $m_cat => $order){[m
+[31m-			 [m
+[31m-				 if (is_numeric($order) and ($order != 0)) {[m
+[31m-									 [m
+[31m-						$my_query = get_posts(array('cat'=>$m_cat,'numberposts'=>1));							[m
+[31m-							[m
+[31m-							$the_image = "";							[m
+[31m-										[m
+[31m-							foreach ($my_query  as $post) {	[m
+[31m-																	[m
+[31m-								$the_image = a_m_image_url($post -> ID);							[m
+[31m-								$the_title = get_cat_name($m_cat);[m
+[31m-								$the_link = get_category_link($m_cat);	[m
+[31m-								[m
+[31m-								$item[$order] = array("img" => $the_image,"title" => $the_title,"link" => $the_link);					[m
+[31m-					  [m
+[31m-							}[m
+[31m-				}		[m
+[31m-			}[m
+[31m-		}	[m
+[31m-[m
+[31m-	} 	[m
+[31m-	[m
+[31m-	return $item;[m
+[31m-[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-function a_image_m_items_from_id($ids) {[m
+[31m-[m
+[31m-	$my_query = get_posts(array('include'=>$ids,'post_type'=>'any'));[m
+[31m-	$i = 0;[m
+[31m-	foreach ($my_query  as $post) {	[m
+[31m-		[m
+[31m-			$the_image = a_m_image_url($post -> ID);[m
+[31m-			$the_title = get_the_title($post -> ID);[m
+[31m-			$the_link = get_permalink($post -> ID);[m
+[31m-		[m
+[31m-			$item[$i] = array("img" => $the_image,"title" => $the_title,"link" => $the_link);				 [m
+[31m-			$i ++;[m
+[31m-	}[m
+[31m-	[m
+[31m-	return $item; 	[m
+[31m-}	[m
+[31m-[m
+[31m-[m
+[31m-function a_image_m_items_from_menu($name) {	[m
+[31m-[m
+[31m-	$item = array ();[m
+[31m-    [m
+[31m-	if ($menu_items = wp_get_nav_menu_items($name)) {[m
+[31m-[m
+[31m-		$i = 0;	[m
+[31m-[m
+[31m-		foreach ($menu_items as $post) {[m
+[31m-[m
+[31m-			$the_image = "";[m
+[31m-			[m
+[31m-		[m
+[31m-			[m
+[31m-			if ($post -> object == "category") {[m
+[31m-	[m
+[31m-				$my_query = get_posts(array('cat'=>$post -> object_id,'numberposts'=>5));[m
+[31m-				[m
+[31m-					[m
+[31m-					foreach ($my_query  as $cat_post) {[m
+[31m-															[m
+[31m-						$the_image = a_m_image_url($cat_post -> ID);							[m
+[31m-	[m
+[31m-						if (!empty($the_image))	break;[m
+[31m-						[m
+[31m-					}[m
+[31m-			[m
+[31m-			} else if ($post -> object == "page"){[m
+[31m-[m
+[31m-				$the_image = a_m_image_url($post -> object_id);[m
+[31m-			[m
+[31m-			}[m
+[31m-			[m
+[31m-	[m
+[31m-			$the_title = $post -> title;[m
+[31m-			$the_link = $post -> url;[m
+[31m-			$item[$post -> menu_order] = array("img" => $the_image,"title" => $the_title,"link" => $the_link);[m
+[31m-				 [m
+[31m-			}			[m
+[31m-	[m
+[31m-		} [m
+[31m-	[m
+[31m-	return $item;[m
+[31m-	[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-/**[m
+[31m- * The shortcode[m
+[31m- */[m
+[31m-[m
+[31m-function a_image_menu_func($atts) {[m
+[31m-[m
+[31m-	$options = aim_options ();[m
+[31m-[m
+[31m-   //position[m
+[31m-	$position = $options['position'];[m
+[31m-	[m
+[31m-	$post_number = $options['post_number'];[m
+[31m-	[m
+[31m-	//type of menu cat/pages[m
+[31m-	if(isset($options['m_cat']))[m
+[31m-	$m_cat = $options['m_cat'];	[m
+[31m-	if(isset($options['cat_or']))	[m
+[31m-	$cat_or = $options['cat_or'];[m
+[31m-	if(isset($options['pag_or']))[m
+[31m-	$pag_or = $options['pag_or'];[m
+[31m-	[m
+[31m-	//menu[m
+[31m-	$width = $options['width'];[m
+[31m-	$height = $options['height'];[m
+[31m-	$opened_d = $options['opened_d'];[m
+[31m-	$closed_d = $options['closed_d'];[m
+[31m-	$border = $options['border'];[m
+[31m-	$border_color = $options['border_color'];	[m
+[31m-	[m
+[31m-	//title	[m
+[31m-	$title = $options['title'];[m
+[31m-	[m
+[31m-	//effects[m
+[31m-	$open = $options['open'];	[m
+[31m-	$effect = $options['effect'];[m
+[31m-	$duration = $options['duration'];[m
+[31m-	[m
+[31m-	//menu name[m
+[31m-	if(isset($options['name']))[m
+[31m-	$menu_name = $options['name'];[m
+[31m-[m
+[31m-	extract(shortcode_atts(array([m
+[31m-								'position' => $position,[m
+[31m-								'cat' => $m_cat,[m
+[31m-								'number' => $post_number,[m
+[31m-								'effect' => $effect,[m
+[31m-								'closed_d' => $closed_d,[m
+[31m-								'opened_d' => $opened_d,[m
+[31m-								'width' => $width,[m
+[31m-								'height' => $height,[m
+[31m-								'duration' => $duration,[m
+[31m-								'border' => $border,[m
+[31m-								'border_color' => $border_color,[m
+[31m-								'open' => $open,[m
+[31m-								'type' =>$options['type'],[m
+[31m-								'id' => '',[m
+[31m-								'name' =>''[m
+[31m-								), $atts));[m
+[31m-								[m
+[31m-    $alert=__("Error generating the menu");[m
+[31m-	[m
+[31m-	// For Wordpress version above 3.0.0[m
+[31m-	$chk_wp_version = version_compare("3.0.0",get_bloginfo("version"));[m
+[31m-	if (!empty($id)) $the_items = a_image_m_items_from_id($id);[m
+[31m-    else if (!empty($name)) {[m
+[31m-		if ($chk_wp_version <= 0) $the_items = a_image_m_items_from_menu($name);[m
+[31m-		else $alert = __("Your Wordpress Version doesn't allows menus");	[m
+[31m-	} else if (!empty($menu_name) && $type == "menu") {[m
+[31m-		if ($chk_wp_version <= 0) $the_items = a_image_m_items_from_menu($menu_name);[m
+[31m-		else $alert = __("Your Wordpress Version doesn't allows menus");[m
+[31m-	} else $the_items = a_image_m_items($number, $cat, $type);[m
+[31m-	[m
+[31m-	if(isset($the_items) and count($the_items)>0) {[m
+[31m-		ksort($the_items);[m
+[31m-		[m
+[31m-		$random = wp_generate_password(6, false);[m
+[31m-		[m
+[31m-		$image_menu_div = "imageMenu_".$random;[m
+[31m-[m
+[31m-        $image_menu =  "\n<!-- Accordion Image Menu ".$options['version']."-->\n";		[m
+[31m-		[m
+[31m-		$image_menu .= "<div id='".$image_menu_div."' class='aim'>\n";		[m
+[31m-	[m
+[31m-			foreach ($the_items as $the_item){[m
+[31m-[m
+[31m-			  $image_menu .= "<a href='".$the_item['link']."'>\n";[m
+[31m-				  [m
+[31m-			//the title[m
+[31m-			[m
+[31m-			 if ($title != "tnever") [m
+[31m-			 $image_menu .= "<span>".$the_item['title']."</span>\n";[m
+[31m-		     [m
+[31m-			 if (!empty($the_item['img'])) [m
+[31m-			 $image_menu .= "<img src='".$the_item['img']."' />";[m
+[31m-[m
+[31m-			  $image_menu .= "</a>\n";[m
+[31m-				[m
+[31m-			}[m
+[31m-[m
+[31m-		$image_menu .= "</div>\n";	[m
+[31m-			[m
+[31m-		$image_menu .= "<script type=\"text/javascript\">\n";[m
+[31m-		$image_menu .= "jQuery.noConflict();(function ($) {\n"; [m
+[31m-		$image_menu .= "jQuery(document).ready(function() {\n";[m
+[31m-		$image_menu .= "jQuery('#".$image_menu_div."').AccordionImageMenu({\n";    [m
+[31m-[m
+[31m-		$image_menu .= "'border':".$border.",\n";[m
+[31m-		$image_menu .= "'color':'".$border_color."',\n";[m
+[31m-		$image_menu .= "'duration':".$duration.",\n";[m
+[31m-		$image_menu .= "'position':'".$position."',\n";[m
+[31m-		$image_menu .= "'openDim':".$opened_d.",\n";[m
+[31m-		$image_menu .= "'closeDim':".$closed_d.",\n";[m
+[31m-		$image_menu .= "'effect':'".$effect."',\n";[m
+[31m-		[m
+[31m-		switch ($open) {[m
+[31m-			case "randomly":[m
+[31m-				$image_menu .= "'openItem':".rand(0, count($the_items)-1).",\n";[m
+[31m-			break;[m
+[31m-			case "":[m
+[31m-				$image_menu .= "'openItem':null,\n";[m
+[31m-			break;[m
+[31m-			default:[m
+[31m-			    if($open >= 0  &&  ($open+1) <= count($the_items)) $image_menu .= "'openItem':".$open.",\n";[m
+[31m-				else $image_menu .= "'openItem':null,\n";[m
+[31m-			break;				[m
+[31m-		}		[m
+[31m-		[m
+[31m-		switch ($title) {[m
+[31m-			case "always":[m
+[31m-				$image_menu .= "'fadeInTitle':null,\n";[m
+[31m-			break;[m
+[31m-			case "over":[m
+[31m-				$image_menu .= "'fadeInTitle':true,\n";[m
+[31m-			break;[m
+[31m-			case "out":[m
+[31m-				$image_menu .= "'fadeInTitle':false,\n";[m
+[31m-			break;			[m
+[31m-			default:[m
+[31m-				$image_menu .= "'fadeInTitle':null,\n";[m
+[31m-			break;				[m
+[31m-		}		[m
+[31m-	[m
+[31m-		$image_menu .= "'width':".$width.",\n";[m
+[31m-		$image_menu .= "'height':".$height."\n";				[m
+[31m-		[m
+[31m-     	$image_menu .= "});});\n"; [m
+[31m-		$image_menu .= "})(jQuery);\n";								[m
+[31m-[m
+[31m-		$image_menu .= "</script>\n";[m
+[31m-		$image_menu .=  "<!--/ Accordion Image Menu -->\n";	[m
+[31m-[m
+[31m-		return $image_menu;[m
+[31m-		[m
+[31m-		[m
+[31m-	} else {[m
+[31m-	[m
+[31m-		return $alert;[m
+[31m-	[m
+[31m-	}[m
+[31m-}[m
+[31m-[m
+[31m-add_shortcode('a_image_menu', 'a_image_menu_func');[m
+[31m-[m
+[31m-add_action('admin_menu', 'a_img_menu_set');[m
+[31m-[m
+[31m-[m
+[31m-/**[m
+[31m- *   Settings  [m
+[31m- */[m
+[31m-function a_img_menu_set() {[m
+[31m-    add_options_page('Accordion Image Menu', 'Accordion Image Menu', 'administrator', 'accordion-image-menu', 'a_image_menu_page');	 [m
+[31m-}[m
+[31m-[m
+[31m-function a_image_menu_page() {[m
+[31m-[m
+[31m-	$options = aim_options();	[m
+[31m-[m
+[31m-	$categories = get_categories();[m
+[31m-	$trans_type = array("swing","easeOutBack","easeOutBounce","easeOutCubic","easeOutElastic","easeOutExpo","easeOutQuart","easeOutQuin","easeOutSine","easeOutExpo","easeInCirc");[m
+[31m-	[m
+[31m-	if(isset($_POST['Reset'])){[m
+[31m-	[m
+[31m-		$options = aim_options(true);[m
+[31m-	}[m
+[31m-[m
+[31m-[m
+[31m-	if(isset($_POST['Submit'])){[m
+[31m-[m
+[31m-        //position[m
+[31m-		$newoptions['position'] = $_POST['position'];[m
+[31m-		[m
+[31m-		//type of menu recent post or cat/pages[m
+[31m-		$newoptions['type'] = $_POST['type'];			[m
+[31m-		$newoptions['post_number'] = $_POST['post_number'];[m
+[31m-		[m
+[31m-		//type of menu cat/pages[m
+[31m-		$newoptions['m_cat'] = $_POST['m_cat'];		[m
+[31m-		$newoptions['cat_or'] = $_POST['cat_or'];[m
+[31m-		$newoptions['pag_or'] = $_POST['pag_or'];[m
+[31m-		[m
+[31m-		//dimensions[m
+[31m-		$newoptions['width'] = $_POST['width'];[m
+[31m-		$newoptions['height'] = $_POST['height'];[m
+[31m-		$newoptions['opened_d'] = $_POST['opened_d'];[m
+[31m-		$newoptions['closed_d'] = $_POST['closed_d'];[m
+[31m-		$newoptions['border'] = $_POST['border'];	[m
+[31m-		[m
+[31m-		//title	[m
+[31m-		$newoptions['title'] = $_POST['title'];[m
+[31m-		[m
+[31m-		//effects[m
+[31m-		if ($_POST['open'] == 1) [m
+[31m-		$newoptions['open'] = $_POST['open_number'];[m
+[31m-		else [m
+[31m-		$newoptions['open'] = $_POST['open'];[m
+[31m-				[m
+[31m-		$newoptions['effect'] = $_POST['effect'];[m
+[31m-		$newoptions['duration'] = $_POST['duration'];[m
+[31m-		$newoptions['border_color'] = $_POST['border_color'];[m
+[31m-		[m
+[31m-		//menu name[m
+[31m-		$newoptions['name'] = $_POST['menu_name'];	[m
+[31m-		[m
+[31m-		//version[m
+[31m-		$newoptions['version'] = $options['version'];[m
+[31m-		[m
+[31m-		//jquery[m
+[31m-		$newoptions['include_jquery'] = $_POST['jq'];[m
+[31m-	[m
+[31m-[m
+[31m-		if ( $options != $newoptions ) {[m
+[31m-			$options = $newoptions;[m
+[31m-			update_option('a_i_m', $options);			[m
+[31m-		}[m
+[31m-		    [m
+[31m-?>[m
+[31m-<div class="updated"><p><strong><?php _e('Options saved.', 'mt_trans_domain' ); ?></strong></p></div>[m
+[31m-         [m
+[31m-<?php  }  [m
+[31m-[m
+[31m-[m
+[31m-	    //position[m
+[31m-		$position = $options['position'];[m
+[31m-		[m
+[31m-		//type of menu recent post or cat/pages		[m
+[31m-		$type = $options['type'];			[m
+[31m-		$post_number = $options['post_number'];[m
+[31m-		[m
+[31m-		//type of menu cat/pages[m
+[31m-		if(isset($options['m_cat']))[m
+[31m-		$m_cat = $options['m_cat'];[m
+[31m-		if(isset($options['cat_or']))		[m
+[31m-		$cat_or = $options['cat_or'];[m
+[31m-		if(isset($options['pag_or']))[m
+[31m-		$pag_or = $options['pag_or'];[m
+[31m-		[m
+[31m-		//dimensions[m
+[31m-		$width = $options['width'];[m
+[31m-		$height = $options['height'];[m
+[31m-		$opened_d = $options['opened_d'];[m
+[31m-		$closed_d = $options['closed_d'];[m
+[31m-		$border = $options['border'];	[m
+[31m-		[m
+[31m-		//title	[m
+[31m-		$title = $options['title'];[m
+[31m-		[m
+[31m-		//effects[m
+[31m-		$open = $options['open'];		[m
+[31m-		$effect = $options['effect'];[m
+[31m-		$duration = $options['duration'];[m
+[31m-		$border_color = $options['border_color'];[m
+[31m-		[m
+[31m-		//menu name[m
+[31m-		if(isset($options['name']))[m
+[31m-		$menu_name = $options['name'];[m
+[31m-		[m
+[31m-		//jquery[m
+[31m-		$include_jquery = $options['include_jquery'];[m
+[31m-		[m
+[31m-?>	 	         [m
+[31m-[m
+[31m-<div class="wrap">   [m
+[31m-[m
+[31m-<form method="post" name="options" target="_self">[m
+[31m-[m
+[31m-<h2><?php _e('Accordion Image Menu Default Settings') ?></h2><br />[m
+[31m-[m
+[31m-<h3><?php _e('Position') ?></h3>[m
+[31m-[m
+[31m-[m
+[31m-<p><input name="position" type="radio" value="vertical" <?php if ($position=="vertical") echo "checked=\"checked\"" ?>/> <b><?php _e('Vertical') ?></b></p>[m
+[31m-<p><input name="position" type="radio" value="horizontal" <?php if ($position=="horizontal") echo "checked=\"checked\"" ?>/> <b><?php _e('Horizontal') ?></b></p>[m
+[31m-[m
+[31m-<hr/>[m
+[31m-[m
+[31m-<h3><?php _e('Use the Menu for') ?></h3>[m
+[31m-[m
+[31m-[m
+[31m-<?php [m
+[31m-[m
+[31m-// For Wordpress version above 3.0.0[m
+[31m-$chk_wp_version = version_compare("3.0.0",get_bloginfo("version"));[m
+[31m-if ($chk_wp_version <= 0) {[m
+[31m-$menus = wp_get_nav_menus();[m
+[31m-[m
+[31m-if ( count($menus) > 0 ) {[m
+[31m-[m
+[31m-?>[m
+[31m-<p><input name="type" type="radio" value="menu" id="menu" <?php if ($type=="menu") echo "checked=\"checked\"" ?>/> <b><?php _e('Wordpress Menu') ?></b></p>[m
+[31m-[m
+[31m-    <div id="a_menu_type_menu" class="m_type">[m
+[31m-    [m
+[31m-            <table width="100%" cellpadding="10" class="form-table">[m
+[31m-            <tr>[m
+[31m-            <td width="200" align="right">[m
+[31m-			<select name="menu_name">                          [m
+[31m-				<?php [m
+[31m-                $menus = wp_get_nav_menus();[m
+[31m-[m
+[31m-                foreach ($menus as $menu){[m
+[31m-                ?>[m
+[31m-                <option value="<?php echo $menu->name ?>" <?php if ($menu_name == $menu->name) echo "selected=\"selected\"" ?>><?php echo $menu->name ?></option>[m
+[31m-                <?php [m
+[31m-                }[m
+[31m-                [m
+[31m-                ?>              [m
+[31m-            </select>[m
+[31m-			</td>[m
+[31m-            <td align="left" scope="row"><?php _e('Select the Menu') ?></td>[m
+[31m-            </tr>            [m
+[31m-            </table>[m
+[31m-    [m
+[31m-    </div>[m
+[31m-<?php } else { [m
+[31m-[m
+[31m-_e('If you want to use a Wordpress Menu you need to create one under Appearance based on Pages and Categories.'); [m
+[31m-[m
+[31m-} ?>[m
+[31m-<?php } ?>[m
+[31m-[m
+[31m-<p><input name="type" type="radio" value="post" id="post" <?php if ($type=="post") echo "checked=\"checked\"" ?>/> <b><?php _e('Recent Posts') ?></b></p>[m
+[31m-[m
+[31m-    <div id="a_menu_type_post" class="m_type">[m
+[31m-    [m
+[31m-            <table width="100%" cellpadding="10" class="form-table">[m
+[31m-                <tr>[m
+[31m-                <td width="200" align="right">[m
+[31m-                <input name="post_number" value="<?php echo $post_number ?>" size="1" />[m
+[31m-                </td>[m
+[31m-                <td align="left"><?php _e('Number of Posts') ?></td>[m
+[31m-                </tr>[m
+[31m-                           [m
+[31m-                <tr>[m
+[31m-                <td align="left" colspan="2"><b><?php _e('In the categories') ?></b></td>[m
+[31m-                </tr>[m
+[31m-                <tr>[m
+[31m-                <td width="200" align="right"><input name="m_cat_chk_all" id="m_cat_chk_all" type="checkbox" /> [m
+[31m-                <td align="left"><strong><?php _e('Check All') ?></strong></td>[m
+[31m-                </tr>[m
+[31m-                <tr>[m
+[31m-                  <td align="left" colspan="2">           [m
+[31m-                    <table width="100%" cellpadding="10" class="form-table" id="chk_cat">                          [m
+[31m-                        <?php            [m
+[31m-                        foreach ($categories as $cat) { ?>[m
+[31m-                            <tr>[m
+[31m-                            <td width="200" align="right"><input name="m_cat[<?php echo $cat->cat_ID ?>]" type="checkbox" value="<?php echo $cat->cat_ID ?>"[m
+[31m-                            <?php [m
+[31m-                            if (isset($m_cat))	if (in_array($cat->cat_ID, $m_cat)) echo "checked=\"checked\""; ?>                                       [m
+[31m-                            /> [m
+[31m-                            <td align="left" scope="row"><?php echo $cat->cat_name ?></td>[m
+[31m-                            </tr>[m
+[31m-                        <?php }  ?>[m
+[31m-                    </table>[m
+[31m-[m
+[31m-                  </td>[m
+[31m-                </tr>                      [m
+[31m-            </table>[m
+[31m-    [m
+[31m-    </div>[m
+[31m-[m
+[31m-<p><input name="type" type="radio" value="page" id="page" <?php if($type=="page") echo "checked=\"checked\"" ?>/> <b><?php _e('Categories and Pages') ?></b></p>[m
+[31m-[m
+[31m-    <div id="a_menu_type_page" class="m_type">[m
+[31m-    <p><?php _e('To select a Category or a Page just fill out the "Order" field in front of the item (The Order is the vertical item position on the menu, if you use "0" or leave it "empty" the item will not be included)') ?></p>[m
+[31m-            <table width="100%" cellpadding="5" class="form-table">[m
+[31m-              [m
+[31m-              <tr>[m
+[31m-                <td width="200" align="right"><b>Order</b></td>[m
+[31m-                <td align="left" scope="row"><b>Categories</b></td>[m
+[31m-              </tr>[m
+[31m-            <?php    [m
+[31m-             foreach ($categories as $cat) { ?>[m
+[31m-              [m
+[31m-                <td width="200" align="right">[m
+[31m-                <input name="cat_or[<?php echo $cat->cat_ID ?>]" type="text" id="cat_or<?php echo $cat->cat_ID ?>" size="1" value="<?php echo $cat_or[$cat->cat_ID] ?>"/></td>[m
+[31m-                <td align="left" scope="row"><?php echo $cat->cat_name ?></td>[m
+[31m-              </tr>[m
+[31m-              <?php }  [m
+[31m-              $pages = get_pages(); [m
+[31m-              if (count($pages)!=0){			  [m
+[31m-			  ?>[m
+[31m-              <tr>[m
+[31m-                <td width="200" align="right"></td>[m
+[31m-                <td align="left" scope="row"></td>[m
+[31m-              </tr>[m
+[31m-            [m
+[31m-             <?php [m
+[31m-              [m
+[31m-              foreach ($pages as $pag) { ?>[m
+[31m-              <tr>[m
+[31m-                <td width="200" align="right"><input name="pag_or[<?php echo $pag->ID ?>]" type="text" id="pag_or<?php echo $pag->ID ?>" size="1" value="<?php echo $pag_or[$pag->ID] ?>"/></td>[m
+[31m-                <td align="left" scope="row"><?php echo $pag->post_title ?></td>[m
+[31m-              </tr>[m
+[31m-            [m
+[31m-              <?php }  ?>[m
+[31m-            </select>[m
+[31m-             <?php }  ?>[m
+[31m-            </table>[m
+[31m-            [m
+[31m-    </div>[m
+[31m-[m
+[31m-<hr />[m
+[31m-[m
+[31m-<h3><?php _e('Select the Image Menu Dimensions') ?></h3>[m
+[31m-<p><?php _e('The menu use the Medium Size Images') ?></p>[m
+[31m-<table width="100%" cellpadding="10" class="form-table">[m
+[31m-[m
+[31m-  <tr>[m
+[31m-  	<td width="200" align="right">[m
+[31m-  	  <input name="width" id="width" value="<?php echo $width ?>" size="2"/> <?php _e('px') ?>[m
+[31m-  	</td>[m
+[31m-  	<td align="left" scope="row"><?php _e('Width - Apply if menu position is "vertical"') ?></td>[m
+[31m-  </tr>[m
+[31m-  <tr>[m
+[31m-  	<td width="200" align="right">[m
+[31m-  	  <input name="height" id="height" value="<?php echo $height ?>" size="2"/> <?php _e('px') ?>[m
+[31m-  	</td>[m
+[31m-  	<td align="left" scope="row"><?php _e('Height - Apply if menu position is "horizontal"') ?></td>[m
+[31m-  </tr>  [m
+[31m-  <tr>[m
+[31m-  	<td width="200" align="right">[m
+[31m-  	  <input name="opened_d" id="opened_d" value="<?php echo $opened_d ?>" size="2"/> <?php _e('px') ?>[m
+[31m-  	</td>[m
+[31m-  	<td align="left" scope="row"><?php _e('Open items dimension when mouseover') ?></td>[m
+[31m-  </tr>  [m
+[31m-  <tr>[m
+[31m-  	<td width="200" align="right">[m
+[31m-  	  <input name="closed_d" id="closed_d" value="<?php echo $closed_d ?>" size="2"/> <?php _e('px') ?>[m
+[31m- 	</td>[m
+[31m-  	<td align="left" scope="row"><?php _e('Closed items dimension when the menu is inactived') ?></td>[m
+[31m-  </tr> [m
+[31m-  <tr>[m
+[31m-  	<td width="200" align="right">[m
+[31m-  	  <input name="border" id="border" value="<?php echo $border ?>" size="2"/> <?php _e('px') ?> [m
+[31m-    </td>[m
+[31m-  	<td align="left" scope="row"><?php _e('Border between items') ?></td>[m
+[31m-  </tr>     [m
+[31m-</table>[m
+[31m-[m
+[31m-<p class="submit">[m
+[31m-<input type="submit" name="Submit" value="Update Options" class="button-primary"/>[m
+[31m-</p>[m
+[31m-[m
+[31m-<hr />[m
+[31m-<h3> <?php _e('Menu Behaviour ') ?></h3>[m
+[31m-<table width="100%" cellpadding="10" class="form-table">[m
+[31m-    <tr>[m
+[31m-        <td width="200" align="left" colspan="2">[m
+[31m-          <strong><?php _e('Show Title:') ?></strong>[m
+[31m-        </td>[m
+[31m-    </tr>[m
+[31m-    <tr>[m
+[31m-    <td width="200" align="right">[m
+[31m-      <input name="title" type="radio" value="tnever" <?php if ($title == "tnever") echo "checked=\"checked\"" ?>/>[m
+[31m-    </td>[m
+[31m-    <td align="left" scope="row"><?php _e('Never') ?></td>[m
+[31m-    </tr>  [m
+[31m-    <tr>[m
+[31m-    <td width="200" align="right">[m
+[31m-      <input name="title" type="radio" value="always" <?php if (($title == "always") || (empty($title))) echo "checked=\"checked\""; ?> />[m
+[31m-    </td>[m
+[31m-    <td align="left" scope="row"><?php _e('Always') ?></td>[m
+[31m-    </tr> [m
+[31m-    <tr>[m
+[31m-    <td width="200" align="right">[m
+[31m-      <input name="title" type="radio" value="over" <?php if ($title == "over") echo "checked=\"checked\"" ?>/>[m
+[31m-    </td>[m
+[31m-    <td align="left" scope="row"><?php _e('With Mouseover') ?></td>[m
+[31m-    </tr>[m
+[31m-    <tr>[m
+[31m-    <td width="200" align="right">[m
+[31m-      <input name="title" type="radio" value="out" <?php if ($title == "out") echo "checked=\"checked\"" ?>/>[m
+[31m-    </td>[m
+[31m-    <td align="left" scope="row"><?php _e('With Mouseout') ?></td>[m
+[31m-    </tr>    [m
+[31m-    <tr>[m
+[31m-        <td width="200" align="left" colspan="2">[m
+[31m-          <strong><?php _e('Open the menu:') ?></strong>[m
+[31m-        </td>[m
+[31m-    </tr>[m
+[31m-    <tr>[m
+[31m-        <td width="200" align="right">[m
+[31m-          <input name="open" type="radio" value=""

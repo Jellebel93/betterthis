@@ -16,33 +16,31 @@
 
 get_header(); ?>
 <?php
-			global $post; 
-			$posthome=$post->ID;
-			$meta_values = get_post_meta($posthome ,'like_page'); ?>
+	global $post; 
+	$posthome=$post->ID;
+	$meta_values = get_post_meta($posthome ,'like_page'); ?>
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<div class="portfolio-box first-section " id="section1">
 				<div class="social khaki">				
-					<div class="container">
-						<div class="watch-action">
-							<div class="watch-position align-left">
-								<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
-							</div>
-						</div>							
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+					<div class="container">							
+						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
+						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class="iconSocial heart">
+							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						</span>	
 					</div>
 				</div>
-				<div class="container">
+				<div class="container container-body">
 					<div class="section-home">
 						<?php get_sidebar(); ?>
 					</div>
 					<nav id="site-navigation" class="navigations main-navigations" role="navigation">
 						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
 					</nav><!-- #site-navigation -->
-					<div class="wti-clear"></div>	
-					<div class="navigation">
-						<a href="#section1">down</a>
+					
+					<div class="navigation " >
+						<a href="#section2">down</a>
 					</div>
 				</div>			
 			</div>	
@@ -50,21 +48,22 @@ get_header(); ?>
 			
 			<div class="portfolio-box " id="section2">
 				<div class="social khaki">				
-					<div class="container">
-						<div class="watch-action">
-							<div class="watch-position align-left">
-								<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
-							</div>
-						</div>							
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+					<div class="container clearfix">							
+						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
+						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class="iconSocial heart">
+							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						</span>	
 					</div>
-				</div>				
+				</div>			
 				<div class="container container-2">
-					<div class="title_section"><h3>Daily dose of selft improvement</h3></div>	
 					<nav id="site-navigation" class="navigations main-navigations" role="navigation">
 						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
 					</nav><!-- #site-navigation -->	
+					<div class="title_section"><h3>Daily dose of selft improvement</h3></div>	
+				</div>
+				<div class="container ">	
+					<div class="wrap-2">	
 					<div class="wrap-section2">
 						<div class="product-section2">
 							<ul>
@@ -92,7 +91,7 @@ get_header(); ?>
 						<h4>there are no secrets</h4>
 						<p> <?php echo category_description(3); ?> </p>
 					</div>
-					<div class="wti-clear"></div>			
+					</div>			
 					<div class="navigation">
 						<a href="#section1">up</a>
 						<a href="#section3">down</a>
@@ -103,23 +102,25 @@ get_header(); ?>
 			
 			<div class="portfolio-box "  id="section3">
 				<div class="social khaki">				
-					<div class="container">
-						<div class="watch-action">
-							<div class="watch-position align-left">
-								<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
-							</div>
-						</div>							
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+					<div class="container">							
+						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
+						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class="iconSocial heart">
+							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						</span>	
 					</div>
-				</div>	
-				<nav id="site-navigation" class="navigations main-navigations" role="navigation">
+				</div>
+				<div class="container">
+					<nav id="site-navigation" class="navigations main-navigations" role="navigation">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
 					<div class="navigation">
 						<a href="#section2">up</a>
 						<a href="#section4">down</a>
 					</div>
 				</nav><!-- #site-navigation -->	
+				</div>
+				
+				<div class="container wrap3 " >
 				<div class="wrap-section3 ">
 					<div class="list-item-thumb">
 						<ul class="list-thumnail">
@@ -177,6 +178,7 @@ get_header(); ?>
 							<?php endwhile; ?>
 					</div>				
 				</div>				
+				</div>				
 			</div>		
 			<!--end section 3-->
 			
@@ -187,32 +189,38 @@ get_header(); ?>
 			$page_data = get_page( $page_id ); 
 
 			?>
-			<div class="portfolio-box " id="section4">
-			    
-				<div class="title_section"><h3><?php echo $page_data->post_title; ?></h3></div>
+			<div class="portfolio-box " id="section4">			    
+				<div class="container ">				
+					<div class="title_section"><h3><?php echo $page_data->post_title; ?></h3></div>
+				</div>
+				
 				<div class="social khaki">				
-					<div class="container">
-						<div class="watch-action">
-							<div class="watch-position align-left">
-								<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
-							</div>
-						</div>							
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+					<div class="container">							
+						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
+						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class="iconSocial heart">
+							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						</span>	
 					</div>
-				</div>							
-				<nav id="site-navigation" class="navigations main-navigations" role="navigation">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
-			
-				</nav><!-- #site-navigation -->
+				</div>
+				<div class="container">				
+					<nav id="site-navigation" class="navigations main-navigations" role="navigation">
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
+				
+					</nav><!-- #site-navigation -->
+				</div>
 				<div class="data-content">
-				<div class="tivi_icon"></div>
+					<div class="tivi_icon"></div>
 					<?php echo apply_filters('the_content', $page_data->post_content); ?>
-				</div>									
-				<div class="navigation">
-					<a href="#section3">down</a>
-					<a href="#section5">up</a>
 				</div>	
+				<div class="container">
+					<div class="navigation">
+						<a href="#section3">up</a>
+						<a href="#section5">down</a>
+						
+					</div>
+				</div>
+					
 			</div>
 			<!--end section 4-->
 
@@ -231,22 +239,21 @@ get_header(); ?>
 						
 						<div class="title_section"><h3><?php echo $page_data->post_title; ?></h3></div>
 					</div>
-				</div>
-				<div class="social khaki">				
-					<div class="container">
-						<div class="watch-action">
-							<div class="watch-position align-left">
-								<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
-							</div>
-						</div>							
-						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
-						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+				</div><div class="social khaki">				
+					<div class="container">							
+						<a class="iconSocial facebook" href="http://www.facebook.com/sharer.php?u=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>	
+						<a class="iconSocial twitter" href="http://twitter.com/share?text=test&amp;url=http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>" target="_blank">&nbsp;</a>
+						<span class="iconSocial heart">
+							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						</span>	
 					</div>
-				</div>					
+				</div>				
 				<div class="data-content"><?php echo apply_filters('the_content', $page_data->post_content); ?>		</div>									
-				<div class="navigation">
-					<a href="#page">up</a>
-				</div>	
+				<div class="container">				
+					<div class="navigation">
+						<a href="#page">up</a>
+					</div>	
+				</div>
 			</div>
 			<!--end section 5-->
 		</div>

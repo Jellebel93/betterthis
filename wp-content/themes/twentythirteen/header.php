@@ -40,8 +40,8 @@ jQuery.noConflict();
 jQuery(document).ready(function($){
     $.ajaxSetup({cache:false});
     $(".like_page").click(function(){  
-		//var cookieValue = $.cookie("liked");
-		alert( $.cookie("liked") );
+		var cookieValue = $.cookie("liked");
+		//alert( $.cookie("liked") );
 			if(cookieValue) {
 				alert('you voted , can not vote again !')
 			}

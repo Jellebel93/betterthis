@@ -20,6 +20,7 @@
         }
       },
       resetHeight: function() {
+        effect.currentBlock.css('width', effect.container.outerWidth());
         effect.container.css('height', effect.currentBlock.outerHeight());
       },
       effectApply : function(type, contentId, callback) {
@@ -174,22 +175,6 @@
     // scroll menu
     $('a[href^=#section]').off('click').on('click',  function(e) {window.better.scrollProcess($(this), e);});
     $('a[href=#page]').off('click').on('click',  function(e) {window.better.scrollProcess($(this), e);});
-    
-    /*
-    // scroll item
-    $('.sectionItem').on('click', 
-      function(e){
-        e.stopPropagation();
-        e.preventDefault();
-        var elm = $(this);
-        var id = $(elm).data('id');
-        var blItem = $('#'+id);
-        window.better.initFadeInOut(blItem);
-        var thumb = $('#section3').betterScrollTop().find('.list-item-thumb'); 
-        thumb.find('li').show();
-        thumb.find('#thumnail_'+id).hide();
-      });
-    */
     
     // init
     window.better.initFadeInOut($('#section3').find('.list-item-content:first').find('.main-frame:first'));

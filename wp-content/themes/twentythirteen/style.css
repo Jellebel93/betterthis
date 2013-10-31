@@ -890,7 +890,7 @@ img.wp-smiley,
     padding-top: 85px;
     text-transform: uppercase;
     width: 678px;
-	margin-bottom:0;
+	margin-bottom:5px;
 }
 
 
@@ -3951,4 +3951,15 @@ color:#bbbdbf;
 }
 .fadein ul > li {display: none;}
 .fadein ul > li.active {display: block;}
+
+/* Large desktop */
+@media (min-width: 1600px) {
+	#section2,#section3,#section4,#section5 {
+		height: 970px;
+	}
+	#section1 {
+		height: 740px;
+	}
+ }
+
 

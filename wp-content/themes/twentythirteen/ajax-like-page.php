@@ -4,10 +4,26 @@
 
 <?php 
 	
-    $postid = $_GET['PostId'];  // get the hits from AJAX and save it for PHP  
+    $status = $_GET['satus'];  // get the hits from AJAX and save it for PHP  
+	$hits = (int) get_post_meta(2, 'like_page', true);
+	$st = "";
+	$response = "";
+	$response["status"] = "liked";
+	$response["hit"] = "";
+	if($status=='liked') {
+		$newhits = $hits + 1;
+		$st=1;
+	} else {
+		$newhits = $hits - 1;
+	}
 	
-    $hits = (int) get_post_meta($postid, 'like_page', true);
-    $newhits = $hits + 1;
-    update_post_meta($postid, 'like_page', $newhits);
-	echo $newhits;
+	$response["hit"] = $newhits;
+	update_post_meta(2, 'like_page', $newhits);
+    
+	if ($st) {
+		$response["status"] = "unliked";
+	}
+    
+    
+	echo json_encode($response);
 ?>

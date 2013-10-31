@@ -40,23 +40,25 @@ jQuery.noConflict();
 jQuery(document).ready(function($){
     $.ajaxSetup({cache:false});
     $(".like_page").click(function(){  
-		var cookieValue = $.cookie("liked");
+		//var cookieValue = $.cookie("liked");
 		//alert( $.cookie("liked") );
-			if(cookieValue) {
-				alert('you voted , can not vote again !')
-			}
-			else {
-				var post_id = $(this).attr("rel");	
+		//	if(cookieValue) {
+		//		alert('you voted , can not vote again !')
+		//	}
+			//else {
+				var satus = $(this).attr("rel");	
 				var elm = $(this);		
 				elm.next('span').html('loading...')	;
 				$.ajax({
-					url:'http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>/like-page/?PostId=' + post_id,
+					url:'http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>/like-page/?satus=' + satus,
 					type: 'GET',
-					cache: false,			
+					cache: false,	
 					success:function(data) {
-						$(".like_page").html(data);	
-					  $(".like_page").next('span').html('');
-					  $.cookie("liked", 1,{ expires : 30 });
+					response = JSON.parse(data);
+					
+					$(".like_page").html(response.hit);	
+					$(".like_page").attr("rel",response.status);						
+					$(".like_page").next('span').html(response.status);
 					  
 					}
 					,
@@ -66,7 +68,7 @@ jQuery(document).ready(function($){
 						console.log(e.message);
 					  }
 				});
-			}
+			//}
      
     return false;
     });

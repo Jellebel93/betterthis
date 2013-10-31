@@ -3369,7 +3369,7 @@ display: inline-block;
 .social .iconSocial {	
 	display: block;
 	float: right;
-    margin: 20px 10px;
+    margin:22px 10px 20px 10px;
 	cursor: pointer;position:relative;z-index:9;
 }
 
@@ -3710,6 +3710,10 @@ display: inline-block;
 }
 * {
  -webkit-font-smoothing:antialiased;
+}
+.notice {
+    text-align: center;
+    width: 48px;
 }
 #section5 .title_section {
 	overflow: hidden;

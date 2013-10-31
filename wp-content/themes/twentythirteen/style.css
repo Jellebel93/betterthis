@@ -3897,3 +3897,6 @@ color:#bbbdbf;
 .slider .item-active {
   display: block;
 }
+
+.fadein ul > li {display: none;}
+.fadein ul > li.active {display: block;}

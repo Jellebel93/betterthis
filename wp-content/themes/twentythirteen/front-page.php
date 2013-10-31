@@ -134,8 +134,8 @@ get_header(); ?>
 								<?php  
 									$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 									if ( !empty($full_img )) : ?>
-									   <a href="" title="<?php the_title_attribute(); ?>" >
-										 <img src="<?php echo $full_img[0] ?>" width="<?php echo $full_img[1] ?>" height="<?php echo $full_img[2] ?>"/>
+									   <a href="#" title="<?php the_title_attribute(); ?>" >
+                       <img src="<?php echo $full_img[0] ?>" width="<?php echo $full_img[1] ?>px" height="<?php echo $full_img[2] ?>px"/>
 									   </a>
 									 <?php else :?>
 									 <div  class="no-thumb">no thumnail</div>

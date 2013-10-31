@@ -126,7 +126,7 @@
       if(delta < 0) {
         delta = delta*(-1);
       }
-      speed = delta;
+      speed = 500;//delta/2;
 
       var aniOpts = {
           duration: speed,

@@ -40,12 +40,6 @@ jQuery.noConflict();
 jQuery(document).ready(function($){
     $.ajaxSetup({cache:false});
     $(".like_page").click(function(){  
-		//var cookieValue = $.cookie("liked");
-		//alert( $.cookie("liked") );
-		//	if(cookieValue) {
-		//		alert('you voted , can not vote again !')
-		//	}
-			//else {
 				var satus = $(this).attr("rel");	
 				var elm = $(this);		
 				elm.next('span').html('loading...')	;
@@ -54,23 +48,18 @@ jQuery(document).ready(function($){
 					type: 'GET',
 					cache: false,	
 					success:function(data) {
-					response = JSON.parse(data);
-					
-					$(".like_page").html(response.hit);	
-					$(".like_page").attr("rel",response.status);						
-					$(".like_page").next('span').html(response.status);
-					  
-					}
-					,
+						response = JSON.parse(data);						
+						$(".like_page").html(response.hit);	
+						$(".like_page").attr("rel",response.status);						
+						$(".like_page").next('span').html(response.status);					  
+					},
 					  error: function(e) 
 					  {
-						//called when there is an error
 						console.log(e.message);
 					  }
 				});
-			//}
      
-    return false;
+		return false;
     });
 });
 

@@ -13,8 +13,12 @@
 	if($status=='liked') {
 		$newhits = $hits + 1;
 		$st=1;
-	} else {
+	} elseif($status=='unliked') {
 		$newhits = $hits - 1;
+	}
+	else {
+		echo "";
+		exit();
 	}
 	
 	$response["hit"] = $newhits;

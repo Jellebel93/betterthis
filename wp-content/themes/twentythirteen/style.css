@@ -853,7 +853,6 @@ img.wp-smiley,
 	color: #141412;
 	display: block;
 	margin: 0 auto;
-	min-height: 200px;
 	padding: 0 20px;
 	margin-left: -64px;
 	text-decoration: none;
@@ -879,11 +878,19 @@ img.wp-smiley,
 	line-height: 1;
 	margin: 0;
 	padding: 58px 0 10px;
+	display: none;
 }
 
 .site-description {
-	font: 300 italic 24px "Source Sans Pro", Helvetica, sans-serif;
-	margin: 0;
+	color: #58595B;
+    font-family: "Conv_Futura-CondensedExtraBold";
+    font-size: 65px;
+    line-height: 77%;
+    padding-left: 51px;
+    padding-top: 85px;
+    text-transform: uppercase;
+    width: 678px;
+	margin-bottom:0;
 }
 
 
@@ -3244,8 +3251,8 @@ margin: -15px 15px 0 0;  max-width: auto!important;
 
 /**************** style *********************/
 a.home-link {
-	background: url('images/logo.png') no-repeat top left;
-	text-indent: -9999px;
+	background: url('images/betterthis.png') no-repeat 12px 0;
+	
 }
 /*
 .sologan {
@@ -3311,8 +3318,12 @@ a.home-link {
 .section-home  .widget .widget-title {
     display: inline-block;
     font-size: 14px;
-	color: gray;margin: 2px 0 0;
+	font-style:normal;
+	color: #bbbdbf;
+	font-family: "Futura-Medium",Bitter,Georgia,serif;
+	margin: 2px 0 0;
 }
+.twitter-timestamp ,.twitter-link,.twitter-link + *{display: none;}
 .widget ul {
 display: inline-block;
 }
@@ -3637,7 +3648,6 @@ display: inline-block;
 }
 
 .navigations  ul li a {
-	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 14px;
 	font-family: "Conv_Futura-CondensedExtraBold";
@@ -3664,8 +3674,6 @@ display: inline-block;
 }
 #section4 .data-content a {
 	color: #eb008b;
-	font-weight: bold;
-	font-size: 16px;
 }
 #section4 .data-content a:hover {
 	color: #BBBDBF;
@@ -3866,6 +3874,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	margin: 15px 0 0 0 ;
 	text-transform: uppercase;
 	font-size: 12px;
+	  font-weight: bold;
 }
 .wrap-section3  {height: 666px;}
 .list-thumnail li img {
@@ -3887,11 +3896,13 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	
 }
 .thumnail  h3 {
-	  color: #00A44F;
+color: #00A44F;
+    font-family: "Conv_Futura-CondensedExtraBold";
     font-size: 16px;
     font-weight: normal;
     margin: 60px auto 20px;
     text-transform: uppercase;
+    width: 84%;
 	
 }
 .list-thumnail li p {text-transform:uppercase;}
@@ -3925,7 +3936,10 @@ color:#bbbdbf;
   display: block;
 }
 
-
+#section4 .data-content a {
+	 font-family: "Conv_Futura-CondensedExtraBold";
+    font-size: 14px;
+}
 .fadein ul > li {display: none;}
 .fadein ul > li.active {display: block;}
 

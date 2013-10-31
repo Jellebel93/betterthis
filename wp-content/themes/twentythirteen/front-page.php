@@ -27,7 +27,7 @@ get_header(); ?>
 						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
 						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 							<span class="iconSocial heart">
-							<a class="like_page" rel="liked" data-value="<?php 	echo $meta_values[0]; ?> "><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+							<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
 					</div>
 				</div>

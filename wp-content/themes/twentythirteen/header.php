@@ -49,9 +49,16 @@ jQuery(document).ready(function($){
 					cache: false,	
 					success:function(data) {
 						response = JSON.parse(data);						
-						$(".like_page").html(response.hit);	
-						$(".like_page").attr("rel",response.status);						
-						$(".like_page").next('span').html(response.status);					  
+						$(".like_page").html(response.hit);
+							if(response.status=="unliked") {
+								$(".like_page").attr("rel","unliked");						
+								$(".like_page").next('span').html('liked');		
+							}
+							else {
+								$(".like_page").attr("rel","liked");						
+								$(".like_page").next('span').html('unliked');		
+							}
+									  
 					},
 					  error: function(e) 
 					  {

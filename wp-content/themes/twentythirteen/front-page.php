@@ -76,9 +76,9 @@ get_header(); ?>
 						<div class="content-section2">
 							<div class="social khaki">										
 								<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
-								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
-								<span class="iconSocial heart">
-									<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
+									<span class="iconSocial heart">
+									<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 								</span>	
 							</div>	
 							<nav id="site-navigation" class="navigations main-navigations" role="navigation">
@@ -105,9 +105,9 @@ get_header(); ?>
 						<div class="social khaki">				
 										
 								<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
-								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
-								<span class="iconSocial heart">
-									<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
+									<span class="iconSocial heart">
+									<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 								</span>	
 						
 						</div>
@@ -195,9 +195,9 @@ get_header(); ?>
 				<div class="social khaki">				
 					<div class="container">							
 						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
-						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
-						<span class="iconSocial heart">
-							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
+							<span class="iconSocial heart">
+							<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
 					</div>
 				</div>
@@ -240,9 +240,9 @@ get_header(); ?>
 				</div><div class="social khaki">				
 					<div class="container">							
 						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
-						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>
-						<span class="iconSocial heart">
-							<a class="like_page" rel="<?php  echo $posthome; ?>"><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
+							<span class="iconSocial heart">
+							<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
 						</span>	
 					</div>
 				</div>				

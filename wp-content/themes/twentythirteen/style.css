@@ -890,7 +890,7 @@ img.wp-smiley,
     padding-top: 85px;
     text-transform: uppercase;
     width: 678px;
-	margin-bottom:5px;
+	margin-bottom:0px;
 }
 
 
@@ -3268,7 +3268,7 @@ a.home-link {
     line-height: 102%;
     margin: 4px 0 10px 10px;
     text-transform: uppercase;
-    width: 549px;
+    width: 528px;
 }
 .social {
 	background: #d6de23;
@@ -3370,14 +3370,13 @@ display: inline-block;
 	display: block;
 	float: right;
     margin:22px 10px 20px 10px;
-	cursor: pointer;position:relative;z-index:9;
+	cursor: pointer;
 }
 
 .social .iconSocial.twitter {
 	background: url('images/icon-tw-red.png') no-repeat top left;
 	width: 40px;
 	height: 40px;
-	text-indent: -9999px;
 }
 .social .container {text-align: right;}
 
@@ -3386,13 +3385,11 @@ display: inline-block;
 	width: 22px;
 	height: 44px;
 	margin-right: 0;
-	text-indent: -9999px;
 }
 
 
 #section2 {
 	background: #ed245c;
-	position: relative;
 }
 
 #section2 h3 {
@@ -3416,7 +3413,6 @@ display: inline-block;
 	background: url('images/icon-heart-blue.png') no-repeat top left;
 }
 
-#section2 .social  .iconSocial {position: relative;z-index: 10;}
 
 #section2 .social .iconSocial.twitter {
 	background: url('images/icon-tw-blue.png') no-repeat top left;
@@ -3953,7 +3949,7 @@ color:#bbbdbf;
 .fadein ul > li.active {display: block;}
 
 /* Large desktop */
-@media (min-width: 1600px) {
+@media (min-width: 1400px) {
 	#section2,#section3,#section4,#section5 {
 		height: 970px;
 	}
@@ -3962,4 +3958,6 @@ color:#bbbdbf;
 	}
  }
 
-
+.stButton {
+	z-index:999!important;
+}

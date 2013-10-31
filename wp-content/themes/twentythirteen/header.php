@@ -86,7 +86,11 @@ jQuery(document).ready(function($){
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</a>
 			<div class="sologan">
-				We're better this . A source that makes your day better.  browser through our products to learn more things about us.
+				<?php 
+			$page_id = 2; 
+			$page_data = get_page( $page_id ); 
+	
+			?><?php echo apply_filters('the_content', $page_data->post_content); ?>
 			</div>
 			
 		</header><!-- #masthead -->

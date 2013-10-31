@@ -3247,13 +3247,22 @@ a.home-link {
 	background: url('images/logo.png') no-repeat top left;
 	text-indent: -9999px;
 }
-
+/*
 .sologan {
 	background: url('images/sologan.png') no-repeat top left;
 	text-indent: -9999px;
 	height: 49px;
 }
-
+*/
+.sologan > p {
+  color: #58595b;
+    font-family: "Conv_Futura-CondensedExtraBold";
+    font-size: 17px;
+    line-height: 102%;
+    margin: 4px 0 10px 10px;
+    text-transform: uppercase;
+    width: 549px;
+}
 .social {
 	background: #d6de23;
 	min-height: 83px;
@@ -3376,11 +3385,15 @@ display: inline-block;
 }
 
 #section2 h3 {
-	background: url('images/daily_dose_of_self_improvement.jpg') no-repeat top left;
-	width: 620px;
-	height: 190px;
-	margin-left: -40px;
-	text-indent: -9999px;
+   background: url("images/betterthis-red.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+    color: #F9EC31;
+    font-size: 62px;
+    line-height: 85%;
+    margin-left: -40px;
+    margin-top: 0;
+    padding-left: 70px;
+    padding-top: 95px;
+    width: 655px;
 }
 
 #section2 .social {
@@ -3609,10 +3622,14 @@ display: inline-block;
 }
 
 #section4 .title_section h3 {
-	background: url('images/broadcasting_awesomeness.png') no-repeat top left;
-	width: 460px;
-	height: 197px;
-	text-indent: -9999px;
+  background: url("images/betterthis-black.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+    color: #26A9E0;
+    font-size: 65px;
+    height: 197px;
+    line-height: 78%;
+    padding-left: 53px;
+    padding-top: 94px;
+    width: 460px;
 }
 
 #section4 nav ul li a {
@@ -3664,19 +3681,29 @@ display: inline-block;
     background-position: -80px 5px;
 }
 #section5 .title_section h3 {
-	background: url('images/is_just_next_to_you.png') no-repeat top left;
-	width: 636px;
-	height: 133px;margin-top: 65px;
-	text-indent: -9999px;
+	 background: url("images/betterthis-red.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+    color: #F9EC31;
+   
+    font-size: 64px;
+    line-height: 137%;
+    margin: 0;
+    padding-left: 65px;
+    padding-top: 79px;
+   
 }
 
+.title_section h3 {
+ text-transform: uppercase;
+ font-family: "Conv_Futura-CondensedExtraBold";
+}
+	
 #section5 .title_section {
 	overflow: hidden;
 }
 
 #section5 nav {
 float: right;
-margin: 20px 0 20px 0;
+margin: 20px 0 0px 0;
 text-align: right;
 }
 #section5 .social {
@@ -3898,5 +3925,7 @@ color:#bbbdbf;
   display: block;
 }
 
+
 .fadein ul > li {display: none;}
 .fadein ul > li.active {display: block;}
+

@@ -15,6 +15,8 @@
 		
 	</div><!-- #page -->
 
-	<?php wp_footer(); ?>
-</body>
+  <?php wp_footer(); ?>
+  
+  <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/betterthis-base.js"></script>
+  </body>
 </html>

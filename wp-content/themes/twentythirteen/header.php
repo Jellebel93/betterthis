@@ -29,7 +29,6 @@
 	<![endif]-->
 	<?php wp_head(); ?>   
 		<script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/betterthis-base.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.cookie.js"></script>
 <script type="text/javascript">
 
@@ -44,7 +43,7 @@ jQuery(document).ready(function($){
 				var elm = $(this);		
 				elm.next('span').html('loading...')	;
 				$.ajax({
-					url:'http://<?php echo $_SERVER[HTTP_HOST]; ?>/<?php echo $_SERVER['PHP_SELF'] ?>/like-page/?satus=' + satus,
+					url:'http://<?php echo $_SERVER[HTTP_HOST].$_SERVER['PHP_SELF'];?>/like-page/?satus=' + satus,
 					type: 'GET',
 					cache: false,	
 					success:function(data) {
@@ -53,17 +52,14 @@ jQuery(document).ready(function($){
 							if(response.status=="unliked") {
 								$(".like_page").attr("rel","unliked");						
 								$(".like_page").next('span').html('liked');		
-							}
-							else {
+							} else {
 								$(".like_page").attr("rel","liked");						
 								$(".like_page").next('span').html('unliked');		
 							}
-									  
 					},
-					  error: function(e) 
-					  {
-						console.log(e.message);
-					  }
+          error: function(e) {
+            console.log(e.message);
+          }
 				});
      
 		return false;
@@ -72,7 +68,7 @@ jQuery(document).ready(function($){
 
 
 </script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cc6a5b8-6f47-4831-95ae-8368305bb28f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 
@@ -84,11 +80,11 @@ jQuery(document).ready(function($){
 			
 			
 			<div class="sologan">
-				<?php 
-			$page_id = 2; 
-			$page_data = get_page( $page_id ); 
-	
-			?><?php echo apply_filters('the_content', $page_data->post_content); ?>
+      <?php 
+        $page_id = 2; 
+        $page_data = get_page( $page_id ); 
+        echo apply_filters('the_content', $page_data->post_content); 
+      ?>
 			</div>
 			</a>
 		</header><!-- #masthead -->

@@ -183,7 +183,7 @@
 
   window.better = better;
   
-  $(document).ready(function(){
+  $(function(){
     // scroll menu
     $('a[href^=#section]').scrollTo();
     $('a[href=#page]').scrollTo();

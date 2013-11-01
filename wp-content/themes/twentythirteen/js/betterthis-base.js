@@ -159,20 +159,22 @@
     },
     fadeInOut : function(parent) {
         parent.find('.fadein:first').find('.active:first').fadeOut()
-              .removeClass("active").nextOrFirst('li').addClass("active").css('display', 'list-item').fadeIn().end()
+              .removeClass("active").nextOrFirst('li').fadeIn().addClass("active").end();
     },
     initFadeInOut : function(elm) {
       //
       var mW = elm.width();
       elm.find('.content-data:first').width((mW - elm.find('.thumnail:first').width() - 24) + 'px');
-      elm.find('.fadein:first').find('li:first').addClass('active').css('display', 'list-item');
+      
+      elm.find('.fadein:first').find('li.active:first').removeClass("active");
+      elm.find('.fadein:first').find('li:first').addClass('active');
 
       //
       window.currentFade = elm;
       if(better.currentFadeInt !== null) {
         window.clearInterval(better.currentFadeInt);
       }
-      better.currentFadeInt = setInterval(function() {better.fadeInOut(window.currentFade);}, 6000);
+      better.currentFadeInt = setInterval(function() {better.fadeInOut(window.currentFade);}, 4000);
     },
     scrollProcess : function(elm) {
       var id = elm.attr('href');
@@ -182,31 +184,27 @@
   };
 
   window.better = better;
-  
-  $(function(){
+  $.fn.nextOrFirst = window.better.nextOrFirst;
+  $.fn.betterScrollTop = window.better.scrollTop;
+  $.fn.scrollTo = window.better.scrollTo;
+
+
+  (function($){
     // scroll menu
     $('a[href^=#section]').scrollTo();
     $('a[href=#page]').scrollTo();
     
     // init
-    window.better.initFadeInOut($('#section3').find('.list-item-content:first').find('.main-frame:first'));
+    window.better.initFadeInOut($('#section3').find('.list-item-content:first').find('.page-slider:first'));
    
     window.EffectContent = new effectContent();
-
-    $(window).on('load', function() {
-
-      EffectContent.init('slider-container');
-      PostSlider.init('slider-container', true);
-    });
+    
+    EffectContent.init('slider-container');
+    PostSlider.init('slider-container', true);
    
-  });
-  
-  
-  
+  })($);
 
 
   
-  $.fn.nextOrFirst = window.better.nextOrFirst;
-  $.fn.betterScrollTop = window.better.scrollTop;
-  $.fn.scrollTo = window.better.scrollTo;
+
 })(jQuery, window);

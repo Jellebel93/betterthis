@@ -81,8 +81,8 @@ jQuery(document).ready(function($){
 		<header id="masthead" class="site-header" role="banner">
 			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</a>
+			
+			
 			<div class="sologan">
 				<?php 
 			$page_id = 2; 
@@ -90,7 +90,7 @@ jQuery(document).ready(function($){
 	
 			?><?php echo apply_filters('the_content', $page_data->post_content); ?>
 			</div>
-			
+			</a>
 		</header><!-- #masthead -->
 		
 	

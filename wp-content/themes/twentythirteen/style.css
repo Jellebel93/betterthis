@@ -853,8 +853,6 @@ img.wp-smiley,
 	color: #141412;
 	display: block;
 	margin: 0 auto;
-	padding: 0 20px;
-	margin-left: -64px;
 	text-decoration: none;
 }
 
@@ -881,16 +879,19 @@ img.wp-smiley,
 	display: none;
 }
 
-.site-description {
-	color: #58595B;
+.site-description,.sologan h2 {
+	background: url("images/betterthis.png") no-repeat scroll 12px 0 rgba(0, 0, 0, 0);
+    color: #58595B;
     font-family: "Conv_Futura-CondensedExtraBold";
     font-size: 65px;
     line-height: 77%;
-    padding-left: 51px;
-    padding-top: 85px;
+    margin-bottom: 0;
+    margin-left: -80px;
+    padding-left: 69px;
+    padding-top: 87px;
     text-transform: uppercase;
-    width: 678px;
-	margin-bottom:0px;
+
+
 }
 
 
@@ -3250,10 +3251,7 @@ margin: -15px 15px 0 0;  max-width: auto!important;
 }
 
 /**************** style *********************/
-a.home-link {
-	background: url('images/betterthis.png') no-repeat 12px 0;
-	
-}
+
 /*
 .sologan {
 	background: url('images/sologan.png') no-repeat top left;
@@ -3266,9 +3264,9 @@ a.home-link {
     font-family: "Conv_Futura-CondensedExtraBold";
     font-size: 17px;
     line-height: 102%;
-    margin: 4px 0 10px 10px;
+    margin: 4px 0 10px -7px;
     text-transform: uppercase;
-    width: 528px;
+    width: 549px;
 }
 .social {
 	background: #d6de23;
@@ -3317,7 +3315,7 @@ a.home-link {
 }
 .section-home  .widget .widget-title {
     display: inline-block;
-    font-size: 14px;
+    font-size: 12px;
 	font-style:normal;
 	color: #bbbdbf;
 	font-family: "Futura-Medium",Bitter,Georgia,serif;
@@ -3328,7 +3326,7 @@ a.home-link {
 display: inline-block;
 }
 .section-home  .widget li  {
-	padding:0;
+	padding:0;font-size: 12px;
 }
 .section-home span {
 	color: #ddd;
@@ -3356,13 +3354,13 @@ display: inline-block;
 	color: white;
 }
 
-.heart span ,.heart a{ position: absolute;left:0;  bottom: -18px;}
+.heart span ,.heart a{ position: absolute;left:0;  bottom: -18px;font-size:12px;}
 .heart a{ 
 	color: #FFFFFF;
     left: 0;
     position: absolute;
     text-align: center;
-    top: -22px;
+    top: -18px;
     width: 46px;
 }
 .heart a:hover {text-decoration: none;}

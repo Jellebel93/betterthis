@@ -6,7 +6,7 @@
       allItems : [],
       container : null,
       currentBlock : null,
-      time : 400,
+      time : 600,
       init : function(prElm, time) {
         effect.container = $('#'+prElm);
         if(effect.container.length == 0) {
@@ -23,8 +23,13 @@
         effect.currentBlock.css('width', effect.container.outerWidth());
         effect.container.css('height', effect.currentBlock.outerHeight());
       },
-      effectApply : function(type, contentId, callback) {
+      effectApply : function(type, contentId, callback, callbefore) {
         var page = $('#'+contentId);
+        //
+        if(callbefore && typeof callbefore === "function") {
+          callbefore(page);
+        }
+        
         if(page.length > 0) {
           if(page[0] != effect.currentBlock[0]) {
             if(type === effect.types.leftToRight){
@@ -102,12 +107,22 @@
       }
       if(PostSlider.end === true) {
         PostSlider.end = false;
-        EffectContent.effectApply((type === 'r') ? 'ltr' : 'rtl', elm.attr('data-id'), PostSlider.callback);
+        EffectContent.effectApply((type === 'r') ? 'ltr' : 'rtl', elm.attr('data-id'), PostSlider.callback, PostSlider.callbefore);
       }
     },
     callback : function() {
       PostSlider.end = true;
       window.better.initFadeInOut(EffectContent.currentBlock);
+    },
+    callbefore : function(elm) {
+      if(elm && elm.length > 0) {
+        //
+        var mW = elm.width();
+        elm.find('.content-data:first').width((mW - elm.find('.thumnail:first').width() - 24) + 'px');
+        
+        elm.find('.fadein:first').find('li.active:first').removeClass("active");
+        elm.find('.fadein:first').find('li:first').addClass('active');
+      }
     }
     
   };
@@ -157,24 +172,32 @@
       var next = this.next(selector);
       return (next.length) ? next : this.prevAll(selector).last();
     },
+    fadeOuter : function() {
+      var elm = $(this);
+      elm.stop().animate({'opacity': 0}, 800, function(){
+        $(this).removeClass("active").css({'opacity': 1});
+      });
+      return elm;
+    },
+    fadeIner : function() {
+      var elm = $(this);
+      elm.stop().css({'opacity': 0}).addClass('active')
+         .animate({'opacity': 1}, 800, function(){
+      });
+      return elm;
+    },
     fadeInOut : function(parent) {
-        parent.find('.fadein:first').find('.active:first').fadeOut()
-              .removeClass("active").nextOrFirst('li').fadeIn().addClass("active").end();
+        parent.find('.fadein:first').find('.active:first').fadeOuter()
+              .nextOrFirst('li').fadeIner().end();
     },
     initFadeInOut : function(elm) {
-      //
-      var mW = elm.width();
-      elm.find('.content-data:first').width((mW - elm.find('.thumnail:first').width() - 24) + 'px');
       
-      elm.find('.fadein:first').find('li.active:first').removeClass("active");
-      elm.find('.fadein:first').find('li:first').addClass('active');
-
       //
       window.currentFade = elm;
       if(better.currentFadeInt !== null) {
         window.clearInterval(better.currentFadeInt);
       }
-      better.currentFadeInt = setInterval(function() {better.fadeInOut(window.currentFade);}, 4000);
+      better.currentFadeInt = setInterval(function() {better.fadeInOut(window.currentFade);}, 5000);
     },
     scrollProcess : function(elm) {
       var id = elm.attr('href');
@@ -187,6 +210,8 @@
   $.fn.nextOrFirst = window.better.nextOrFirst;
   $.fn.betterScrollTop = window.better.scrollTop;
   $.fn.scrollTo = window.better.scrollTo;
+  $.fn.fadeOuter = window.better.fadeOuter;
+  $.fn.fadeIner = window.better.fadeIner;
 
 
   (function($){
@@ -195,7 +220,9 @@
     $('a[href=#page]').scrollTo();
     
     // init
-    window.better.initFadeInOut($('#section3').find('.list-item-content:first').find('.page-slider:first'));
+    var elm = $('#section3').find('.list-item-content:first').find('.page-slider:first');
+    PostSlider.callbefore(elm);
+    window.better.initFadeInOut(elm);
    
     window.EffectContent = new effectContent();
     

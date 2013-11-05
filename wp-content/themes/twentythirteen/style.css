@@ -848,6 +848,9 @@ img.wp-smiley,
 	width: 1080px;
 	margin: 0 auto;
 }
+.body,.page,.site {
+	min-width: 1180px;
+}
 
 .site-header .home-link {
 	color: #141412;

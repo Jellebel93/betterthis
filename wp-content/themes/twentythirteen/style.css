@@ -3353,7 +3353,11 @@ display: inline-block;
 	height: 40px;
 	color: white;
 }
-
+#section3 .heart a,#section3  .heart span,
+#section4 .heart a,#section4  .heart span{ 
+	color:#00ADEE;
+   
+}
 .heart span ,.heart a{ position: absolute;left:0;  bottom: -18px;font-size:12px;}
 .heart a{ 
 	color: #FFFFFF;

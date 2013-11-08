@@ -887,7 +887,7 @@ img.wp-smiley,
     color: #58595B;
     font-family: "Conv_Futura-CondensedExtraBold";
     font-size: 65px;
-    line-height: 77%;
+    line-height: 52px;
     margin-bottom: 0;
     margin-left: -80px;
     padding-left: 69px;
@@ -3269,7 +3269,7 @@ margin: -15px 15px 0 0;  max-width: auto!important;
     line-height: 102%;
     margin: 4px 0 10px -7px;
     text-transform: uppercase;
-    width: 549px;
+    width: 600px;
 }
 .social {
 	background: #d6de23;
@@ -3358,7 +3358,7 @@ display: inline-block;
 }
 #section3 .heart a,#section3  .heart span,
 #section4 .heart a,#section4  .heart span{ 
-	color:#00ADEE;
+	color:#6D6E70;
    
 }
 .heart span ,.heart a{ position: absolute;left:0;  bottom: -18px;font-size:12px;}
@@ -3564,8 +3564,8 @@ display: inline-block;
 #section3 .social .heart,
 #section4 .social .heart{
 	background: url('images/icon-heart-gray.png') no-repeat top left;
-	width: 45px;
-	height: 37px;
+	width: 46px;
+	height: 38px;
 }
 #section4 .container {position: relative;}
 
@@ -3963,6 +3963,12 @@ color:#bbbdbf;
 	}
  }
 
+ @media (min-width: 768px) and (max-width: 990px) { 
+	body {padding: 0 20px;}
+	.site-main {
+		margin: 0 -20px;
+	}
+ }
 .stButton {
 	z-index:999!important;
 }

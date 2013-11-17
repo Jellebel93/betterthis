@@ -228,6 +228,11 @@
     
     EffectContent.init('slider-container');
     PostSlider.init('slider-container', true);
+	
+	window.PostEffectContent = new effectContent();
+	
+	PostEffectContent.init('post-slider-content');
+	window.Resize.push(PostEffectContent.resetHeight);
    
   })($);
 

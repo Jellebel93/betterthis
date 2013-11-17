@@ -527,4 +527,47 @@ add_action( 'customize_preview_init', 'twentythirteen_customize_preview_js' );
 
 
 
+/**
+ *  Đăng kí template này để sử dụng cho chuyên mục con
+ */
+function new_category_template() { 
 
+    // Get the category id from global query variables
+    $cat = get_query_var('cat');
+
+    if(!empty($cat)) {    
+
+        // Get the detailed category object
+        $category = get_category($cat);
+
+        // Check if it is sub-category and having a parent, also check if the template file exists
+        if( ($category->parent != '0') && (file_exists(TEMPLATEPATH . '/new-category-template.php')) ) { 
+
+            // Include the template for sub-catgeory
+            include(TEMPLATEPATH . '/new-category-template.php');
+            exit;
+        }
+        return;
+    }
+    return;
+
+}
+add_action('template_redirect', 'new_category_template');
+
+function new_header() {
+	// Check if it is sub-category and having a parent, also check if the template file exists
+        if( ($category->parent != '0') && (file_exists(TEMPLATEPATH . '/new_header.php')) ) { 
+
+            // Include the template for sub-catgeory
+            include(TEMPLATEPATH . '/new_header.php');
+        }
+}
+
+function new_footer() {
+	// Check if it is sub-category and having a parent, also check if the template file exists
+        if( ($category->parent != '0') && (file_exists(TEMPLATEPATH . '/new_footer.php')) ) { 
+
+            // Include the template for sub-catgeory
+            include(TEMPLATEPATH . '/new_footer.php');
+        }
+}

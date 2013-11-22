@@ -554,6 +554,24 @@ function new_category_template() {
 }
 add_action('template_redirect', 'new_category_template');
 
+function the_excerpt_max_charlength($charlength) {
+	$excerpt = get_the_excerpt();
+	$charlength++;
+
+	if ( mb_strlen( $excerpt ) > $charlength ) {
+		$subex = mb_substr( $excerpt, 0, $charlength - 5 );
+		$exwords = explode( ' ', $subex );
+		$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+		if ( $excut < 0 ) {
+			echo mb_substr( $subex, 0, $excut );
+		} else {
+			echo $subex;
+		}
+	} else {
+		echo $excerpt;
+	}
+}
+
 function new_header() {
 	// Check if it is sub-category and having a parent, also check if the template file exists
         if( ($category->parent != '0') && (file_exists(TEMPLATEPATH . '/new_header.php')) ) { 

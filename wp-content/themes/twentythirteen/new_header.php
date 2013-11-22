@@ -114,7 +114,7 @@ jQuery(document).ready(function($){
 				</div>
 			</div>
 			<div class="main-header clearfix">
-				<div class="blog-logo"></div>
+				<div class="blog-logo"><a href="<?php echo site_url(); ?>/blog/"></a></div>
 				<div class="main-menu">
 					<ul class="m-menu">
 						<li class="m-item">

@@ -208,13 +208,13 @@ get_header(); ?>
 					<div class="title_section"><h3><?php echo $page_data->post_title; ?></h3></div>
 				</div>
 				
-				<div class="social khaki">				
-					<div class="container">							
-						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+				<div class="social khaki">
+					<div class="container">	
+						<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
-							<span class="iconSocial heart">
-							<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
-						</span>	
+						<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
+							<a class="like_page" rel="liked"></a><span class="notice"></span>
+						</span>
 					</div>
 				</div>
 				<div class="container">				

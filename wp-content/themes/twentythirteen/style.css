@@ -790,6 +790,8 @@ img.aligncenter {
 
 img.alignnone {
 	margin: 5px 0;
+	width: 168px !important;
+	height: 232px !important;
 }
 
 .wp-caption .wp-caption-text,
@@ -893,8 +895,8 @@ img.wp-smiley,
 }
 
 .site-description,.sologan h2 {
-	background: url("images/betterthis.png") no-repeat scroll 12px 0 rgba(0, 0, 0, 0);
-    color: #58595B;
+	background: url("images/betterthis-new.png") no-repeat scroll 12px 0 rgba(0, 0, 0, 0);
+    color: #3cb24f;
     font-family: "Conv_Futura-CondensedExtraBold";
     font-size: 65px;
     line-height: 52px;
@@ -903,8 +905,6 @@ img.wp-smiley,
     padding-left: 69px;
     padding-top: 87px;
     text-transform: uppercase;
-
-
 }
 
 
@@ -3273,7 +3273,7 @@ margin: -15px 15px 0 0;  max-width: auto!important;
 }
 */
 .sologan > p {
-  color: #58595b;
+  color: #939598;
     font-family: "Conv_Futura-CondensedExtraBold";
     font-size: 17px;
     line-height: 102%;
@@ -3282,7 +3282,7 @@ margin: -15px 15px 0 0;  max-width: auto!important;
     width: 600px;
 }
 .social {
-	background: #d6de23;
+	background: #3bb14e;
 	min-height: 83px;
 }
 
@@ -3319,8 +3319,13 @@ margin: -15px 15px 0 0;  max-width: auto!important;
 .section-home {
 	top:0px;
 	font-size: 14px;
-	color: #ed245c;
+	color: #3bb24f;
 }
+
+.section-home  .really_simple_twitter_widget {
+	color: #3cb24f;
+}
+
 .section-home  .widget {
 	background: none;
     padding: 0;
@@ -3393,6 +3398,25 @@ display: inline-block;
 	width: 40px;
 	height: 40px;
 }
+
+.social .iconSocial.twitter-green {
+	background: url('images/icon-tw-green.png') no-repeat top left;
+	width: 45px;
+	height: 45px;
+}
+
+.social .iconSocial.link-green {
+	background: url('images/icon-link-green.png') no-repeat top left;
+	width: 45px;
+	height: 45px;
+}
+
+.social .iconSocial.heart-green {
+	background: url('images/icon-heart-green.png') no-repeat top left;
+	width: 45px;
+	height: 45px;
+}
+
 .social .container {text-align: right;}
 
 .social .iconSocial.facebook {
@@ -3427,7 +3451,10 @@ display: inline-block;
 #section2 .social .heart{
 	background: url('images/icon-heart-blue.png') no-repeat top left;
 }
-
+#section2 .social .iconSocial.link {
+	background: url('images/icon-link-blue.png') no-repeat top left;
+	width: 40px; height: 40px;
+}
 
 #section2 .social .iconSocial.twitter {
 	background: url('images/icon-tw-blue.png') no-repeat top left;
@@ -3542,9 +3569,12 @@ display: inline-block;
 	font-size: 11px;
 	text-align: center;
 }
-#section2 .wrap-section2 .product-section2 ul li img {
+#section2 .wrap-section2 .product-section2 ul li {
 	max-width: 100%;
-	width: 90px;
+}
+
+#section2 .wrap-section2 .product-section2 .sectionItem {
+	max-width: 100%;
 	height: 200px;
 }
 
@@ -3552,6 +3582,70 @@ display: inline-block;
 	background: #cfedfc;
 	position: relative;
 }
+
+#section3 .top-content {
+	font-family: "Conv_Futura-CondensedExtraBold";
+}
+
+#section3 .top-content .sologan  {
+	font-size: 36.5pt;
+	line-height: 95%
+}
+
+.item-slider .top-content .product-sologan  > ul {
+	display: none;
+}
+
+.item-slider .main-content .content .sologan {
+	display: none;
+}
+
+
+#section3 .top-content .sologan  span {
+	color: #bcbec0;
+}
+
+#section3 .top-content .green {
+	color: #3bb24f;
+}
+
+#section3 .top-content .red {
+	color: #e81f60;
+}
+
+#section3 .top-content .orange {
+	color: #ffd828;
+}
+#section3 .top-content .purple {
+	color: #673090;
+}
+
+#section3 .top-content .excerpt {
+	color: #a0a0a0;
+	font-size: 9pt;
+	font-family: 'Futura-Medium';
+}
+
+#section3 .top-content .excerpt > p {
+	padding: 5px 0px 0px 0px;
+	margin: 0px;
+}
+#section3 .dotted-line-new {
+	background: url('images/dotted-line-new.png') repeat top left;
+	height:7px;
+	width: 98.5%;
+}
+
+
+#section3 .top-content .the_title {
+	font-size: 15pt;
+	font-family: 'Conv_Futura-CondensedExtraBold';
+	text-transform: uppercase;
+}
+
+
+
+
 
 #section4 {
 	background: #e6e7e8;
@@ -3595,7 +3689,7 @@ display: inline-block;
 
 #section3 nav {
 	text-align: right;
-	z-index:9;margin-bottom: 140px;
+	z-index:9;margin-bottom: 60px;
 }
 .wrap3 {position:relative;padding-top: 10px;clear:both;}
 #section3 nav ul li a {
@@ -3831,8 +3925,10 @@ text-align: right;
 
 .list-item-thumb {
 	float: right;
+	position:relative;
 	width: 320px;
-	min-height: 660px;
+	min-height: 500px;
+	height: 100%;
 	text-align:center;
 	background: url('images/dotted-light.png') repeat-y  0px top;
 }
@@ -3858,7 +3954,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 }
 #section1  .container-body {
 	position: relative;
-	min-height: 360px;
+	min-height: 300px;
 }
 #section1  .container-body  .navigation {
 	position: absolute;
@@ -3869,10 +3965,12 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	display: block;
 }
 .list-thumnail {
-	list-style: none;padding:0;
+	list-style: none;
+	padding:0;
 	text-align:center;
-	position: relative;
-	right: -45px;
+	position: absolute;
+	right: -50px; left: 45px; 
+	bottom: 0px;
 }
 .list-thumnail  li{
 	width: 86px;
@@ -3896,7 +3994,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	font-size: 12px;
 	  font-weight: bold;
 }
-.wrap-section3  {height: 666px;}
+.wrap-section3  {min-height: 572px;}
 .list-thumnail li img {
 	width: 55px;
 	height: 122px;
@@ -3906,15 +4004,51 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	height: 200px;line-height: 200px; font-size: 24px;
 }
 .list-item-content,.content-data {overflow: hidden;}
-.thumnail {
-	float: right;
+
+.main-content {
+	position: relative;
+}
+.main-content .dot-lengthwise {
+	left: 262px;
+}
+
+.dot-lengthwise {
+	background: url('images/dotted-light.png') repeat-y  right top;
+	position: absolute;
+	z-index: 1000;
+	top: 10px;
+	bottom: 0px;
+	width: 7px;
+}
+
+.main-content .thumnail {
+	float: left;
 	width: 260px;
 	text-align:center;    
-	min-height: 660px;
+	min-height: 410px;
 	padding-left: 20px;
-	background: url('images/dotted-light.png') repeat-y  left top;
-	
+	margin-top: 10px;
 }
+.main-content .content {
+	float:left;
+	min-height: 400px;
+	width: 500px;
+}
+.main-content .content .content-center {
+	height: 400px;
+	width: 460px;
+}
+
+.main-content .content li{
+	float:left;
+	padding: 60px 20px;
+}
+
+.main-content .content li > img{
+	border: solid 1px #D3D3D3;
+}
+
+
 .thumnail  h3 {
 color: #00A44F;
     font-family: "Conv_Futura-CondensedExtraBold";
@@ -3925,7 +4059,12 @@ color: #00A44F;
     width: 84%;
 	
 }
-.list-thumnail li p {text-transform:uppercase;}
+.list-thumnail li p {
+	text-transform:uppercase;
+    font-family: "Conv_Futura-CondensedExtraBold";
+    font-size: 7pt;
+	color: #8f9194;
+}
 .the_excerpt {font-size: 12px;line-height: 18px;}
 .thumnail   .the_excerpt {
 color:#bbbdbf;

@@ -24,10 +24,10 @@ get_header(); ?>
 			<div class="portfolio-box first-section " id="section1">
 				<div class="social khaki">				
 					<div class="container">		
-						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
-						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
-							<span class="iconSocial heart">
-							<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+						<span class='st_link_hcount iconSocial link-green' displayText='Link'></span>
+						<span class='st_twitter_hcount iconSocial twitter-green' displayText='Tweet'></span>					
+						<span class="iconSocial heart-green" title="Liked <?php echo $meta_values[0];?>">
+							<a class="like_page" rel="liked"></a><span class="notice"></span>
 						</span>	
 					</div>
 				</div>
@@ -52,7 +52,7 @@ get_header(); ?>
 						<div class="wrap-section2">
 							<div class="title_section"><h3>Daily dose of selft improvement</h3></div>	
 							<div class="product-section2">
-								<ul>
+								<ul class="clearfix">
 								<?php
 								$catquery = new WP_Query( 'cat=3&posts_per_page=4' );
 								while($catquery->have_posts()) : $catquery->the_post();
@@ -62,7 +62,7 @@ get_header(); ?>
 										$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 										if ( !empty($full_img )) : ?>
 										<a class="sectionItem" data-id="select<?php echo get_the_ID(); ?>" href="#<?php echo get_the_ID(); ?>" title="<?php the_title_attribute(); ?>" >
-											<img src="<?php echo $full_img[0]; ?>" width="<?php echo $full_img[1] ?>" height="<?php echo $full_img[2] ?>"/>
+											<img src="<?php echo $full_img[0]; ?>" width="auto" height="200px"/>
 										</a>
 										<?php else :?>
 										<div class="no-thumb">no thumnail</div>
@@ -74,13 +74,13 @@ get_header(); ?>
 							</div>
 						</div>				
 						<div class="content-section2">
-							<div class="social khaki">										
-								<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+							<div class="social khaki">				
+								<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
-									<span class="iconSocial heart">
-									<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+								<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
+									<a class="like_page" rel="liked"></a><span class="notice"></span>
 								</span>	
-							</div>	
+							</div>
 							<nav id="site-navigation" class="navigations main-navigations" role="navigation">
 								<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
 							</nav><!-- #site-navigation -->	
@@ -102,15 +102,13 @@ get_header(); ?>
 				<div class="wrap-section3 ">
 					<div class="list-item-thumb">
 					
-						<div class="social khaki">				
-										
-								<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
+							<div class="social khaki">				
+								<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
-									<span class="iconSocial heart">
-									<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+								<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
+									<a class="like_page" rel="liked"></a><span class="notice"></span>
 								</span>	
-						
-						</div>
+							</div>
 					
 						<nav id="site-navigation" class="navigations main-navigations" role="navigation">
 							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menus' ) ); ?>
@@ -134,9 +132,9 @@ get_header(); ?>
 								<?php  
 									$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 									if ( !empty($full_img )) : ?>
-									   <a href="#" title="<?php the_title_attribute(); ?>" >
-                       <img src="<?php echo $full_img[0] ?>" width="<?php echo $full_img[1] ?>px" height="<?php echo $full_img[2] ?>px"/>
-									   </a>
+										<a href="#" title="<?php the_title_attribute(); ?>" >
+											<img src="<?php echo $full_img[0] ?>" width="auto" height="122px"/>
+										</a>
 									 <?php else :?>
 									 <div  class="no-thumb">no thumnail</div>
 									 <?php endif; ?>
@@ -156,22 +154,40 @@ get_header(); ?>
 								$index ++;
 							?>
 							<div class="main-frame page-slider item-slider <?php echo $display;?>" id="select<?php echo get_the_ID(); ?>">
-								 <div class="thumnail">
-									<h3><?php the_title(); ?></h3>
+								<div class="top-content">
+									<div class="product-sologan">
+										<?php the_content(); ?>
+									</div>
+									<div class="excerpt"><?php the_excerpt(); ?></div>
+									<div class="the_title"><?php the_title(); ?></div>
+								</div>
+								<script type="text/javascript">
+									var p_ = jQuery('#select<?php echo get_the_ID(); ?>');
+									var color = p_.find('.product-sologan').find('.sologan').attr('class').replace('sologan', '');
+									p_.find('.the_title').addClass(color);
+								</script>
+								<div class="dotted-line-new"></div>
+								<div class="main-content clearfix">
+									<div class="dot-lengthwise"></div>
+									<div class="thumnail">
 									<?php  
 									$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 									if ( !empty($full_img )) : ?>
-										<a href="" title="<?php the_title_attribute(); ?>" >
-										  <img src="<?php echo $full_img[0] ?>" width="<?php echo $full_img[1] ?>" height="<?php echo $full_img[2] ?>"/>
+										<a href="#" title="<?php the_title_attribute(); ?>" >
+										  <img src="<?php echo $full_img[0] ?>" width="142px" height="<?php echo $full_img[2] ?>px"/>
 										</a>
 									 <?php else :?>
-									 <div class="no-thumb"></div>
+										<div class="no-thumb"></div>
 									 <?php endif; ?>
-									<div class="the_excerpt"><?php the_excerpt(); ?></div>
+									
+									</div>
+									<div class="content">
+										<div class="content-center">
+											<?php the_content(); ?>
+										</div>
+									</div>
 								</div>
-								 <div class="content-data fadein">
-									<?php the_content(); ?>
-								</div>
+
 							</div>
 							<?php endwhile; ?>
 					</div>				

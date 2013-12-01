@@ -6,6 +6,8 @@
 
 ( function( $ ) {
 
+	window.wH = $(window).height() - 10;
+
 $( function() {
 		$(".portfolio-box ").each(function () {
 
@@ -30,8 +32,23 @@ $( function() {
       //  $(this).addClass('active');
        activeItem = this;
     });
-		
-	} );
 	
+	$('div.container-body:first').css('min-height', function() { 
+			var del = 25 + 230 + 83;
+			var wH = $(window).height() - del;
+			return (wH > 300) ? wH : 300;
+		}
+	);
+	
+		
+	var parent3 = $('#section3');
+	var mH = (wH > 572) ? wH : 572;
+	var del = parent3.find('.main-frame').find('.top-content').height() + 17;
+	parent3.find('.main-frame').find('.dot-lengthwise').css('min-height', (mH - del) + 'px');
+	
+	parent3.find('.list-item-thumb').css('min-height', (mH) + 'px');
+	
+	} );
+
 	
 } )( jQuery );

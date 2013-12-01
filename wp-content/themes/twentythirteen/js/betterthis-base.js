@@ -21,7 +21,14 @@
       },
       resetHeight: function() {
         effect.currentBlock.css('width', effect.container.outerWidth());
-        effect.container.css('height', effect.currentBlock.outerHeight());
+		var h = effect.currentBlock.outerHeight();
+		var pr = $('.wrap-section3');
+		console.log(pr.attr('min-height'))
+		if(pr.length === 1 && window.wH && window.wH > h) {
+			h = window.wH;
+			$('.item-slider').css('min-height', h + 'px');
+		}
+        effect.container.css('height', h + 'px');
       },
       effectApply : function(type, contentId, callback, callbefore) {
         var page = (contentId.hide === undefined) ? $('#'+contentId) : contentId;
@@ -254,6 +261,9 @@
 	window.PostEffectContent = new effectContent();
 	
 	PostEffectContent.init('post-slider-content');
+	if(window.Resize === undefined) {
+		window.Resize = new Array();//push
+	}
 	window.Resize.push(PostEffectContent.resetHeight);
 	
 	Blog.init();

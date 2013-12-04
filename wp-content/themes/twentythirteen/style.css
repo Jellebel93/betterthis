@@ -789,9 +789,9 @@ img.aligncenter {
 }
 
 img.alignnone {
-	margin: 5px 0;
-	width: 168px !important;
-	height: 232px !important;
+	margin: auto;
+	width: 311px !important;
+	height: auto !important;
 }
 
 .wp-caption .wp-caption-text,
@@ -896,15 +896,15 @@ img.wp-smiley,
 
 .site-description,.sologan h2 {
 	background: url("images/betterthis-new.png") no-repeat scroll 12px 0 rgba(0, 0, 0, 0);
-    color: #3cb24f;
-    font-family: "Conv_Futura-CondensedExtraBold";
-    font-size: 65px;
-    line-height: 52px;
-    margin-bottom: 0;
-    margin-left: -80px;
-    padding-left: 69px;
-    padding-top: 87px;
-    text-transform: uppercase;
+  color: #3cb24f;
+  font-family: "Conv_Futura-CondensedExtraBold";
+  font-size: 65px;
+  line-height: 56px;
+  margin-bottom: 0;
+  margin-left: -80px;
+  padding-left: 69px;
+  padding-top: 87px;
+  text-transform: uppercase;
 }
 
 
@@ -3274,12 +3274,12 @@ margin: -15px 15px 0 0;  max-width: auto!important;
 */
 .sologan > p {
   color: #939598;
-    font-family: "Conv_Futura-CondensedExtraBold";
-    font-size: 17px;
-    line-height: 102%;
-    margin: 4px 0 10px -7px;
-    text-transform: uppercase;
-    width: 600px;
+  font-family: "Conv_Futura-CondensedExtraBold";
+  font-size: 17px;
+  line-height: 14pt;
+  margin: 8px 0 10px -7px;
+  text-transform: uppercase;
+  width: 600px;
 }
 .social {
 	background: #3bb14e;
@@ -3415,6 +3415,10 @@ display: inline-block;
 	background: url('images/icon-heart-green.png') no-repeat top left;
 	width: 45px;
 	height: 45px;
+}
+
+.social .iconSocial.heart-green .like_page {
+  top: -8px;
 }
 
 .social .container {text-align: right;}
@@ -3587,22 +3591,33 @@ display: inline-block;
 	font-family: "Conv_Futura-CondensedExtraBold";
 }
 
+#section3 .top-content ul.sologans  {
+	padding: 0px;
+  margin: 0px;
+}
+
 #section3 .top-content .sologan  {
 	font-size: 36.5pt;
-	line-height: 95%
+	line-height: 95%;
+  display: none;
+  text-transform: uppercase;
 }
 
-.item-slider .top-content .product-sologan  > ul {
+#section3 .top-content .sologan.active {
+  display: block;
+}
+
+.item-slider .top-content .product-sologan > ul.images {
 	display: none;
 }
 
-.item-slider .main-content .content .sologan {
+.item-slider .main-content .content .sologans {
 	display: none;
 }
 
-
-#section3 .top-content .sologan  span {
+#section3 .top-content .sologan span {
 	color: #bcbec0;
+  display: inline-block;
 }
 
 #section3 .top-content .green {
@@ -4002,10 +4017,10 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	font-size: 12px;
 	  font-weight: bold;
 }
-.wrap-section3  {min-height: 572px;}
+.wrap-section3  {min-height: 646px;}
 .list-thumnail li img {
-	width: 55px;
-	height: 122px;
+	width: 52px;
+	height: auto;
 }
 .list-thumnail li  + li {margin-left:10px;}
 .product-section2 .no-thumb{
@@ -4021,7 +4036,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 }
 
 .dot-lengthwise {
-	background: url('images/dotted-light.png') repeat-y  right top;
+	background: url('images/dotted-light.png') repeat-y right top;
 	position: absolute;
 	z-index: 1000;
 	top: 10px;
@@ -4043,13 +4058,13 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	width: 500px;
 }
 .main-content .content .content-center {
-	height: 400px;
 	width: 460px;
 }
 
 .main-content .content li{
-	float:left;
-	padding: 60px 20px;
+	padding: 20px;
+  margin:auto;
+  width: 320px;
 }
 
 .main-content .content li > img{

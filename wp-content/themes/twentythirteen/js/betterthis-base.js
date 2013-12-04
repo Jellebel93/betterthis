@@ -21,13 +21,12 @@
       },
       resetHeight: function() {
         effect.currentBlock.css('width', effect.container.outerWidth());
-		var h = effect.currentBlock.outerHeight();
-		var pr = $('.wrap-section3');
-		console.log(pr.attr('min-height'))
-		if(pr.length === 1 && window.wH && window.wH > h) {
-			h = window.wH;
-			$('.item-slider').css('min-height', h + 'px');
-		}
+        var h = effect.currentBlock.outerHeight();
+        var pr = ('.wrap-section3');
+        if(pr.length === 1 && window.wH && window.wH > h) {
+          h = window.wH;
+          $('.item-slider').css('min-height', h + 'px');
+        }
         effect.container.css('height', h + 'px');
       },
       effectApply : function(type, contentId, callback, callbefore) {
@@ -258,19 +257,101 @@
     EffectContent.init('slider-container');
     PostSlider.init('slider-container', true);
 	
-	window.PostEffectContent = new effectContent();
-	
-	PostEffectContent.init('post-slider-content');
-	if(window.Resize === undefined) {
-		window.Resize = new Array();//push
-	}
-	window.Resize.push(PostEffectContent.resetHeight);
-	
-	Blog.init();
+    if(window.Resize === undefined) {
+      window.Resize = new Array();//push
+    }
+    window.Resize.push(EffectContent.resetHeight);
+    
+    Blog.init();
    
   })($);
 
+  function sliderText() {
+    var parent = $(this);
+    var items = parent.find('.sologan');
+    var active = parent.find('.active');
+    var h = active.height() + 2;
+    var w = active.width();
+    parent.css({height: h + 'px', width : w + 'px', overflow : 'hidden', position: 'relative'});
+    active.css({left: '0px'});
+    items.css({position: 'absolute', top: '0px', height: h + 'px', width : w + 'px'});
+    
+    var frame = parent.parents('.main-frame:first');
+    parent.attr('id', 'id_' + frame.attr('id'));
+    
+    return parent;
+  }
 
+  
+  function nextOrFirst2 (elm) {
+    var parent = elm.parents('ul:first');
+    var items = parent.find('li');
+    var l = items.length;
+    for(var i = 0; i < l; ++i) {
+      if(items.eq(i)[0] === elm[0]) {
+        if(i == (l - 1)) {
+          return items.eq(0);
+        }
+        return items.eq(i + 1);
+      }
+    }
+  }
+
+	function init() {
+    var p3 = $('#section3');
+    if(p3.length === 1) {
+      var sologans = p3.find('.sologans')
+      sologans.each(function(index) {
+       // $(this).sliderText()
+      });
+      sologans.find('ul.images').remove();
+      
+      
+      p3.find('.content').find('.sologans').remove();
+      //
+      $('ul.images').find('li').css('cursor', 'pointer').attr('data-fancybox-href', function() {
+          return $(this).find('img').attr('src');
+      }).fancybox();
+      
+      $('.fancybox').fancybox();
+      //
+      
+      setInterval(function() {
+      
+        var sologans = p3.find('.sologans');
+        sologans.each(function( index ) {
+         // var id = $(this).attr('id');
+          //var parent = $('#id_' + id);
+          var parent = $(this);
+          var page = parent.parents('.item-active:first');
+          
+          if(page.length === 1) {
+            parent.sliderText();
+            var active = parent.find('.active:first');
+            var nextAtive = nextOrFirst2(active);
+            nextAtive.css({left: (active.width()) + 'px'}).addClass('active');
+            nextAtive.animate({left: 0}, 400, function() {});
+                    
+            active.animate({left: -(active.width())}, 400, function() {
+              active.removeClass('active');
+            });
+            
+          }
+        });
+      }, 5000);
+    }
+  }
+  
+  if($.fn.nextOrFirst === undefined) {
+    $.fn.nextOrFirst = nextOrFirst;
+  }
+  
+  if($.fn.sliderText === undefined) {
+    $.fn.sliderText  = sliderText;
+  }
+	
+  //
+  init();
   
 
 })(jQuery, window);

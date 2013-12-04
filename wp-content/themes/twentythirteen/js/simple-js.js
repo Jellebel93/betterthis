@@ -30,8 +30,6 @@
 		leftImg.find('img').load(function() {$(this).css({height: parent.find('.left-detail-post').outerHeight() + 'px', width: leftImg.width() + 'px'})});
 	}
 	
-	
-	
 	window.Resize.push(Load.pdTop);
 	
 	$(window).on('resize', function() {

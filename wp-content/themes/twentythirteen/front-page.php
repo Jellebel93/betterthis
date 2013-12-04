@@ -23,10 +23,10 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 			<div class="portfolio-box first-section " id="section1">
 				<div class="social khaki">				
-					<div class="container">		
+					<div class="container clearfix">		
 						<span class='st_link_hcount iconSocial link-green' displayText='Link'></span>
 						<span class='st_twitter_hcount iconSocial twitter-green' displayText='Tweet'></span>					
-						<span class="iconSocial heart-green" title="Liked <?php echo $meta_values[0];?>">
+						<span class="iconSocial heart heart-green" title="Liked <?php echo $meta_values[0];?>">
 							<a class="like_page" rel="liked"></a><span class="notice"></span>
 						</span>	
 					</div>
@@ -47,7 +47,7 @@ get_header(); ?>
 			<!--end section 1-->
 			
 			<div class="portfolio-box " id="section2">				
-				<div class="container ">	
+				<div class="container">	
 					<div class="wrap-2">	
 						<div class="wrap-section2">
 							<div class="title_section"><h3>Daily dose of selft improvement</h3></div>	
@@ -78,7 +78,7 @@ get_header(); ?>
 								<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 								<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
-									<a class="like_page" rel="liked"></a><span class="notice"></span>
+									<a class="like_page" rel="liked"><?php echo $meta_values[0];?></a><span class="notice"></span>
 								</span>	
 							</div>
 							<nav id="site-navigation" class="navigations main-navigations" role="navigation">
@@ -98,15 +98,15 @@ get_header(); ?>
 			
 			<div class="portfolio-box "  id="section3">
 				
-				<div class="container wrap3 " >
+				<div class="container wrap3">
 				<div class="wrap-section3 ">
 					<div class="list-item-thumb">
 					
-							<div class="social khaki">				
+							<div class="social khaki clearfix">				
 								<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 								<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
-									<a class="like_page" rel="liked"></a><span class="notice"></span>
+									<a class="like_page" rel="liked"><?php echo $meta_values[0];?></a><span class="notice"></span>
 								</span>	
 							</div>
 					
@@ -173,7 +173,7 @@ get_header(); ?>
 									<?php  
 									$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full-size'); 
 									if ( !empty($full_img )) : ?>
-										<a href="#" title="<?php the_title_attribute(); ?>" >
+										<a href="<?php echo $full_img[0] ?>" class="fancybox" title="<?php the_title_attribute(); ?>" >
 										  <img src="<?php echo $full_img[0] ?>" width="142px" height="<?php echo $full_img[2] ?>px"/>
 										</a>
 									 <?php else :?>
@@ -209,11 +209,11 @@ get_header(); ?>
 				</div>
 				
 				<div class="social khaki">
-					<div class="container">	
+					<div class="container clearfix">	
 						<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 						<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
-							<a class="like_page" rel="liked"></a><span class="notice"></span>
+							<a class="like_page" rel="liked"><?php echo $meta_values[0];?></a><span class="notice"></span>
 						</span>
 					</div>
 				</div>
@@ -254,11 +254,11 @@ get_header(); ?>
 						<div class="title_section"><h3><?php echo $page_data->post_title; ?></h3></div>
 					</div>
 				</div><div class="social khaki">				
-					<div class="container">							
+					<div class="container clearfix">							
 						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
 						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 							<span class="iconSocial heart">
-							<a class="like_page" rel="liked" ><?php 	echo $meta_values[0]; ?> </a><span class="notice"></span>
+							<a class="like_page" rel="liked" ><?php echo $meta_values[0];?></a><span class="notice"></span>
 						</span>	
 					</div>
 				</div>				

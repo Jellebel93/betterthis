@@ -24,7 +24,6 @@ get_header(); ?>
 			<div class="portfolio-box first-section " id="section1">
 				<div class="social khaki">				
 					<div class="container clearfix">		
-						<span class='st_link_hcount iconSocial link-green' displayText='Link'></span>
 						<span class='st_twitter_hcount iconSocial twitter-green' displayText='Tweet'></span>					
 						<span class="iconSocial heart heart-green" title="Liked <?php echo $meta_values[0];?>">
 							<a class="like_page" rel="liked"></a><span class="notice"></span>
@@ -50,7 +49,7 @@ get_header(); ?>
 				<div class="container">	
 					<div class="wrap-2">	
 						<div class="wrap-section2">
-							<div class="title_section"><h3>Daily dose of selft improvement</h3></div>	
+							<div class="title_section"><h3>WE’RE BETTER THIS AND THIS IS OUR STORY.</h3></div>	
 							<div class="product-section2">
 								<ul class="clearfix">
 								<?php
@@ -75,10 +74,9 @@ get_header(); ?>
 						</div>				
 						<div class="content-section2">
 							<div class="social khaki">				
-								<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 								<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
-									<a class="like_page" rel="liked"><?php echo $meta_values[0];?></a><span class="notice"></span>
+									<a class="like_page" rel="liked"></a><span class="notice"></span><span class="notice"></span>
 								</span>	
 							</div>
 							<nav id="site-navigation" class="navigations main-navigations" role="navigation">
@@ -99,14 +97,13 @@ get_header(); ?>
 			<div class="portfolio-box "  id="section3">
 				
 				<div class="container wrap3">
-				<div class="wrap-section3 ">
+				<div class="wrap-section3 clearfix">
 					<div class="list-item-thumb">
 					
 							<div class="social khaki clearfix">				
-								<span class='st_link_hcount iconSocial link' displayText='Link'></span>
 								<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 								<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
-									<a class="like_page" rel="liked"><?php echo $meta_values[0];?></a><span class="notice"></span>
+									<a class="like_page" rel="liked"></a><span class="notice"></span><span class="notice"></span>
 								</span>	
 							</div>
 					
@@ -119,7 +116,7 @@ get_header(); ?>
 						</nav><!-- #site-navigation -->	
 				
 				
-						<ul class="list-thumnail">
+						<ul class="list-thumnail clearfix">
 						<?php
 							$index = 0;
 							while($catquery->have_posts()) : $catquery->the_post();
@@ -209,11 +206,10 @@ get_header(); ?>
 				</div>
 				
 				<div class="social khaki">
-					<div class="container clearfix">	
-						<span class='st_link_hcount iconSocial link' displayText='Link'></span>
+					<div class="container clearfix">
 						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 						<span class="iconSocial heart" title="Liked <?php echo $meta_values[0];?>">
-							<a class="like_page" rel="liked"><?php echo $meta_values[0];?></a><span class="notice"></span>
+							<a class="like_page" rel="liked"></a><span class="notice"></span>
 						</span>
 					</div>
 				</div>
@@ -255,10 +251,9 @@ get_header(); ?>
 					</div>
 				</div><div class="social khaki">				
 					<div class="container clearfix">							
-						<span class='st_facebook_hcount iconSocial facebook' displayText='Facebook'></span>
 						<span class='st_twitter_hcount iconSocial twitter' displayText='Tweet'></span>					
 							<span class="iconSocial heart">
-							<a class="like_page" rel="liked" ><?php echo $meta_values[0];?></a><span class="notice"></span>
+							<a class="like_page" rel="liked"></a><span class="notice"></span>
 						</span>	
 					</div>
 				</div>				

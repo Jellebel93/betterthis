@@ -42,11 +42,17 @@ $( function() {
 	
 		
 	var parent3 = $('#section3');
-	var mH = (wH > 572) ? wH : 572;
+	var mH = (wH > 646) ? wH : 646;
+  if(mH > 760) mH = 760;
 	var del = parent3.find('.main-frame').find('.top-content').height() + 17;
 	parent3.find('.main-frame').find('.dot-lengthwise').css('min-height', (mH - del) + 'px');
 	
-	parent3.find('.list-item-thumb').css('min-height', (mH) + 'px');
+	parent3.find('.list-item-thumb').css('min-height', (mH) + 'px').css('max-height', '760px');
+  parent3.find('.wrap-section3').css('min-height', (mH) + 'px').css('max-height', '760px');
+  parent3.find('.wrap-section3').find('.slider-container').css('height', (mH) + 'px').css('max-height', '760px');
+  parent3.css('max-height', '760px');
+  
+ 
 	
 	} );
 

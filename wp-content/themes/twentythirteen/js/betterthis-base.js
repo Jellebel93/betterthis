@@ -25,9 +25,12 @@
         var pr = ('.wrap-section3');
         if(pr.length === 1 && window.wH && window.wH > h) {
           h = window.wH;
+          if(pr.height() > h) {
+              h = pr.height();
+          }
           $('.item-slider').css('min-height', h + 'px');
         }
-        effect.container.css('height', h + 'px');
+        effect.container.css('min-height', h + 'px');
       },
       effectApply : function(type, contentId, callback, callbefore) {
         var page = (contentId.hide === undefined) ? $('#'+contentId) : contentId;
@@ -269,7 +272,7 @@
   function sliderText() {
     var parent = $(this);
     var items = parent.find('.sologan');
-    var active = parent.find('.active');
+    var active = parent.find('.active').css('height', 'auto');
     var h = active.height() + 2;
     var w = active.width();
     parent.css({height: h + 'px', width : w + 'px', overflow : 'hidden', position: 'relative'});
@@ -340,6 +343,11 @@
         });
       }, 5000);
     }
+	
+	var s5 = $('#section5');
+	var g = s5.find('.colgroup');
+	g.eq(0).css('height', '38px');
+	g.eq(1).css('height', '35px');
   }
   
   if($.fn.nextOrFirst === undefined) {

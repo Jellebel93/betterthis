@@ -790,8 +790,8 @@ img.aligncenter {
 
 img.alignnone {
 	margin: auto;
-	width: 311px !important;
-	height: auto !important;
+	width: auto !important;
+	height: 400px !important;
 }
 
 .wp-caption .wp-caption-text,
@@ -3436,7 +3436,7 @@ display: inline-block;
 }
 
 #section2 h3 {
-   background: url("images/betterthis-red.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+   background: url("images/betterthis-yellow.png") no-repeat scroll left top rgba(0, 0, 0, 0);
     color: #F9EC31;
     font-size: 62px;
     line-height: 85%;
@@ -3714,7 +3714,10 @@ display: inline-block;
 	text-align: right;
 	z-index:9;margin-bottom: 60px;
 }
-.wrap3 {position:relative;padding-top: 10px;clear:both;}
+.wrap3 {
+position:relative;padding-top: 10px;clear:both;
+overflow:hidden;
+}
 #section3 nav ul li a {
 	 color: #BBBDBF;
 }
@@ -3765,7 +3768,7 @@ display: inline-block;
     color: #26A9E0;
     font-size: 65px;
     height: 197px;
-    line-height: 78%;
+    line-height: 43pt;
     padding-left: 53px;
     padding-top: 94px;
     width: 460px;
@@ -3775,10 +3778,12 @@ display: inline-block;
 	color: #bbbdbf;
 }
 
-.navigations  ul li a {
-	text-transform: uppercase;
-	font-size: 14px;
-	font-family: "Conv_Futura-CondensedExtraBold";
+.navigations ul li a {
+	/*text-transform: uppercase;*/
+	font-size: 17.5px;
+	line-height: 15px;
+	font-family:"Futura-Medium",Bitter, Georgia, serif;
+	/*font-family: "Conv_Futura-CondensedExtraBold";*/
 }
 #section4 nav ul li.menu-item-13 a{color : #808184 ;}
 #section4 nav ul li a:hover {
@@ -3817,7 +3822,7 @@ display: inline-block;
     background-position: -80px 5px;
 }
 #section5 .title_section h3 {
-	 background: url("images/betterthis-red.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+	 background: url("images/betterthis-yellow.png") no-repeat scroll left top rgba(0, 0, 0, 0);
     color: #F9EC31;
    
     font-size: 64px;
@@ -3916,6 +3921,11 @@ text-align: right;
 	width: 100%;
 	margin-bottom: 5px;
 }
+
+#section5 .su-row .su-column .colgroup:first-child {
+	margin-bottom: 10px;
+}
+
 #section5 .su-row .su-column .colgroup .col+.col input,
 #section5 .su-row .su-column .colgroup .col+.col textarea {
 	border:none;
@@ -3950,7 +3960,7 @@ text-align: right;
 	float: right;
 	position:relative;
 	width: 320px;
-	min-height: 500px;
+	min-height: 646px;
 	height: 100%;
 	text-align:center;
 	background: url('images/dotted-light.png') repeat-y  0px top;
@@ -3992,16 +4002,17 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	padding:0;
 	text-align:center;
 	position: absolute;
-	right: -50px; left: 45px; 
+	left: 28px; 
 	bottom: 0px;
+	width: 320px;
 }
 .list-thumnail  li{
-	width: 86px;
+	width: 80px;
 	float: left;
 	font-size: 10px;color:#bbbdbf;
 }
 .no-thumb{
-	  border: 2px solid #999999;
+    border: 2px solid #999999;
     border-radius: 5px 5px 5px 5px;
     color: #000000;
     font-size: 14px;
@@ -4015,14 +4026,14 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	margin: 15px 0 0 0 ;
 	text-transform: uppercase;
 	font-size: 12px;
-	  font-weight: bold;
+	font-weight: bold;
 }
 .wrap-section3  {min-height: 646px;}
 .list-thumnail li img {
 	width: 52px;
 	height: auto;
 }
-.list-thumnail li  + li {margin-left:10px;}
+.list-thumnail li.sectionItem {margin-left:15px;}
 .product-section2 .no-thumb{
 	height: 200px;line-height: 200px; font-size: 24px;
 }
@@ -4050,7 +4061,7 @@ div.wpcf7-validation-errors {border: none; color: #FF0000;}
 	text-align:center;    
 	min-height: 410px;
 	padding-left: 20px;
-	margin-top: 10px;
+	margin-top: 34px;
 }
 .main-content .content {
 	float:left;
@@ -4084,9 +4095,11 @@ color: #00A44F;
 }
 .list-thumnail li p {
 	text-transform:uppercase;
-    font-family: "Conv_Futura-CondensedExtraBold";
-    font-size: 7pt;
+	font-family:"Futura-Medium",Bitter, Georgia, serif;
+	/*font-family: "Conv_Futura-CondensedExtraBold";*/
+	font-size: 7.5pt;
 	color: #8f9194;
+	margin: 7px 0px;
 }
 .the_excerpt {font-size: 12px;line-height: 18px;}
 .thumnail   .the_excerpt {
@@ -4389,7 +4402,7 @@ i.icon-health {
 }
 
 .blog-page .container li.post-item  .post-title {
-	font-family: 'Jersey M54';
+	font-family: "Futura-Medium",Bitter, Georgia, serif;
 	padding-left: 8px;
 	position:relative;
 }
@@ -4406,10 +4419,10 @@ i.icon-health {
 }
 
 .blog-page .container li.post-item  .post-title  .title{
-	font-size: 18pt;
+	font-size: 16pt;
 	font-weight: normal;
 	line-height: 26px;
-	padding-top: 6px;
+	padding-top: 8px;
 }
 .blog-page .container li.post-item  .post-title  .excerpt{
 	font-size: 7pt;
@@ -4458,5 +4471,3 @@ i.icon-health {
 	height: 60px;
 	margin:auto;
 }
-
-

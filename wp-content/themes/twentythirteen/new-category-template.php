@@ -9,6 +9,8 @@
 $isSlider = true;
 $cat = "";
 $postId = "";
+$pageId = 1;
+$offset = 0;
 if(isset($_REQUEST['cat'])) {
 	$cat = $_REQUEST['cat'];
 	if(strlen($cat) == 0) {
@@ -24,6 +26,14 @@ if(isset($_REQUEST['post'])) {
 		$postId = "";
 	} else {
 		$isSlider = false;
+	}
+}
+
+
+if(isset($_REQUEST['pageid'])) {
+	$pageId = $_REQUEST['pageid'];
+	if(strlen($pageId."") == 0) {
+		$pageId = 1;
 	}
 }
 
@@ -102,7 +112,6 @@ if(strlen($postId) > 0) {
 				<a class="share" href="#fb"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="32px"/></a>
 				<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="32px"/></a>
 				<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/h-icon-42x32.png" height="32px"/></a>
-				<a class="share" href="#lk"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/lk-icon-36x36.png" height="32px"/></a>
 			</div>
 		</div>
 		<div class="right-image">
@@ -121,21 +130,28 @@ if (strlen($cat) > 0) {
   echo '<div class="cat-name alignleft"><i class="icon-cate icon-'.substr($cat, 0, strrpos($cat, '_', 0)).'"></i>'.$category->cat_name .'</div>';
   $clazzNude = ' alignright';
 }
-echo '<div class="icon-nudege'.$clazzNude .'"></div>';
+echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.nextPage('.$pageId.');"></a>';
 echo '</div>';
+
+if( $pageId > 1 ) {
+  $offset = ($pageId - 1) * 16;
+}
 
 //case 1: for home
 if ($isSlider == true) {
-	$strQuery = array( 'posts_per_page' => 16, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' );
+	$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' );
 }
 // case 2: for category
 if (strlen($cat) > 0) {
-	$strQuery = array( 'posts_per_page' => 16, 'category_name' => $cat, 'orderby' => 'date', 'order' => 'ASC' );
+	$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => $cat, 'orderby' => 'date', 'order' => 'ASC' );
 }
 
 // case 2: for post
 if (strlen($postId) > 0 && strlen($post_in_cat) > 0) {
-	$strQuery = array( 'posts_per_page' => 8, 'category_name' => $post_in_cat, 'orderby' => 'date', 'order' => 'ASC' );
+  if( $pageId > 1 ) {
+    $offset = ($pageId - 1) * 8;
+  }
+	$strQuery = array( 'posts_per_page' => 8, 'offset' => $offset, 'category_name' => $post_in_cat, 'orderby' => 'date', 'order' => 'ASC' );
 }
 
 echo '<div class="container">';
@@ -202,11 +218,10 @@ $pIconOpen='icon-open';
 				</div>
 			</div>
 			<div class="the-social clearfix">
-				<div style="float:right;">
+				<div style="float:right;padding: 2px 5px 0px 0px;">
 					<a class="share" href="#fb"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="24px"/></a>
 					<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="24px"/></a>
 					<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/h-icon-42x32.png" height="24px"/></a>
-					<a class="share" href="#lk"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/lk-icon-36x36.png" height="24px"/></a>
 				</div>
 			</div>
 		</li>

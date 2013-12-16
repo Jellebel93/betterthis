@@ -61,7 +61,7 @@
 
 var date = new Date();
 var timestamp = date.getTime();
-
+window.rootPath = '<?php echo site_url(); ?>';
 jQuery.noConflict();
 jQuery(document).ready(function($){
     $.ajaxSetup({cache:false});

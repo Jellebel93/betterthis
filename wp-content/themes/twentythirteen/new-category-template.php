@@ -122,6 +122,28 @@ if(strlen($postId) > 0) {
 <?php
 // end view post
 }
+
+$perPage = 16;
+$catName = "art_culture,food_travel,science_tech,health_sports";
+//case 1: for home
+if ($isSlider == true) {
+	//$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' ); rand
+  $strQuery = array( 'posts_per_page' => $perPage, 'offset' => $offset, 'category_name' => $catName, 'orderby' => 'rand' );
+}
+// case 2: for category
+if (strlen($cat) > 0) {
+  $catName = $cat;
+	$strQuery = array( 'posts_per_page' => $perPage, 'offset' => $offset, 'category_name' => $catName, 'orderby' => 'rand' );
+}
+
+// case 2: for post
+if (strlen($postId) > 0 && strlen($post_in_cat) > 0) {
+  $perPage = 8;
+  $catName = $post_in_cat;
+	$strQuery = array( 'posts_per_page' => $perPage, 'offset' => $offset, 'category_name' => $catName, 'orderby' => 'rand' );
+}
+
+
 //NUDEGE
 echo '<div class="nodege-container clearfix">';
 $clazzNude = "";
@@ -130,29 +152,8 @@ if (strlen($cat) > 0) {
   echo '<div class="cat-name alignleft"><i class="icon-cate icon-'.substr($cat, 0, strrpos($cat, '_', 0)).'"></i>'.$category->cat_name .'</div>';
   $clazzNude = ' alignright';
 }
-echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.nextPage('.$pageId.');"></a>';
+echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.loadPost('.$perPage.', \''.$catName.'\');"></a>';
 echo '</div>';
-
-if( $pageId > 1 ) {
-  $offset = ($pageId - 1) * 16;
-}
-
-//case 1: for home
-if ($isSlider == true) {
-	$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' );
-}
-// case 2: for category
-if (strlen($cat) > 0) {
-	$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => $cat, 'orderby' => 'date', 'order' => 'ASC' );
-}
-
-// case 2: for post
-if (strlen($postId) > 0 && strlen($post_in_cat) > 0) {
-  if( $pageId > 1 ) {
-    $offset = ($pageId - 1) * 8;
-  }
-	$strQuery = array( 'posts_per_page' => 8, 'offset' => $offset, 'category_name' => $post_in_cat, 'orderby' => 'date', 'order' => 'ASC' );
-}
 
 echo '<div class="container">';
 $nextPost = '';
@@ -219,7 +220,6 @@ $pIconOpen='icon-open';
 			</div>
 			<div class="the-social clearfix">
 				<div style="float:right;padding: 2px 5px 0px 0px;">
-					<a class="share" href="#fb"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="24px"/></a>
 					<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="24px"/></a>
 					<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/h-icon-42x32.png" height="24px"/></a>
 				</div>

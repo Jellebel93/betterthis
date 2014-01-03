@@ -555,6 +555,10 @@ function new_category_template() {
 add_action('template_redirect', 'new_category_template');
 
 function the_excerpt_max_charlength($charlength) {
+	echo get_excerpt_max_charlength($charlength);
+}
+
+function get_excerpt_max_charlength($charlength) {
 	$excerpt = get_the_excerpt();
 	$charlength++;
 
@@ -563,12 +567,12 @@ function the_excerpt_max_charlength($charlength) {
 		$exwords = explode( ' ', $subex );
 		$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
 		if ( $excut < 0 ) {
-			echo mb_substr( $subex, 0, $excut );
+			return mb_substr( $subex, 0, $excut );
 		} else {
-			echo $subex;
+			return $subex;
 		}
 	} else {
-		echo $excerpt;
+		return $excerpt;
 	}
 }
 

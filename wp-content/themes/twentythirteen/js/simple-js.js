@@ -58,8 +58,26 @@
         } else {
             newPath = rootPath + '/?pageid=' + (index + 1);
         }
-      console.log(newPath);
       window.location.href = newPath;
+    }
+    
+    
+    Load.loadPost = function(perPage, cateName) {
+      var url_ = window.rootPath + '/posts-blog/';
+      url_ += '?size=' + perPage + '&cats=' + encodeURIComponent(cateName);
+      console.log(url_);
+      $.ajax({
+        type : "GET",
+        url : url_
+      }).complete(function(jqXHR) {
+        if (jqXHR.readyState === 4) {
+          var data = (jqXHR.responseText);
+          if (data) {
+            window.data= data;
+            console.log(data);
+          }
+        }
+      });
     }
     window.Resize.push(Load.pdTop);
 

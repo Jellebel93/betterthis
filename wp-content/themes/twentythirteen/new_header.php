@@ -34,7 +34,7 @@
 	<link rel="alternate" type="application/rss+xml" title="better this &raquo; Comments Feed" href="<?php echo site_url(); ?>/comments/feed/" />
 	<link rel="alternate" type="application/rss+xml" title="better this &raquo; home Comments Feed" href="<?php echo site_url(); ?>/home/feed/" />
 	<link rel='stylesheet' id='contact-form-7-css'  href='<?php echo plugins_url(); ?>/contact-form-7/includes/css/styles.css?ver=3.5.3' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentythirteen-fonts-css'  href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentythirteen-fonts-css'  href='<?php echo get_template_directory_uri(); ?>/css/font-google.css' type='text/css' media='all' />
 	<link rel='stylesheet' id='genericons-css'  href='<?php echo get_template_directory_uri(); ?>/fonts/genericons.css?ver=2.09' type='text/css' media='all' />
 	<link rel='stylesheet' id='twentythirteen-style-css'  href='<?php echo get_template_directory_uri(); ?>/style.css?ver=2013-07-18' type='text/css' media='all' />
 	<!--[if lt IE 9]>
@@ -114,7 +114,7 @@ jQuery(document).ready(function($){
 				</div>
 			</div>
 			<div class="main-header clearfix">
-				<div class="blog-logo"><a href="<?php echo site_url(); ?>/blog/"></a></div>
+				<div class="blog-logo"><a class="opacity" href="<?php echo site_url(); ?>/blog/"></a></div>
 				<div class="main-menu">
 					<ul class="m-menu">
 						<li class="m-item">

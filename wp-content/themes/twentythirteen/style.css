@@ -100,8 +100,23 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	font-weight: normal;
 	font-style: normal;
 }
+/** Futura Condensed by FG **/
+@font-face {
+	font-family: 'Futura-Condensed';
+	src: url('fonts/Futura-Condensed.eot');
+	src: local('☺'), url('fonts/Futura-Condensed.woff') format('woff'), url('fonts/Futura-Condensed.ttf') format('truetype'), url('fonts/Futura-Condensed.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
-
+/** JerseyM54 by FG **/
+@font-face {
+	font-family: 'JerseyM54';
+	src: url('fonts/JerseyM54.ttf');
+	src: local('☺'), url('fonts/JerseyM54.woff') format('woff'), url('fonts/JerseyM54.ttf') format('truetype'), url('fonts/JerseyM54.svg') format('svg');
+	/**font-weight: normal;
+	font-style: normal;**/
+}
 
 .clearfix:after {
 	content: ".";
@@ -4315,6 +4330,13 @@ i.icon-health {
 .slider-content .left-detail-post h2{
 	margin: 23px 0px 17px 0px;
   text-transform: uppercase;
+  font-family: JerseyM54,Bitter, Georgia, serif;
+}
+
+.slider-content .left-detail-post .the_excerpt {
+	margin: 23px 0px 17px 0px;
+  text-transform: uppercase;
+  font-family: 'Futura-Book',Bitter, Georgia, serif;
 }
 
 .slider-content .left-detail-post .left-row{
@@ -4403,7 +4425,6 @@ i.icon-health {
 }
 
 .blog-page .container li.post-item .post-title {
-	font-family: "Futura-Medium",Bitter, Georgia, serif;
 	padding-left: 8px;
 	position:relative;
 }
@@ -4420,17 +4441,18 @@ i.icon-health {
 }
 
 .blog-page .container li.post-item .post-title .title{
-	font-size: 16pt;
-	font-weight: normal;
+	font-family: JerseyM54,Bitter, Georgia, serif;
+	font-size: 18pt;
 	line-height: 20px;
 	padding-top: 10px;
   text-transform: uppercase;
 }
 
-.blog-page .container li.post-item .post-title .excerpt{
+.blog-page .container li.post-item .post-title .excerpt {
+	font-family: 'Futura-Book', Bitter, Georgia, serif;
 	font-size: 7pt;
 	font-weight: normal;
-	margin-top:-5px;
+	line-height: 8px;
 }
 
 .blog-page .container li.post-item .thumbnail .title {
@@ -4449,16 +4471,39 @@ i.icon-health {
   overflow:hidden !important;
   text-overflow: ellipsis;
   text-transform: uppercase;
+  position: absolute;
+	left: 10px;
+	top: 32px;
 }
 
 
 .blog-page .container li.post-item .no-thumbnail {
 	padding-top: 12px;
 }
+.blog-page .container li.post-item .no-thumbnail .title {
+  line-height: 24px;
+}
 .blog-page .container li.post-item .no-thumbnail .excerpt{
 	font-size: 8pt;
 	font-weight: normal;
-	margin-top:0px;
+	margin-top:12px;
+  line-height: 10px;
+}
+.blog-page .container li.social_update {
+	height:334px;
+  padding:10px;
+  padding-right:20px;
+  background: #f6f7f8;
+  overflow: hidden;
+}
+.blog-page .container li.social_update .social_update_text {
+	text-transform: uppercase;
+  font-size: 38pt;
+  font-family: 'Futura-Condensed', Bitter, Georgia, serif;
+  line-height: 50px;
+  max-height: 300px;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
 }
 
 .blog-page .container li.post-item p{
@@ -4493,5 +4538,10 @@ i.icon-health {
 	width: 250px;
 	height: 60px;
 	margin:auto;
-  display: inline-block;
+	display:block;
+}
+
+a.opacity:hover {
+  opacity: 0.65;
+  filter:Alpha(opacity=65); /* IE8 and earlier */
 }

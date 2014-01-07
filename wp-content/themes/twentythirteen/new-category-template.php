@@ -37,12 +37,14 @@ if(isset($_REQUEST['pageid'])) {
 	}
 }
 
-$backgrounds = array('art_culture'=>'background: #0031ff;', 'food_travel'=>'background: #ff3aff;', 'science_tech'=>'background: #00f600;', 'health_sports'=>'background: #ff1f00;');
+$backgrounds = array('art_culture'=>'background: #002AFF;', 'food_travel'=>'background: #FE38FF;', 'science_tech'=>'background: #1CF600;', 'health_sports'=>'background: #ff2500;');
 $colors = array('art_culture'=>'fff', 'food_travel'=>'000', 'science_tech'=>'000', 'health_sports'=>'fff');
 
 /* show slider */
-
+$social_update = "";
 if ($isSlider == true) {
+  $social_update = yarq_get();
+  
 	echo '<div class="post-slider-container" id="BlogSlider">';
 
 	// query post for slider
@@ -70,7 +72,7 @@ if ($isSlider == true) {
 			<div class="left-detail-post" style="<?php echo $background; ?>">
 				<h2 style="<?php echo $color; ?>"><?php the_title(); ?></h2>
 				<div style="<?php echo $color; ?>" class="the_excerpt"><?php the_excerpt(); ?></div>
-				<div class="left-row while-left-row"><a href="<?php echo site_url(); ?>/blog/?post=<?php echo $the_ID; ?>"></a></div>
+				<div class="left-row while-left-row"><a class="opacity" href="<?php echo site_url(); ?>/blog/?post=<?php echo $the_ID; ?>"></a></div>
 			</div>
 
 			<div class="right-image">
@@ -109,7 +111,6 @@ if(strlen($postId) > 0) {
 			<h2 style="<?php echo $color;?>"><?php the_title(); ?></h2>
 			<div style="<?php echo $color;?>" class="post-content"><?php the_content();?></div>
 			<div class="share-content">
-				<a class="share" href="#fb"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="32px"/></a>
 				<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="32px"/></a>
 				<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/h-icon-42x32.png" height="32px"/></a>
 			</div>
@@ -123,24 +124,31 @@ if(strlen($postId) > 0) {
 // end view post
 }
 
-$perPage = 16;
+if(strlen($social_update) > 0) {
+  $perPage = 15;
+} else {
+  $perPage = 16;  
+}
+
 $catName = "art_culture,food_travel,science_tech,health_sports";
 //case 1: for home
 if ($isSlider == true) {
 	//$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' ); rand
-  $strQuery = array( 'posts_per_page' => $perPage, 'offset' => $offset, 'category_name' => $catName, 'orderby' => 'rand' );
+  $strQuery = array( 'posts_per_page' => $perPage, 'category_name' => $catName, 'orderby' => 'rand' );
 }
+
+$perPage = 16;  
 // case 2: for category
 if (strlen($cat) > 0) {
   $catName = $cat;
-	$strQuery = array( 'posts_per_page' => $perPage, 'offset' => $offset, 'category_name' => $catName, 'orderby' => 'rand' );
+	$strQuery = array( 'posts_per_page' => $perPage, 'category_name' => $catName, 'orderby' => 'rand' );
 }
 
 // case 2: for post
 if (strlen($postId) > 0 && strlen($post_in_cat) > 0) {
   $perPage = 8;
   $catName = $post_in_cat;
-	$strQuery = array( 'posts_per_page' => $perPage, 'offset' => $offset, 'category_name' => $catName, 'orderby' => 'rand' );
+	$strQuery = array( 'posts_per_page' => $perPage, 'category_name' => $catName, 'orderby' => 'rand' );
 }
 
 
@@ -152,17 +160,29 @@ if (strlen($cat) > 0) {
   echo '<div class="cat-name alignleft"><i class="icon-cate icon-'.substr($cat, 0, strrpos($cat, '_', 0)).'"></i>'.$category->cat_name .'</div>';
   $clazzNude = ' alignright';
 }
-echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.loadPost('.$perPage.', \''.$catName.'\');"></a>';
+
+//echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.loadPost('.$perPage.', \''.$catName.'\');"></a>';
+echo '<a class="icon-nudege'.$clazzNude .' opacity" href="javascript:Load.nextPage();"></a>';
 echo '</div>';
 
 echo '<div class="container">';
 $nextPost = '';
 $the_query = new WP_Query( $strQuery );
+$size = $the_query->found_posts;
+$index=0;
+if($size > 15) {
+  $index = rand(0, 15);
+} else {
+  $index = rand(0, $size);
+}
+
 	// The Loop
 	if ( $the_query->have_posts() ) {
+
 		// have post
 		echo '<ul class="posts-container clearfix">';
 		$hasNext = 1;
+    $i = 0;
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 			$the_ID = get_the_ID();
@@ -226,6 +246,15 @@ $pIconOpen='icon-open';
 			</div>
 		</li>
 <?php
+   // social_update
+    if(strlen($social_update) > 0 && $i === $index) {
+      echo "<li class=\"post-item social_update clearfix\" data-index=\"". $i ."\" id=\"social_update\">";
+      echo "<div class=\"social_update_text\">". $social_update ."</div>";
+      echo "</li>";
+    }
+    $i = $i + 1;
+
+
 		}
 		echo '</ul>';
 	} else {
@@ -237,5 +266,4 @@ $pIconOpen='icon-open';
 echo '</div>';
 echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
 ?>
-
 <?php new_footer(); ?>

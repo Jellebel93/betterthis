@@ -34,34 +34,31 @@
             })
         });
     }
-
-    Load.nextPage = function (index) {
-        var host = window.location.href;
-        var rootPath = window.rootPath + '/blog';
-        var newPath = '';
-        if (host.indexOf('?') > 0) {
-            var param = host.substring(host.indexOf('?') + 1);
-            if (param.indexOf('&') > 0) {
-                var params = param.split('&');
-                newPath = rootPath + '/?'
-                for (var i = 0; i < params.length; ++i) {
-                    if (params[i].indexOf('pageid') < 0) {
-                        newPath += '&' + params[i];
-                    }
-                }
-                newPath += '&pageid=' + (index + 1);
-            } else if (param.indexOf('pageid') < 0) {
-                newPath = rootPath + '/?' + param + '&pageid=' + (index + 1);
-            } else {
-                newPath = rootPath + '/?pageid=' + (index + 1);
-            }
-        } else {
-            newPath = rootPath + '/?pageid=' + (index + 1);
-        }
-      window.location.href = newPath;
+    
+    
+    Load.onload = function() {
+      //for tags a
+      var as = $('a');console.log(as.length);
+      as.each(function(index) {
+          var a = $(this);
+          if(a.find('i').length === 1 || a.find('img').length === 1) {
+            a.addClass('opacity');
+          }
+        
+      });
+      
+		
     }
-    
-    
+
+    Load.nextPage = function () {
+      var host = window.location.href;
+      if(window.location.reload) {
+        window.location.reload();
+      } else {
+        window.location.href = host;
+      }
+    }
+
     Load.loadPost = function(perPage, cateName) {
       var url_ = window.rootPath + '/posts-blog/';
       url_ += '?size=' + perPage + '&cats=' + encodeURIComponent(cateName);
@@ -79,6 +76,13 @@
         }
       });
     }
+    
+    // load
+    $(document).ready(function() {
+      Load.onload();      
+    });
+
+    // resize
     window.Resize.push(Load.pdTop);
 
     $(window).on('resize', function () {

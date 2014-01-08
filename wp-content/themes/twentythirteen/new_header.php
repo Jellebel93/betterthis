@@ -52,10 +52,85 @@
 		.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}
 	</style>
 
-	
 	<script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/simple-js.js"></script>
+  
+  
+  <script type="text/javascript" src="http://3.s3.envato.com/files/66280320/utils/jquery.easing.1.3.min.js"></script>
+  <script type="text/javascript" src="http://3.s3.envato.com/files/66280320/utils/jquery.jAccordion.min.js"></script>
+  <link rel='stylesheet' id='jAccordion-style-css'  href='<?php echo get_template_directory_uri(); ?>/css/jAccordion/default.css' type='text/css' media='all' />
+  
+  <script type="text/javascript">
+	jQuery(document).ready(function( $ ) {
+		$('.accordion').jAccordion({
+      vertical: false,
+			activeSlideSize : 563,
+			sticky : true,
+			autoplay : true,
+			autoplayInterval : 5000,
+			arrowKeysNav : true,
+			transitionSpeed : 1500,
+			nextBtn : $('.nextBtn'),
+			prevBtn : $('.prevBtn'),
+			onReady : function() {
+				$('.preloader', this.$accordion).remove();	//Comment this line to see the preloader if testing locally.
+				$('.jAccordion-slideWrapper', this.$accordion).append('<div class="timer"></div>');	//Include timer inside every slide
+				$('.prevBtn', this.$accordion).animate({left : 0}, 500);
+				$('.nextBtn', this.$accordion).animate({right : 0}, 500);
+			},
+			onSlideStartClosing: function(e) {
+        console.log('onSlideStartClosing ' + (new Date().getTime()));
+				$('.timer', e.$slide).stop(true).fadeTo(200, 0);	//Fade out timer of closing slide
+			},
+			onSlideOpened: function(e) {
+        console.log('onSlideOpened ' + e.$slide.attr('id'));
+        
+        var current_ = e.$slide;
+        
+        var id_ = current_.attr('id').replace('select', '');
+        var datas = current_.find('.data-info:first');        
+        var color = datas.data('color');
+        var backg = datas.data('backg');
+        var excerpt = datas.text();
+        var title = current_.find('.data-title:first').text();
+        //
+        var detail = $('#left-detail-post');
+        //
+        detail.attr('style', backg);
+        detail.find('.item-title:first').text(title).css('color', color);
+        detail.find('.item-excerpt:first').text(excerpt).css('color', color);
+        var a = detail.find('a:first');
+        a.attr('href', a.data('href') + id_);
+        
+				$('.timer', e.$slide).css({width : 0, 'opacity' : 0.5}).stop(true);		//Set timer to starting state
+				/* If option 'pauseOnHover' is enabled and cursor is not over accordion start timer of active slide
+			 	 * or option 'pauseOnHover' is disabled.
+				 * Note: Value 5000 has to be same as value of option 'autoplayInterval' which is set a few lines above.
+				 */
+         
+				if (!this.isPaused()) {
+					$('.timer', e.$slide).animate({width : '100%'}, 5000, 'linear');
+				}
+			},
+			onPause : function() {
+				$('.timer', this.getActiveSlide()).stop(true);	//Pause animation of timer
+			},
+			onResume : function(e) {
+				/* Resume animation of timer.
+				 * Note: It's necessary to resume the animation only if no slide is animated, imagine this situation:
+				 * User moves his cursor over non-open slide - cursor is over accordion so autoplay pauses and then user
+				 * moves his cursor off accordion before the opening slide is fully open so autoplay starts and event onResume
+				 * is triggered and animation of timer starts, which is too early because opening slide is not fully open.
+				 */
+				if (!this.isAnimated()) {
+					$('.timer', this.getActiveSlide()).stop(true).animate({'width' : '100%'}, e.remainingTime, 'linear');
+				}
+			}
+		});
+	});
+</script>
+  
 
 <script type="text/javascript">
 

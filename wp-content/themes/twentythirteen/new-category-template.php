@@ -45,43 +45,65 @@ $social_update = "";
 if ($isSlider == true) {
   $social_update = yarq_get();
   
-	echo '<div class="post-slider-container" id="BlogSlider">';
+	echo '<div class="post-slider-container">';
 
 	// query post for slider
-	$strQuery = array( 'posts_per_page' => 10, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' );
+	$strQuery = array( 'posts_per_page' => 10, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'rand' );
 	$the_query = new WP_Query( $strQuery );
 	// The Loop
 	if ( $the_query->have_posts() ) {
 		// have post
-		echo '<ul class="slider-content slider clearfix" id="post-slider-content">';
-		$isFirst = true;
+		//echo '<ul class="slider-content slider clearfix" id="post-slider-content">';
+    
+?>
+
+
+    <div class="slider-content" style="height: 362px;">
+      <div class="left-detail-post" id="left-detail-post">
+        <h2 class="item-title"></h2>
+        <div class="item-excerpt the_excerpt"></div>
+        <div class="left-row while-left-row"><a class="opacity" data-href="<?php echo site_url(); ?>/blog/?post=" href="#"></a></div>
+      </div>
+      <div class="accordion right-image" tabindex="-1" style="">
+        <div class="jAccordion-slidesWrapper" style="display: block;">
+          <div class="prevBtn" style="left: 0px;"></div>
+          <div class="nextBtn" style="right: 0px;"></div>
+    
+<?php    
+		$isFirst = true;$active="";
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 // slider builder
-	$the_ID = get_the_ID();
-	$cate = get_the_category( $the_ID ); 
-	$slug_ = $cate[0]->slug;
-	$background = $backgrounds[$slug_];
-	$color = 'color: #'.$colors[$slug_].';';
+      $the_ID = get_the_ID();
+      $cate = get_the_category( $the_ID ); 
+      $slug_ = $cate[0]->slug;
+      $background = $backgrounds[$slug_];
+      $color = '#'.$colors[$slug_].';';
 
-	$attachment_size = apply_filters( 'twentythirteen_attachment_size', array( 604, 270 ) );
-	$full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), $attachment_size); 
-	
+      $attachment_size = apply_filters( 'twentythirteen_attachment_size', array( 604, 270 ) );
+      $full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), $attachment_size); 
+      if($isFirst === true)  {$active = " active_slide"; $isFirst = false;}
+      else {$active = "";}
 ?>
-		<li class="page-slider item-slider <?php if($isFirst === true) { echo 'item-active '; $isFirst=false;} ?>clearfix" id="select<?php echo $the_ID; ?>">
-			<div class="left-detail-post" style="<?php echo $background; ?>">
-				<h2 style="<?php echo $color; ?>"><?php the_title(); ?></h2>
-				<div style="<?php echo $color; ?>" class="the_excerpt"><?php the_excerpt(); ?></div>
-				<div class="left-row while-left-row"><a class="opacity" href="<?php echo site_url(); ?>/blog/?post=<?php echo $the_ID; ?>"></a></div>
-			</div>
-
-			<div class="right-image">
-				<img src="<?php echo $full_img[0] ?>" height="327px" width="732px"/>
-			</div>		
-		</li>
+            
+          <div class="jAccordion-slide<?php echo $active; ?>" style="position: absolute;" id="select<?php echo $the_ID; ?>">
+            <div class="jAccordion-slideWrapper" style="position: relative; filter: inherit; ">
+              <img src="<?php echo $full_img[0] ?>" class="jAccordion-img" height="350px">
+            </div>
+            <div style="display:none" class="data-info" 
+                 data-color="<?php echo $color; ?>" 
+                 data-backg="<?php echo $background; ?>" 
+                 ><?php the_excerpt(); ?></div>
+            <div class="data-title"><?php the_title(); ?></div>
+          </div>
+    
 <?php 			
 		}
-		echo '</ul>';
+?>    
+        </div>
+      </div>
+    </div>
+<?php    
 	} else {
 		// no posts found
 	}

@@ -29,6 +29,13 @@ if(isset($_REQUEST['post'])) {
 	}
 }
 
+$order="rand";
+if(isset($_REQUEST['getglued'])) {
+  $getglued = $_REQUEST['getglued'];
+  if($getglued === 'true') {
+    $order = 'date';
+  }
+}
 
 if(isset($_REQUEST['pageid'])) {
 	$pageId = $_REQUEST['pageid'];
@@ -48,7 +55,7 @@ if ($isSlider == true) {
 	echo '<div class="post-slider-container">';
 
 	// query post for slider
-	$strQuery = array( 'posts_per_page' => 10, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'rand' );
+	$strQuery = array( 'posts_per_page' => 7, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => $order );
 	$the_query = new WP_Query( $strQuery );
 	// The Loop
 	if ( $the_query->have_posts() ) {
@@ -66,8 +73,8 @@ if ($isSlider == true) {
       </div>
       <div class="accordion right-image" tabindex="-1" style="">
         <div class="jAccordion-slidesWrapper" style="display: block;">
-          <div class="prevBtn" style="left: 0px;"></div>
-          <div class="nextBtn" style="right: 0px;"></div>
+          <div class="prevBtn hidden" style="left: 0px;"></div>
+          <div class="nextBtn hidden" style="right: 0px;"></div>
     
 <?php    
 		$isFirst = true;$active="";
@@ -90,11 +97,11 @@ if ($isSlider == true) {
             <div class="jAccordion-slideWrapper" style="position: relative; filter: inherit; ">
               <img src="<?php echo $full_img[0] ?>" class="jAccordion-img" height="350px">
             </div>
-            <div style="display:none" class="data-info" 
+            <div class="data-info hidden" 
                  data-color="<?php echo $color; ?>" 
                  data-backg="<?php echo $background; ?>" 
                  ><?php the_excerpt(); ?></div>
-            <div class="data-title"><?php the_title(); ?></div>
+            <div class="data-title hidden"><?php the_title(); ?></div>
           </div>
     
 <?php 			
@@ -155,8 +162,9 @@ if(strlen($social_update) > 0) {
 $catName = "art_culture,food_travel,science_tech,health_sports";
 //case 1: for home
 if ($isSlider == true) {
+  
 	//$strQuery = array( 'posts_per_page' => 16, 'offset' => $offset, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => 'date', 'order' => 'ASC' ); rand
-  $strQuery = array( 'posts_per_page' => $perPage, 'category_name' => $catName, 'orderby' => 'rand' );
+  $strQuery = array( 'posts_per_page' => $perPage, 'category_name' => $catName, 'orderby' => $order );
 }
 
 $perPage = 16;  

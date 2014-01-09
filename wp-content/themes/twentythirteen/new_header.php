@@ -65,7 +65,7 @@
 	jQuery(document).ready(function( $ ) {
 		$('.accordion').jAccordion({
       vertical: false,
-			activeSlideSize : 563,
+			activeSlideSize : 663,
 			sticky : true,
 			autoplay : true,
 			autoplayInterval : 5000,
@@ -180,11 +180,11 @@ jQuery(document).ready(function($){
 			<div class="top-header">
 				<div class="header-link">
 					<ul class="h-menu">
-						<li class="h-item"><a href="#what">WHAT?</a></li>
-						<li class="h-item"><a href="#betterthis">BETTER THIS</a></li>
-						<li class="h-item"><a href="#pluse">PULSE</a></li>
-						<li class="h-item"><a href="#sayithere">SAY IT HERE</a></li>
-						<li class="h-item"><a href="#getglued">GET GLUED!</a></li>
+						<li class="h-item"><a href="<?php echo site_url(); ?>/about">WHAT?</a></li>
+						<li class="h-item"><a href="<?php echo site_url(); ?>">BETTER THIS</a></li>
+						<li class="h-item"><a href="<?php echo site_url(); ?>/blog">PULSE</a></li>
+						<li class="h-item"><a href="<?php echo site_url(); ?>/contact">SAY IT HERE</a></li>
+						<li class="h-item"><a href="<?php echo site_url(); ?>/blog?getglued=true">GET GLUED!</a></li>
 					</ul>
 				</div>
 			</div>

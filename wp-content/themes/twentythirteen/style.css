@@ -4183,6 +4183,9 @@ color:#bbbdbf;
 	width: 1024px;
 	margin: auto;
 	background-color: #fff;
+  background-color: #FFFFFF;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 0 5px #000000;
 }
 
 .blog-page .site-header {
@@ -4369,12 +4372,20 @@ i.icon-health {
   background:#CFCFCF
 }
 
+.data-content .accordion {
+  width: 829px !important;
+  height: 270px !important;
+  background:#CFCFCF
+}
+.data-content .accordion .jAccordion-slideWrapper {
+  height: 270px !important;
+}
 .slider-content .right-image .jAccordion-slideWrapper {
   height: 353px !important;
 }
 
-.slider-content .right-image img.jAccordion-img {
-
+.accordion .hidden {
+  display: none;
 }
 
 .blog-page .the_excerpt {

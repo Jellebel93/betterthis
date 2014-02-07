@@ -149,7 +149,11 @@ if(strlen($postId) > 0) {
 			</div>
 		</div>
 		<div class="right-image">
-			<img src="<?php echo $full_img[0] ?>"/>
+      <div class="container">
+        <a href="<?php echo $full_img[0] ?>" class="fancybox-blog">
+          <img src="<?php echo $full_img[0] ?>"/>
+        </a>
+      </div>
 		</div>
 		<script type="text/javascript">Load.postLoad();</script>
 	</div>

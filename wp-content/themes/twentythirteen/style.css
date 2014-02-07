@@ -3271,7 +3271,8 @@ float: left;
 margin: -15px 15px 0 0; max-width: auto!important;
 }
  
- .container {width: 1080px;margin: 0 auto;}
+.home-page .container {width: 1080px;margin: 0 auto;}
+
 #section4 .data-content ul li.active {
 	width: 676px;
 }
@@ -4329,13 +4330,13 @@ i.icon-health {
 }
 
 
-.slider-content .left-detail-post h2{
+.left-detail-post h2{
 	margin: 23px 0px 17px 0px;
   text-transform: uppercase;
   font-family: JerseyM54,Bitter, Georgia, serif;
 }
 
-.slider-content .left-detail-post .the_excerpt {
+.left-detail-post .the_excerpt {
 	margin: 23px 0px 17px 0px;
   text-transform: uppercase;
   font-family: 'Futura-Book',Bitter, Georgia, serif;
@@ -4426,6 +4427,13 @@ i.icon-health {
 .post-container .right-image {
 	margin-left:373px;
 	width: 651px;
+  overflow: hidden;
+  position: relative;
+}
+
+.post-container .right-image .container{
+	top: 0px; left:0px;
+  position: absolute;
 }
 
 .blog-page .nodege-container {

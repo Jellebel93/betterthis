@@ -356,6 +356,8 @@
       g.eq(0).css('height', '38px');
       g.eq(1).css('height', '35px');
     }
+    
+    $('.fancybox-blog').fancybox();
   }
   
   if($.fn.nextOrFirst === undefined) {

@@ -26,13 +26,25 @@
 
     Load.postLoad = function () {
         var parent = $('.post-container');
+        var detail = parent.find('.left-detail-post:first');
+        var h = detail.outerHeight();
         var leftImg = parent.find('.right-image:first');
+        var w = leftImg.width();
         leftImg.find('img').load(function () {
             $(this).css({
-                height: parent.find('.left-detail-post').outerHeight() + 'px',
-                width: leftImg.width() + 'px'
-            })
+               width: w + 'px'
+                //height: h + 'px'
+            });
+            
+            if($(this).height() < h) {
+              $(this).css({
+                width: 'auto',
+                height: h + 'px'
+              });
+            }
         });
+        leftImg.css('height', h + 'px');
+        detail.css('height', h + 'px');
     }
     
     
@@ -41,13 +53,10 @@
       var as = $('a');
       as.each(function(index) {
           var a = $(this);
-          if(a.find('i').length === 1 || a.find('img').length === 1) {
+          if(a.find('i').length === 1 || a.find('img').length === 1 && a.hasClass('fancybox-blog') === false) {
             a.addClass('opacity');
           }
-        
       });
-      
-		
     }
 
     Load.nextPage = function () {

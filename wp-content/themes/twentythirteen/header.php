@@ -46,8 +46,8 @@
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 
 
-  <script type="text/javascript" src="http://3.s3.envato.com/files/66280320/utils/jquery.easing.1.3.min.js"></script>
-  <script type="text/javascript" src="http://3.s3.envato.com/files/66280320/utils/jquery.jAccordion.min.js"></script>
+  <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.easing.1.3.min.js"></script>
+  <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.jAccordion.min.js"></script>
   <link rel='stylesheet' id='jAccordion-style-css'  href='<?php echo get_template_directory_uri(); ?>/css/jAccordion/default.css' type='text/css' media='all' />
   
     <script type="text/javascript">
@@ -165,7 +165,7 @@ jQuery(document).ready(function($){
 </head>
 
 <body <?php body_class(); ?>>
-	<div id="page" class="hfeed site">
+	<div id="page" class="hfeed site home-page">
 		<header id="masthead" class="site-header" role="banner">
 			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>

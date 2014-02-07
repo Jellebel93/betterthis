@@ -55,7 +55,7 @@ if ($isSlider == true) {
 	echo '<div class="post-slider-container">';
 
 	// query post for slider
-	$strQuery = array( 'posts_per_page' => 7, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => $order );
+	$strQuery = array( 'posts_per_page' => 8, 'category_name' => 'art_culture,food_travel,science_tech,health_sports', 'orderby' => $order );
 	$the_query = new WP_Query( $strQuery );
 	// The Loop
 	if ( $the_query->have_posts() ) {
@@ -77,7 +77,7 @@ if ($isSlider == true) {
           <div class="nextBtn hidden" style="right: 0px;"></div>
     
 <?php    
-		$isFirst = true;$active="";
+		$isFirst = true;$active=""; $t = 0;
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 // slider builder
@@ -89,6 +89,10 @@ if ($isSlider == true) {
 
       $attachment_size = apply_filters( 'twentythirteen_attachment_size', array( 604, 270 ) );
       $full_img = wp_get_attachment_image_src(get_post_thumbnail_id(), $attachment_size); 
+      if(strlen($full_img[0]) === 0 || $t === 5) {
+        continue;
+      }
+      $t = $t + 1;
       if($isFirst === true)  {$active = " active_slide"; $isFirst = false;}
       else {$active = "";}
 ?>

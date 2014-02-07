@@ -57,8 +57,8 @@
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/simple-js.js"></script>
   
   
-  <script type="text/javascript" src="http://3.s3.envato.com/files/66280320/utils/jquery.easing.1.3.min.js"></script>
-  <script type="text/javascript" src="http://3.s3.envato.com/files/66280320/utils/jquery.jAccordion.min.js"></script>
+  <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.easing.1.3.min.js"></script>
+  <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.jAccordion.min.js"></script>
   <link rel='stylesheet' id='jAccordion-style-css'  href='<?php echo get_template_directory_uri(); ?>/css/jAccordion/default.css' type='text/css' media='all' />
   
   <script type="text/javascript">
@@ -68,24 +68,22 @@
 			activeSlideSize : 663,
 			sticky : true,
 			autoplay : true,
+      scaleImgs: 'fitHeight',
 			autoplayInterval : 5000,
 			arrowKeysNav : true,
-			transitionSpeed : 1500,
+			transitionSpeed : 1000,
 			nextBtn : $('.nextBtn'),
 			prevBtn : $('.prevBtn'),
 			onReady : function() {
 				$('.preloader', this.$accordion).remove();	//Comment this line to see the preloader if testing locally.
-				$('.jAccordion-slideWrapper', this.$accordion).append('<div class="timer"></div>');	//Include timer inside every slide
+				$('.jAccordion-slideWrapper', this.$accordion);//.append('<div class="timer"></div>');	//Include timer inside every slide
 				$('.prevBtn', this.$accordion).animate({left : 0}, 500);
 				$('.nextBtn', this.$accordion).animate({right : 0}, 500);
 			},
 			onSlideStartClosing: function(e) {
-        console.log('onSlideStartClosing ' + (new Date().getTime()));
 				$('.timer', e.$slide).stop(true).fadeTo(200, 0);	//Fade out timer of closing slide
 			},
 			onSlideOpened: function(e) {
-        console.log('onSlideOpened ' + e.$slide.attr('id'));
-        
         var current_ = e.$slide;
         
         var id_ = current_.attr('id').replace('select', '');

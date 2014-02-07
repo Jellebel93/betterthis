@@ -38,7 +38,7 @@
     
     Load.onload = function() {
       //for tags a
-      var as = $('a');console.log(as.length);
+      var as = $('a');
       as.each(function(index) {
           var a = $(this);
           if(a.find('i').length === 1 || a.find('img').length === 1) {
@@ -71,7 +71,7 @@
           var data = (jqXHR.responseText);
           if (data) {
             window.data= data;
-            console.log(data);
+            //console.log(data);
           }
         }
       });

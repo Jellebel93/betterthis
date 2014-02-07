@@ -57,6 +57,16 @@
             a.addClass('opacity');
           }
       });
+      
+      var posts = $('.post-info');
+      posts.each(function(index) {
+          var p = $(this);
+          p.on('mouseover', function() { p.addClass('opacity-hover').removeClass('opacity-out'); })
+           .on('mouseout', function() { p.addClass('opacity-out').removeClass('opacity-hover'); })
+           .on('click', function() {window.location.href = $(this).attr('data-link');})
+      });
+      
+      $('#open-what').on('click', Load.displayWhat);
     }
 
     Load.nextPage = function () {
@@ -86,9 +96,32 @@
       });
     }
     
+    Load.getLayer = function() {
+      var layer = $('#layer-info');
+      layer.html('<div class="bg-gray"></div>').show();
+      layer.find('.bg-gray:first').on('click', Load.closeLayer).css({'width': $('html').width(), 'height' : $('html').height(), 'display' : 'block'});
+      $('html').css('overflow', 'hidden');
+      return layer;
+    }
+    
+    Load.displayWhat = function() {
+      var what = $('#what-info').clone();
+      what.css('left', ($('html').width() - 810)/2 + 'px');
+      var top = ($(window).height() - 420)/2
+      if(top < 100) top = 100;
+      what.css('top', top + 'px');
+      Load.getLayer().append(what.show());
+      what.find('.close-what').off('click').on('click', Load.closeLayer);
+    }
+    
+    Load.closeLayer = function() {
+      $('html').css('overflow', 'auto');
+      $('#layer-info').hide(300).html('');
+    }
+    
     // load
     $(document).ready(function() {
-      Load.onload();      
+      Load.onload(); 
     });
 
     // resize
@@ -99,4 +132,11 @@
             window.Resize[i]();
         }
     });
+    
+    
+    
+    
+    
+   // window.Load = Load;
+    
 })(jQuery);

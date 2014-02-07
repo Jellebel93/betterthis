@@ -16,7 +16,10 @@
 	</div><!-- #page -->
 
   <?php wp_footer(); ?>
-  
+
+<div class="layer-info" style="display:none" id="layer-info">
+</div>
+
   <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/betterthis-base.js"></script>
   </body>
 </html>

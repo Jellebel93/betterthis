@@ -249,33 +249,31 @@ if($size > 15) {
 	}
 ?>
 		<li class="post-item clearfix" id="post<?php echo $the_ID; ?>">
+      <div class="post-info" data-link="<?php echo site_url(); ?>/blog/?post=<?php echo get_the_ID(); ?>">
 <?php
 $sizeH = 'height:300px;';
 $ptop = 'margin-top:0px;';
 $pIconOpen='icon-open-d';
 if($hasThum === true) {
-$sizeH = 'height:64px;';
-$ptop = 'margin-top:6px;';
-$pIconOpen='icon-open';
+  $sizeH = 'height:64px;';
+  $ptop = 'margin-top:6px;';
+  $pIconOpen='icon-open';
 ?>	
-			<div class="post-image">
-				<a href="<?php echo site_url(); ?>/blog/?post=<?php echo get_the_ID(); ?>">
-					<img src="<?php echo $full_img[0] ?>" height="230px" width="230px"/>
-				</a>
-			</div>
+        <div class="post-image">
+          <img src="<?php echo $full_img[0] ?>" height="230px" width="230px"/>
+        </div>
 <?php
 }
 
 ?>
-			<div class="post-title <?php echo ($hasThum === true) ? 'thumbnail' : 'no-thumbnail'; ?>" style="<?php echo $sizeH .$ptop .$background;?>">
-				<div style="<?php echo $color; ?>" class="title"><?php the_title(); ?></div>
-				<div style="<?php echo $color; ?>" class="excerpt"><?php ($hasThum === true) ? the_excerpt_max_charlength(25) : the_excerpt(); ?></div>
-				<div class="<?php echo $pIconOpen; ?>">
-					<a href="<?php echo site_url(); ?>/blog/?post=<?php echo get_the_ID(); ?>">
-						<img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/mini-open-<?php echo $img_open;?>.png"/>
-					</a>
-				</div>
-			</div>
+        <div class="post-title <?php echo ($hasThum === true) ? 'thumbnail' : 'no-thumbnail'; ?>" style="<?php echo $sizeH .$ptop .$background;?>">
+          <div style="<?php echo $color; ?>" class="title"><?php the_title(); ?></div>
+          <div style="<?php echo $color; ?>" class="excerpt"><?php ($hasThum === true) ? the_excerpt_max_charlength(25) : the_excerpt(); ?></div>
+          <div class="<?php echo $pIconOpen; ?>">
+            <img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/mini-open-<?php echo $img_open;?>.png"/>
+          </div>
+        </div>
+      </div>
 			<div class="the-social clearfix">
 				<div style="float:right;padding: 2px 5px 0px 0px;">
 					<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="24px"/></a>
@@ -304,4 +302,35 @@ $pIconOpen='icon-open';
 echo '</div>';
 echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
 ?>
+
+<div class="info-content" id="what-info" style="display:none">
+  <div style="position: relative">
+    <div class="close-what"></div>
+    <div class="content-what">
+      <div class="what">WHAT</div>
+      <div class="content">Better This is what 4 guys wanted in their lives, but couldn't find on the supermarket shelves.
+       They were in search of a healthier lifestyle without the drama. And that's when it hit them. There must be more like them.
+       Good, honest, hardworking citizens of DreamVille who de served something better, since the best out there just wasn't cutting it.
+       And thats when they decided to create a drink loaded with functional benefits from natural ingredients minus the extra sugar and preservatives.<br/>
+       Look, we're not promising you the world in a bottle but we will say this: Better This is the single most awesome combination of the healthiest fruits with a purpose to give you a better lifestyle choice.<br/>
+       - See more at: <a href="http://better-this.com">BETTER-THIS.COM</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="say-here" id="say-here" style="display:none">
+  <div style="position: relative">
+    <div class="close-say"></div>
+    <div class="content-say">
+      <div class="say">WHAT</div>
+      <div class="content">
+        <div></div>
+        <div></div>
+        <form action="">
+        
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <?php new_footer(); ?>

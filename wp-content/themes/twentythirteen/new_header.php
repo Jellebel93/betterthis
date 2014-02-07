@@ -192,7 +192,7 @@ jQuery(document).ready(function($){
 			<div class="top-header">
 				<div class="header-link">
 					<ul class="h-menu">
-						<li class="h-item"><a href="<?php echo site_url(); ?>/about">WHAT?</a></li>
+						<li class="h-item"><a href="javascript:void(0);" id="open-what">WHAT?</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>">BETTER THIS</a></li>
 						<li class="h-item" style="display:none"><a href="<?php echo site_url(); ?>/blog">PULSE</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>/contact">SAY IT HERE</a></li>
@@ -201,7 +201,7 @@ jQuery(document).ready(function($){
 				</div>
 			</div>
 			<div class="main-header clearfix">
-				<div class="blog-logo"><a class="opacity" href="<?php echo site_url(); ?>/blog/"></a></div>
+				<div class="blog-logo"><a class="opacity" href="<?php echo site_url(); ?>"></a></div>
 				<div class="main-menu">
 					<ul class="m-menu">
 						<li class="m-item">

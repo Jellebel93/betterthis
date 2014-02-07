@@ -45,7 +45,7 @@ if(isset($_REQUEST['pageid'])) {
 }
 
 $backgrounds = array('art_culture'=>'background: #002AFF;', 'food_travel'=>'background: #FE38FF;', 'science_tech'=>'background: #1CF600;', 'health_sports'=>'background: #ff2500;');
-$colors = array('art_culture'=>'fff', 'food_travel'=>'000', 'science_tech'=>'000', 'health_sports'=>'fff');
+$colors = array('art_culture'=>'fff', 'food_travel'=>'fff', 'science_tech'=>'000', 'health_sports'=>'fff');
 
 /* show slider */
 $social_update = "";

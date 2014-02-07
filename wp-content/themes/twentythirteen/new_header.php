@@ -182,7 +182,7 @@ jQuery(document).ready(function($){
 					<ul class="h-menu">
 						<li class="h-item"><a href="<?php echo site_url(); ?>/about">WHAT?</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>">BETTER THIS</a></li>
-						<li class="h-item"><a href="<?php echo site_url(); ?>/blog">PULSE</a></li>
+						<li class="h-item" style="display:none"><a href="<?php echo site_url(); ?>/blog">PULSE</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>/contact">SAY IT HERE</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>/blog?getglued=true">GET GLUED!</a></li>
 					</ul>

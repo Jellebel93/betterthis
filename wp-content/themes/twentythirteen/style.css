@@ -4176,7 +4176,7 @@ color:#bbbdbf;
 /* BLOG */
 
 .blog-body {
-	background-color: #cfcfcf;
+	background-color: #5e5e5e;
 }
 
 .blog-page {
@@ -4292,18 +4292,30 @@ color:#bbbdbf;
 	width: 85px;
 }
 
-i.icon-art {
+.out i.icon-art {
 	background: url('images/art-icon.png') no-repeat center;
 }
-
-i.icon-food {
+.out i.icon-food {
 	background: url('images/food-icon.png') no-repeat center;
 }
-i.icon-science {
+.out i.icon-science {
 	background: url('images/science-icon.png') no-repeat center;
 }
-i.icon-health {
+.out i.icon-health {
 	background: url('images/health-icon.png') no-repeat center;
+}
+
+.over i.icon-art {
+	background: url('images/art-icon-over.png') no-repeat center;
+}
+.over i.icon-food {
+	background: url('images/food-icon-over.png') no-repeat center;
+}
+.over i.icon-science {
+	background: url('images/science-icon-over.png') no-repeat center;
+}
+.over i.icon-health {
+	background: url('images/health-icon-over.png') no-repeat center;
 }
 
 .main-menu ul.m-menu li.m-item a.a-text {
@@ -4312,6 +4324,20 @@ i.icon-health {
 	right: 22px;
 	text-align: right;
 }
+
+.main-menu ul.m-menu li.over a.art {
+	color: #00f600;
+}
+.main-menu ul.m-menu li.over a.food {
+	color: #ff1b00;
+}
+.main-menu ul.m-menu li.over a.science {
+	color: #fc00ff;
+}
+.main-menu ul.m-menu li.over a.health {
+	color: #0043fe;
+}
+
 
 .slider-content {
 	height: 335px;

@@ -84,8 +84,8 @@
 			autoplay : true,
       scaleImgs: 'fitHeight',
 			autoplayInterval : 5000,
-			arrowKeysNav : true,
-			transitionSpeed : 1000,
+			arrowKeysNav : false,
+			transitionSpeed : 500,
 			nextBtn : $('.nextBtn'),
 			prevBtn : $('.prevBtn'),
 			onReady : function() {
@@ -204,21 +204,21 @@ jQuery(document).ready(function($){
 				<div class="blog-logo"><a class="opacity" href="<?php echo site_url(); ?>"></a></div>
 				<div class="main-menu">
 					<ul class="m-menu">
-						<li class="m-item">
-							<a href="?cat=art_culture" class="a-icon"><i class="icon icon-art"></i></a>
-							<a href="?cat=art_culture" class="a-text">ART & CULTURE</a>
+						<li class="m-item out">
+							<a href="?cate=art_culture" class="a-icon"><i class="icon icon-art"></i></a>
+							<a href="?cate=art_culture" class="a-text art">ART & CULTURE</a>
 						</li>
-						<li class="m-item">
-							<a href="?cat=food_travel" class="a-icon"><i class="icon icon-food"></i></a>
-							<a href="?cat=food_travel" class="a-text">FOOD & TRAVEL</a>
+						<li class="m-item out">
+							<a href="?cate=food_travel" class="a-icon"><i class="icon icon-food"></i></a>
+							<a href="?cate=food_travel" class="a-text food">FOOD & TRAVEL</a>
 						</li>
-						<li class="m-item">
-							<a href="?cat=science_tech" class="a-icon"><i class="icon icon-science"></i></a>
-							<a href="?cat=science_tech" class="a-text">SCIENCE & TECH</a>
+						<li class="m-item out">
+							<a href="?cate=science_tech" class="a-icon"><i class="icon icon-science"></i></a>
+							<a href="?cate=science_tech" class="a-text science">SCIENCE & TECH</a>
 						</li>
-						<li class="m-item">
-							<a href="?cat=health_sports" class="a-icon"><i class="icon icon-health"></i></a>
-							<a href="?cat=health_sports" class="a-text">HEALTH & SPORTS</a>
+						<li class="m-item out">
+							<a href="?cate=health_sports" class="a-icon"><i class="icon icon-health"></i></a>
+							<a href="?cate=health_sports" class="a-text health">HEALTH & SPORTS</a>
 						</li>
 					</ul>
 				</div>

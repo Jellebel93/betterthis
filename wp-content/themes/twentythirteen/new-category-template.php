@@ -11,8 +11,8 @@ $cat = "";
 $postId = "";
 $pageId = 1;
 $offset = 0;
-if(isset($_REQUEST['cat'])) {
-	$cat = $_REQUEST['cat'];
+if(isset($_REQUEST['cate'])) {
+	$cat = $_REQUEST['cate'];
 	if(strlen($cat) == 0) {
 		$cat = "";
 	} else {
@@ -144,8 +144,8 @@ if(strlen($postId) > 0) {
 			<h2 style="<?php echo $color;?>"><?php the_title(); ?></h2>
 			<div style="<?php echo $color;?>" class="post-content"><?php the_content();?></div>
 			<div class="share-content">
-				<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="32px"/></a>
-				<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/h-icon-42x32.png" height="32px"/></a>
+				<a class="share" href="#f"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="32px"/></a>
+				<a class="share" href="#wr" style="margin-left:-5px"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="32px"/></a>
 			</div>
 		</div>
 		<div class="right-image">
@@ -207,12 +207,14 @@ echo '<div class="container">';
 $nextPost = '';
 $the_query = new WP_Query( $strQuery );
 $size = $the_query->found_posts;
-$index=0;
-if($size > 15) {
-  $index = rand(0, 15);
+$index=11;
+/*
+if($size > 12) {
+  $index = rand(0, 12);
 } else {
   $index = rand(0, $size);
 }
+*/
 
 	// The Loop
 	if ( $the_query->have_posts() ) {
@@ -249,7 +251,7 @@ if($size > 15) {
 	}
 ?>
 		<li class="post-item clearfix" id="post<?php echo $the_ID; ?>">
-      <div class="post-info" data-link="<?php echo site_url(); ?>/blog/?post=<?php echo get_the_ID(); ?>">
+      <div class="post-info" data-link="<?php echo site_url(); ?>/?post=<?php echo get_the_ID(); ?>">
 <?php
 $sizeH = 'height:300px;';
 $ptop = 'margin-top:0px;';
@@ -275,9 +277,9 @@ if($hasThum === true) {
         </div>
       </div>
 			<div class="the-social clearfix">
-				<div style="float:right;padding: 2px 5px 0px 0px;">
-					<a class="share" href="#wr"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="24px"/></a>
-					<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/h-icon-42x32.png" height="24px"/></a>
+				<div style="padding: 2px 5px 0px 5px;">
+					<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-24x24.png" height="24px"/></a>
+					<a class="share" href="#wr" style="margin-left:-3px;"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-24x24.png" height="24px"/></a>
 				</div>
 			</div>
 		</li>

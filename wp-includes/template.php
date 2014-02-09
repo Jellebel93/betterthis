@@ -40,6 +40,10 @@ function get_index_template() {
 	return get_query_template('index');
 }
 
+function get_blog_template() {
+	return get_query_template('new-category-template');
+}
+
 /**
  * Retrieve path of 404 template in current or parent template.
  *

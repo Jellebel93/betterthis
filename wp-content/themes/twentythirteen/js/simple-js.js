@@ -53,7 +53,7 @@
       var as = $('a');
       as.each(function(index) {
           var a = $(this);
-          if(a.find('i').length === 1 || a.find('img').length === 1 && a.hasClass('fancybox-blog') === false) {
+          if(a.find('img').length === 1 && a.hasClass('fancybox-blog') === false) {
             a.addClass('opacity');
           }
       });
@@ -65,6 +65,14 @@
            .on('mouseout', function() { p.addClass('opacity-out').removeClass('opacity-hover'); })
            .on('click', function() {window.location.href = $(this).attr('data-link');})
       });
+      
+      var items = $('li.m-item');
+      items.each(function(index) {
+          var li = $(this);
+          li.on('mouseover', function() {li.removeClass('out').addClass('over');})
+            .on('mouseout', function() {li.removeClass('over').addClass('out');})
+      });
+      
       
       $('#open-what').on('click', Load.displayWhat);
     }

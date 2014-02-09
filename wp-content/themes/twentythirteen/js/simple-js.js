@@ -73,6 +73,7 @@
       
       
       $('#open-what').on('click', Load.displayWhat);
+      $('#open-contact').on('click', Load.displaySay);
     }
 
     Load.nextPage = function () {
@@ -120,6 +121,37 @@
       what.find('.close-what').off('click').on('click', Load.closeLayer);
     }
     
+    // Attach a submit handler to the form
+function loadSubmit() {
+  $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
+   
+    // Stop form from submitting normally
+    event.preventDefault();
+    var $form = jQuery( this );
+    var info = $form.serialize();
+    
+    $.post( window.rootPath + "/contact/?" + info, function( data ) {
+      console.log(data);
+      Load.closeLayer();
+    });
+    
+  });
+}
+
+    //say-here
+    Load.displaySay = function() {
+      var say = $('#say-here').clone().attr('id','say-here-open');
+      say.css('left', ($('html').width() - 810)/2 + 'px');
+      var top = ($(window).height() - 470)/2
+      if(top < 100) top = 100;
+      say.css('top', top + 'px');
+      Load.getLayer().append(say.show());
+      say.find('.close-say').off('click').on('click', Load.closeLayer);
+      
+      loadSubmit();
+      
+    }
+    
     Load.closeLayer = function() {
       $('html').css('overflow', 'auto');
       $('#layer-info').hide(300).html('');
@@ -143,6 +175,6 @@
     
     
     
-   // window.Load = Load;
+  window.closeLayer = Load.closeLayer;
     
 })(jQuery);

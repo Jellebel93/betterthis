@@ -4543,7 +4543,7 @@ color:#bbbdbf;
 	font-size: 8pt;
 	font-weight: normal;
 	margin-top:12px;
-  line-height: 10px;
+  line-height: 12px;
 }
 .blog-page .container li.social_update {
 	height:334px;
@@ -4663,3 +4663,52 @@ a.opacity:hover {
   font-family:"Futura-Medium",Bitter, Georgia, serif;
   font-size: 13pt;
 }
+
+.say-here {
+  background: #68ff00;
+  width: 810px; height: 470px;
+  position: fixed;
+  top: 250px;
+  z-index: 1000;
+}
+.say-here .close-say {
+  background: url('images/close-say.png') no-repeat center;
+  position: absolute;
+  top: 10px; right:10px;
+  width: 25px; height: 25px;
+  cursor: pointer;
+}
+.say-here .content-say {
+  padding: 44px;
+  padding-top: 0px;
+  color: #5b5b5b;
+}
+.say-here .say {
+  font-family: 'JerseyM54';
+  font-size: 60pt;
+}
+.say-here .content {
+  font-family:"JerseyM54",Bitter, Georgia, serif;
+  margin-top: -20px;
+  font-size: 13pt;
+  line-height: 20px;
+}
+.content-say .colgroup {
+  padding-top: 5px;
+}
+
+.content-say .wpcf7-textarea {
+  border: none;
+  width: 737px; height: 100px;
+}
+
+.content-say input.text {
+  border: none;
+  width: 310px; height: 50px;
+}
+
+.content-say input.submit {
+  border: none;
+  width: 100px; height: 50px;
+}
+

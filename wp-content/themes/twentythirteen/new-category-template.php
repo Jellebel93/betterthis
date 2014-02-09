@@ -69,7 +69,7 @@ if ($isSlider == true) {
       <div class="left-detail-post" id="left-detail-post">
         <h2 class="item-title"></h2>
         <div class="item-excerpt the_excerpt"></div>
-        <div class="left-row while-left-row"><a class="opacity" data-href="<?php echo site_url(); ?>/blog/?post=" href="#"></a></div>
+        <div class="left-row while-left-row"><a class="opacity" data-href="<?php echo site_url(); ?>/?post=" href="#"></a></div>
       </div>
       <div class="accordion right-image" tabindex="-1" style="">
         <div class="jAccordion-slidesWrapper" style="display: block;">
@@ -326,15 +326,35 @@ echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
   <div style="position: relative">
     <div class="close-say"></div>
     <div class="content-say">
-      <div class="say">WHAT</div>
+      <div class="say">SAY IT HERE</div>
       <div class="content">
-        <div></div>
-        <div></div>
-        <form action="">
-        
-        </form>
+        <div>TELL US A STORY</div>
+        <div>GIVE US A FEEDBACK</div>
+
+<form action="<?php echo site_url(); ?>/" method="post" class="wpcf7-form sayFrom" novalidate="novalidate">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="26"><br>
+<input type="hidden" name="_wpcf7_version" value="3.5.3"><br>
+<input type="hidden" name="_wpcf7_locale" value="en_US"><br>
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f26-p88-o1"><br>
+<input type="hidden" name="_wpcf7_is_ajax_call" value="1"><br>
+<input type="hidden" name="_wpnonce" value="5db32a1a0b">
+</div>
+<div class="colgroup"><span class="wpcf7-form-control-wrap your-message">
+  <textarea name="your-message" class="wpcf7-form-control wpcf7-textarea"></textarea></span>
+</div>
+
+
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
+<div class="colgroup">
+  <input type="submit" value="SUBMIT" class="submit"/>
+</div>
+
+</form>
       </div>
     </div>
   </div>
 </div>
+
 <?php new_footer(); ?>

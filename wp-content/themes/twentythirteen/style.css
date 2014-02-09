@@ -4459,7 +4459,7 @@ color:#bbbdbf;
 
 .post-container .right-image .container{
 	top: 0px; left:0px;
-  position: absolute;
+  /*position: absolute;*/
 }
 
 .blog-page .nodege-container {
@@ -4595,6 +4595,13 @@ color:#bbbdbf;
 	height: 60px;
 	margin:auto;
 	display:block;
+}
+.blog-page .icon-nudege .text-nude{
+	background: url('images/nudge-text.png') no-repeat center;
+	width: 150px;
+	height: 60px;
+	margin: 0px 0px 0px 50px;
+	display:inline-block;
 }
 
 a.opacity:hover {

@@ -200,7 +200,9 @@ if (strlen($cat) > 0) {
 }
 
 //echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.loadPost('.$perPage.', \''.$catName.'\');"></a>';
-echo '<a class="icon-nudege'.$clazzNude .' opacity" href="javascript:Load.nextPage();"></a>';
+echo '<a class="icon-nudege'.$clazzNude .'" href="javascript:Load.nextPage();">';
+echo '<i class="text-nude"></i>';
+echo '</a>';
 echo '</div>';
 
 echo '<div class="container">';

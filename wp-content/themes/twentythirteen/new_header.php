@@ -193,7 +193,7 @@ jQuery(document).ready(function($){
 				<div class="header-link">
 					<ul class="h-menu">
 						<li class="h-item"><a href="javascript:void(0);" id="open-what">WHAT?</a></li>
-						<li class="h-item"><a href="<?php echo site_url(); ?>">BETTER THIS</a></li>
+						<li class="h-item"><a target="_blank" href="http://better-this.com">BETTER THIS</a></li>
 						<li class="h-item" style="display:none"><a href="<?php echo site_url(); ?>/blog">PULSE</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>/contact">SAY IT HERE</a></li>
 						<li class="h-item"><a href="<?php echo site_url(); ?>/blog?getglued=true">GET GLUED!</a></li>

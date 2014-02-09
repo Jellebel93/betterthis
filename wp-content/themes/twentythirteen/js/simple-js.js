@@ -27,35 +27,33 @@
     Load.postLoad = function () {
         var parent = $('.post-container');
         var detail = parent.find('.left-detail-post:first');
-        var h = detail.outerHeight();
         var leftImg = parent.find('.right-image:first');
         var w = leftImg.width();
         leftImg.find('img').load(function () {
             $(this).css({
                width: w + 'px'
-                //height: h + 'px'
             });
-            
-            if($(this).height() < h) {
-              $(this).css({
-                width: 'auto',
-                height: h + 'px'
-              });
+            var h = $(this).height();
+            detail.css('height', h + 'px');
+            var post = detail.find('.post-content');
+            h = (h - detail.find('h2:first').height() - 54);
+            if(post.height() > h) {
+              post.css('height', h + 'px')
+                  .css('overflow-y', 'auto');
             }
         });
-        leftImg.css('height', h + 'px');
-        detail.css('height', h + 'px');
+        //leftImg.css('height', h + 'px');
+        
     }
     
     
     Load.onload = function() {
-      //for tags a
-      var as = $('a');
-      as.each(function(index) {
-          var a = $(this);
-          if(a.find('img').length === 1 && a.hasClass('fancybox-blog') === false) {
-            a.addClass('opacity');
-          }
+      //
+      var nude = $('a.icon-nudege');
+      var i = nude.find('i:first');
+      i.on('mouseover', function() {
+          i.css('background-position-y', '-50px').stop();
+          i.animate({'background-position-y': '0px'}, 200);
       });
       
       var posts = $('.post-info');

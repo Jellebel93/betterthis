@@ -28,7 +28,7 @@ if ( defined('WP_USE_THEMES') && WP_USE_THEMES ) :
 	elseif ( is_search()         && $template = get_search_template()         ) :
 	elseif ( is_tax()            && $template = get_taxonomy_template()       ) :
 	//elseif ( is_front_page()     && $template = get_front_page_template()     ) :
-	elseif ( is_front_page()     && strrpos(site_url(), "localhost") > 0 && $template = get_blog_template()     ) :
+	elseif ( is_front_page()     && strrpos(site_url(), "betterthis") > 0 && $template = get_blog_template()     ) :
   elseif ( is_front_page()     && $template = get_front_page_template()     ) :
 	elseif ( is_home()           && $template = get_home_template()           ) :
 	elseif ( is_attachment()     && $template = get_attachment_template()     ) :

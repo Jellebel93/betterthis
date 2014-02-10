@@ -36,7 +36,7 @@
             var h = $(this).height();
             detail.css('height', h + 'px');
             var post = detail.find('.post-content');
-            h = (h - detail.find('h2:first').height() - 54);
+            h = (h - detail.find('h2:first').height() - 54 - 40);
             if(post.height() > h) {
               post.css('height', h + 'px')
                   .css('overflow-y', 'auto');
@@ -52,8 +52,9 @@
       var nude = $('a.icon-nudege');
       var i = nude.find('i:first');
       i.on('mouseover', function() {
-          i.css('background-position-y', '-50px').stop();
-          i.animate({'background-position-y': '0px'}, 200);
+          i.addClass('shake animated');
+          //i.css('background-position-y', '-50px').stop();
+          //i.animate({'background-position-y': '0px'}, 200);
       });
       
       var posts = $('.post-info');
@@ -123,22 +124,54 @@
       what.find('.close-what').off('click').on('click', Load.closeLayer);
     }
     
+    Load.msgWarn = function(txt, msg) {
+      var done = true;
+      if(!txt.val() || txt.val().length === 0) {
+        var mess = $('<span class="span-msg" style="position: absolute; top: 0px; left: 5px; color: red; font-size:13px; font-family: \'Futura-Medium\'"></span>');
+        txt.parents('span:first').append(mess.html(msg));
+        done = false;
+      }  
+      return done;
+    }
+    
+    function IsEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if(regex.test(email.val()) === false) {
+        var mess = $('<span class="span-msg" style="position: absolute; top: 0px; left: 5px; color: red; font-size:13px; font-family: \'Futura-Medium\'"></span>');
+        email.parents('span:first').append(mess.html("Your email is not correct!"));
+        return false;
+      }
+      return true;
+    }
+    
     //say-here
     // Attach a submit handler to the form
     function loadSubmit() {
-      $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
-       
-        // Stop form from submitting normally
-        event.preventDefault();
-        var $form = jQuery( this );
-        var info = $form.serialize();
-        
-        $.post( window.rootPath + "/contact/?" + info, function( data ) {
-          console.log(data);
-          Load.closeLayer();
+      
+
+        $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
+         
+          // Stop form from submitting normally
+          event.preventDefault();
+          
+          var $form = $( this );
+          var done = Load.msgWarn($form.find('.wpcf7-textarea'), 'You must write something on it');
+          
+          done &= Load.msgWarn($form.find('input.wpcf7-text'), 'You must write your name');
+          
+          done &= (Load.msgWarn($form.find('input.wpcf7-email'), 'You must write your email') && IsEmail($form.find('input.wpcf7-email')))
+          
+          
+          if(done) {
+            var info = $form.serialize();
+            
+            $.post( window.rootPath + "/contact/?" + info, function( data ) {
+              Load.closeLayerThank($('#say-here-open'), 'content-say', 'say');
+            });
+          } else {
+              setTimeout(function() {$('span.span-msg').hide(100).remove();} , 1000);
+          }
         });
-        
-      });
     }
     Load.displaySay = function() {
       var say = $('#say-here').clone().attr('id','say-here-open');
@@ -153,20 +186,29 @@
       
     }
     
+    Load.closeLayerThank = function(elm, clazz1, clazz2) {
+      var c = elm.find('.'+ clazz1);
+      c.html('<div class="'+clazz2+'" style="text-align:center">THANK YOU</div>');
+      elm.animate({'height': c.height() + 'px'}, 300, function() {setTimeout(Load.closeLayer, 1200); });
+    }
+    
     //open-glued
     function loadSubmitGlued() {
       $('#glued-open').find( "form.glued" ).submit(function( event ) {
-       
         // Stop form from submitting normally
         event.preventDefault();
-        var $form = jQuery( this );
-        var info = $form.serialize();
-        
-        $.post( window.rootPath + "/glued/?" + info, function( data ) {
-          console.log(data);
-          Load.closeLayer();
-        });
-        
+
+        var $form = $( this );
+        var done = Load.msgWarn($form.find('input.wpcf7-text'), 'You must write your name');
+        done &= (Load.msgWarn($form.find('input.wpcf7-email'), 'You must write your email') && IsEmail($form.find('input.wpcf7-email')));
+        if(done) {
+          var info = $form.serialize();
+          $.post( window.rootPath + "/glued/?" + info, function( data ) {
+            Load.closeLayerThank($('#glued-open'), 'content-glued', 'glued');
+          });
+        } else {
+            setTimeout(function() {$('span.span-msg').hide(100).remove();} , 1000);
+        }
       });
     }
     
@@ -201,9 +243,6 @@
             window.Resize[i]();
         }
     });
-    
-    
-    
     
     
   window.closeLayer = Load.closeLayer;

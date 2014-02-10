@@ -343,8 +343,34 @@ echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
 <div class="colgroup"><span class="wpcf7-form-control-wrap your-message">
   <textarea name="your-message" class="wpcf7-form-control wpcf7-textarea"></textarea></span>
 </div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
+<div class="colgroup">
+  <input type="submit" value="SUBMIT" class="submit"/>
+</div>
 
+</form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="get-glued" id="get-glued" style="display:none">
+  <div style="position: relative">
+    <div class="close-glued"></div>
+    <div class="content-glued">
+      <div class="glued">GET GLUED.</div>
+      <div class="content">
+        <div>SUBSCRIBE TO THE MOST AWSOME BLOG ABOUT YOU.</div>
+        <div style="height: 40px"></div>
+<form action="<?php echo site_url(); ?>/" method="post" class="wpcf7-form glued" novalidate="novalidate">
+<div style="display: none;">
+  <input type="hidden" name="_wpcf7" value="331"><br>
+  <input type="hidden" name="_wpcf7_version" value="3.5.3"><br>
+  <input type="hidden" name="_wpcf7_locale" value="en_US"><br>
+  <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f331-p301-o1"><br>
+  <input type="hidden" name="_wpnonce" value="619b8e3a29">
+</div>
 <div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
 <div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
 <div class="colgroup">

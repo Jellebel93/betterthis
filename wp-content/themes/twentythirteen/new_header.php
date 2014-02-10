@@ -196,7 +196,7 @@ jQuery(document).ready(function($){
 						<li class="h-item"><a target="_blank" href="http://better-this.com">BETTER THIS</a></li>
 						<li class="h-item" style="display:none"><a href="<?php echo site_url(); ?>/blog">PULSE</a></li>
 						<li class="h-item"><a href="javascript:void(0);" id="open-contact">SAY IT HERE</a></li>
-						<li class="h-item"><a href="javascript:void(0);" id="open-glued"GET GLUED!</a></li>
+						<li class="h-item"><a href="javascript:void(0);" id="open-glued">GET GLUED!</a></li>
 					</ul>
 				</div>
 			</div>

@@ -74,6 +74,8 @@
       
       $('#open-what').on('click', Load.displayWhat);
       $('#open-contact').on('click', Load.displaySay);
+      $('#open-glued').on('click', Load.displayGlued);
+      
     }
 
     Load.nextPage = function () {
@@ -121,24 +123,23 @@
       what.find('.close-what').off('click').on('click', Load.closeLayer);
     }
     
-    // Attach a submit handler to the form
-function loadSubmit() {
-  $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
-   
-    // Stop form from submitting normally
-    event.preventDefault();
-    var $form = jQuery( this );
-    var info = $form.serialize();
-    
-    $.post( window.rootPath + "/contact/?" + info, function( data ) {
-      console.log(data);
-      Load.closeLayer();
-    });
-    
-  });
-}
-
     //say-here
+    // Attach a submit handler to the form
+    function loadSubmit() {
+      $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
+       
+        // Stop form from submitting normally
+        event.preventDefault();
+        var $form = jQuery( this );
+        var info = $form.serialize();
+        
+        $.post( window.rootPath + "/contact/?" + info, function( data ) {
+          console.log(data);
+          Load.closeLayer();
+        });
+        
+      });
+    }
     Load.displaySay = function() {
       var say = $('#say-here').clone().attr('id','say-here-open');
       say.css('left', ($('html').width() - 810)/2 + 'px');
@@ -149,6 +150,36 @@ function loadSubmit() {
       say.find('.close-say').off('click').on('click', Load.closeLayer);
       
       loadSubmit();
+      
+    }
+    
+    //open-glued
+    function loadSubmitGlued() {
+      $('#glued-open').find( "form.glued" ).submit(function( event ) {
+       
+        // Stop form from submitting normally
+        event.preventDefault();
+        var $form = jQuery( this );
+        var info = $form.serialize();
+        
+        $.post( window.rootPath + "/glued/?" + info, function( data ) {
+          console.log(data);
+          Load.closeLayer();
+        });
+        
+      });
+    }
+    
+    Load.displayGlued = function() {
+      var glued = $('#get-glued').clone().attr('id','glued-open');
+      glued.css('left', ($('html').width() - 634)/2 + 'px');
+      var top = ($(window).height() - 312)/2
+      if(top < 100) top = 100;
+      glued.css('top', top + 'px');
+      Load.getLayer().append(glued.show());
+      glued.find('.close-glued').off('click').on('click', Load.closeLayer);
+      
+      loadSubmitGlued();
       
     }
     

@@ -4409,6 +4409,10 @@ color:#bbbdbf;
   display: none;
 }
 
+.accordion .jAccordion-slide {
+  cursor: pointer;
+}
+
 .jAccordion-slideWrapper .jAccordion-slideWrapper {
   padding-left: 10px;
 }

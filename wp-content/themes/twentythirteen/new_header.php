@@ -81,6 +81,7 @@
       vertical: false,
 			activeSlideSize : 663,
 			sticky : true,
+      event: 'click',
 			autoplay : true,
       scaleImgs: 'fitHeight',
 			autoplayInterval : 5000,

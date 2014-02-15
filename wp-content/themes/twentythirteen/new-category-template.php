@@ -44,8 +44,19 @@ if(isset($_REQUEST['pageid'])) {
 	}
 }
 
-$backgrounds = array('art_culture'=>'background: #002AFF;', 'food_travel'=>'background: #FE38FF;', 'science_tech'=>'background: #1CF600;', 'health_sports'=>'background: #ff2500;');
-$colors = array('art_culture'=>'fff', 'food_travel'=>'fff', 'science_tech'=>'000', 'health_sports'=>'fff');
+$backgrounds = array(
+	'art_culture'=>'background: #00f600;',
+	'food_travel'=>'background: #ff1b00;',
+	'science_tech'=>'background: #fc00ff;',
+	'health_sports'=>'background: #0043fe;'
+);
+
+$colors = array(
+	'art_culture'=>'000',
+	'food_travel'=>'fff',
+	'science_tech'=>'fff',
+	'health_sports'=>'fff'
+);
 
 /* show slider */
 $social_update = "";
@@ -144,8 +155,17 @@ if(strlen($postId) > 0) {
 			<h2 style="<?php echo $color;?>"><?php the_title(); ?></h2>
 			<div style="<?php echo $color;?>" class="post-content"><?php the_content();?></div>
 			<div class="share-content">
-				<a class="share" href="#f"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="32px"/></a>
-				<a class="share" href="#wr" style="margin-left:-5px"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="32px"/></a>
+				<a class="share fb" href="javascript:;"
+						data-name="<?php the_title(); ?>"
+						data-link="<?php echo site_url(); ?>/?post=<?php echo get_the_ID(); ?>"
+						<?php if (!empty($full_img)):?>
+						data-pic="<?php echo $full_img[0] ?>"
+						<?php endif; ?>
+						data-desc="<?php echo strip_tags(get_the_excerpt());?>" >
+					<img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-32x32.png" height="32px"/></a>
+				<a class="share"
+						href="https://twitter.com/intent/tweet?url=<?php echo urlencode(site_url().'/?post='.get_the_ID());?>&text=<?php echo urlencode(get_the_title());?>"
+						style="margin-left:-5px"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-32x32.png" height="32px"/></a>
 			</div>
 		</div>
 		<div class="right-image">
@@ -209,7 +229,7 @@ echo '<div class="container">';
 $nextPost = '';
 $the_query = new WP_Query( $strQuery );
 $size = $the_query->found_posts;
-$index=11;
+$index = $size > 11 ? rand(0, 11) : rand(0, $size - 1);
 /*
 if($size > 12) {
   $index = rand(0, 12);
@@ -224,7 +244,7 @@ if($size > 12) {
 		// have post
 		echo '<ul class="posts-container clearfix">';
 		$hasNext = 1;
-    $i = 0;
+		$i = 0;
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 			$the_ID = get_the_ID();
@@ -280,8 +300,18 @@ if($hasThum === true) {
       </div>
 			<div class="the-social clearfix">
 				<div style="padding: 2px 5px 0px 5px;">
-					<a class="share" href="#h"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-24x24.png" height="24px"/></a>
-					<a class="share" href="#wr" style="margin-left:-3px;"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-24x24.png" height="24px"/></a>
+					<a class="share fb" href="javascript:;"
+						data-name="<?php the_title(); ?>"
+						data-link="<?php echo site_url(); ?>/?post=<?php echo get_the_ID(); ?>"
+						<?php if (!empty($full_img)):?>
+						data-pic="<?php echo $full_img[0] ?>"
+						<?php endif; ?>
+						data-desc="<?php echo strip_tags(get_the_excerpt());?>"
+					><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/fb-icon-24x24.png" height="24px"/></a>
+					<a class="share"
+						href="https://twitter.com/intent/tweet?url=<?php echo urlencode(site_url().'/?post='.get_the_ID());?>&text=<?php echo urlencode(get_the_title());?>"
+						target="_blank"
+						style="margin-left:-3px;"><img src="<?php echo site_url(); ?>/wp-content/themes/twentythirteen/images/wr-icon-24x24.png" height="24px"/></a>
 				</div>
 			</div>
 		</li>
@@ -289,7 +319,7 @@ if($hasThum === true) {
    // social_update
     if(strlen($social_update) > 0 && $i === $index) {
       echo "<li class=\"post-item social_update clearfix\" data-index=\"". $i ."\" id=\"social_update\">";
-      echo "<div class=\"social_update_text\">". $social_update ."</div>";
+      echo "<div class=\"social_update_text\"><a href='http://better-this.com'>". $social_update ."</a></div>";
       echo "</li>";
     }
     $i = $i + 1;
@@ -331,7 +361,7 @@ echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
         <div>TELL US A STORY</div>
         <div>GIVE US A FEEDBACK</div>
 
-<form action="<?php echo site_url(); ?>/" method="post" class="wpcf7-form sayFrom" novalidate="novalidate">
+<form action="<?php echo site_url(); ?>/" method="post" class="wpcf7-form sayFrom" >
 <div style="display: none;">
 <input type="hidden" name="_wpcf7" value="26"><br>
 <input type="hidden" name="_wpcf7_version" value="3.5.3"><br>
@@ -341,10 +371,10 @@ echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
 <input type="hidden" name="_wpnonce" value="5db32a1a0b">
 </div>
 <div class="colgroup"><span class="wpcf7-form-control-wrap your-message">
-  <textarea name="your-message" class="wpcf7-form-control wpcf7-textarea"></textarea></span>
+  <textarea name="your-message" class="wpcf7-form-control wpcf7-textarea" required="required"></textarea></span>
 </div>
-<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
-<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input required="required" type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input required="required" type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
 <div class="colgroup">
   <input type="submit" value="SUBMIT" class="submit"/>
 </div>
@@ -361,18 +391,19 @@ echo '<div style="display:none" data-id="'.$nextPost.'" id="nextPost"></div>';
     <div class="content-glued">
       <div class="glued">GET GLUED.</div>
       <div class="content">
-        <div>SUBSCRIBE TO THE MOST AWSOME BLOG ABOUT YOU.</div>
+        <div>SUBSCRIBE TO THE MOST AWESOME BLOG ABOUT YOU.</div>
+		<div>Subscribe and win a fitnessFirst membership.</div>
         <div style="height: 40px"></div>
-<form action="<?php echo site_url(); ?>/" method="post" class="wpcf7-form glued" novalidate="novalidate">
+<form action="<?php echo site_url(); ?>/glued/#wpcf7-f348-p349-o1" method="post" class="wpcf7-form glued">
 <div style="display: none;">
-  <input type="hidden" name="_wpcf7" value="331"><br>
+  <input type="hidden" name="_wpcf7" value="348"><br>
   <input type="hidden" name="_wpcf7_version" value="3.5.3"><br>
   <input type="hidden" name="_wpcf7_locale" value="en_US"><br>
-  <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f331-p301-o1"><br>
-  <input type="hidden" name="_wpnonce" value="619b8e3a29">
+  <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f348-p349-o1"><br>
+  <input type="hidden" name="_wpnonce" value="c5f56263fb">
 </div>
-<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
-<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">NAME</span><span class=""><span class="wpcf7-form-control-wrap your-name"><input required="required" type="text" name="your-name" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true"></span> </span> </div>
+<div class="colgroup" style="text-align:right;"><span style="padding-right: 10px">EMAIL ADDRESS</span><span class=""><span class="wpcf7-form-control-wrap your-email"><input required="required" type="email" name="your-email" value="" size="40" class="text wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true"></span> </span></div>
 <div class="colgroup">
   <input type="submit" value="SUBMIT" class="submit"/>
 </div>

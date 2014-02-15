@@ -36,7 +36,13 @@
 	<link rel='stylesheet' id='contact-form-7-css'  href='<?php echo plugins_url(); ?>/contact-form-7/includes/css/styles.css?ver=3.5.3' type='text/css' media='all' />
 	<link rel='stylesheet' id='twentythirteen-fonts-css'  href='<?php echo get_template_directory_uri(); ?>/css/font-google.css' type='text/css' media='all' />
 	<link rel='stylesheet' id='genericons-css'  href='<?php echo get_template_directory_uri(); ?>/fonts/genericons.css?ver=2.09' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentythirteen-style-css'  href='<?php echo get_template_directory_uri(); ?>/style.css?ver=2013-07-18' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentythirteen-style-css'
+			href='<?php echo get_template_directory_uri(); ?>/style.css?ver=2.7'
+			type='text/css' media='all' />
+
+<link rel='stylesheet' id='twentythirteen-style-css'  href='<?php echo get_template_directory_uri(); ?>/css/animate.min.css' type='text/css' media='all' />
+
+
 	<!--[if lt IE 9]>
 	<link rel='stylesheet' id='twentythirteen-ie-css'  href='<?php echo get_template_directory_uri(); ?>/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
 	<![endif]-->
@@ -54,7 +60,8 @@
 
 	<script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.cookie.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/simple-js.js"></script>
+	<script type="text/javascript"
+			src="<?php echo get_template_directory_uri(); ?>/js/simple-js.js?v=1.4"></script>
   
   	<!-- Add mousewheel plugin (this is optional) -->
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -74,52 +81,97 @@
   <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.easing.1.3.min.js"></script>
   <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/lib/jquery.jAccordion.min.js"></script>
   <link rel='stylesheet' id='jAccordion-style-css'  href='<?php echo get_template_directory_uri(); ?>/css/jAccordion/default.css' type='text/css' media='all' />
+
+  <script src="<?php echo get_template_directory_uri(); ?>/lib/jquery.slimscroll.min.js"></script>
+  <script src="<?php echo get_template_directory_uri(); ?>/lib/imagesloaded.pkgd.min.js"></script>
+  <script src="<?php echo get_template_directory_uri(); ?>/lib/jquery-imagefill.js"></script>
   
   <script type="text/javascript">
 	jQuery(document).ready(function( $ ) {
 		$('.accordion').jAccordion({
-      vertical: false,
+			vertical: false,
 			activeSlideSize : 663,
 			sticky : true,
-      event: 'click',
 			autoplay : true,
-      scaleImgs: 'fitHeight',
+			event: 'click',
+			scaleImgs: 'fitHeight',
 			autoplayInterval : 5000,
 			arrowKeysNav : false,
 			transitionSpeed : 500,
 			nextBtn : $('.nextBtn'),
 			prevBtn : $('.prevBtn'),
 			onReady : function() {
-				$('.preloader', this.$accordion).remove();	//Comment this line to see the preloader if testing locally.
-				$('.jAccordion-slideWrapper', this.$accordion);//.append('<div class="timer"></div>');	//Include timer inside every slide
+				//Comment this line to see the preloader if testing locally.
+				$('.preloader', this.$accordion).remove();
+				//.append('<div class="timer"></div>');	//Include timer inside every slide
+				$('.jAccordion-slideWrapper', this.$accordion);
 				$('.prevBtn', this.$accordion).animate({left : 0}, 500);
 				$('.nextBtn', this.$accordion).animate({right : 0}, 500);
 			},
 			onSlideStartClosing: function(e) {
-				$('.timer', e.$slide).stop(true).fadeTo(200, 0);	//Fade out timer of closing slide
+				//Fade out timer of closing slide
+				$('.timer', e.$slide).stop(true).fadeTo(200, 0);
+				$('.jAccordion-img', e.$slide).unwrap();
 			},
 			onSlideOpened: function(e) {
-        var current_ = e.$slide;
+				var current_ = e.$slide;
+				var id_ = current_.attr('id').replace('select', '');
+				var datas = current_.find('.data-info:first');
+				var color = datas.data('color').replace(';', '');
+				var backg = datas.data('backg');
+				var excerpt = datas.text();
+				var title = current_.find('.data-title:first').text();
+				//
+				var detail = $('#left-detail-post');
+				//
+
+
+				detail.attr('style', backg);
+
+				var title_tag = detail.find('.item-title:first');
+				title_tag.text(title).css('color', color);
+
+				var excerpt_tag = detail.find('.item-excerpt:first');
+				excerpt_tag.text(excerpt).css('color', color);
+				/*
+				 * The title and the excerpt's height should not be more than
+				 * 140 pixels, a line in the excerpt is 18px high, and it can
+				 * contain 35 characters.
+				 */
+				var title_tag_height = title_tag.height();
+				if (title_tag_height < 140) {
+					var excerpt_tag_height = excerpt_tag.height();
+					if ((title_tag_height + excerpt_tag_height) > 140) {
+						var new_excerpt_length = parseInt(((140 - title_tag_height)/18)*35);
+						// cut the excerpt
+						excerpt = excerpt
+							.substring(0, excerpt.substring(0,
+										new_excerpt_length)
+									.lastIndexOf(' ')) + "...";
+						excerpt_tag.text(excerpt);
+					}
+					excerpt_tag.show(); // in case it was hidden previously while
+									// cutting.
+				}
+				else
+					excerpt_tag.hide();
+
+				var a = detail.find('a:first');
+				a.attr('href', a.data('href') + id_);
+
+				var post_url = a.data('href') + id_;
+				var img_link = $('<a href=""></a>');
+				img_link.attr('href', post_url);
+				$('.jAccordion-img', e.$slide).wrap(img_link);
         
-        var id_ = current_.attr('id').replace('select', '');
-        var datas = current_.find('.data-info:first');        
-        var color = datas.data('color');
-        var backg = datas.data('backg');
-        var excerpt = datas.text();
-        var title = current_.find('.data-title:first').text();
-        //
-        var detail = $('#left-detail-post');
-        //
-        detail.attr('style', backg);
-        detail.find('.item-title:first').text(title).css('color', color);
-        detail.find('.item-excerpt:first').text(excerpt).css('color', color);
-        var a = detail.find('a:first');
-        a.attr('href', a.data('href') + id_);
-        
-				$('.timer', e.$slide).css({width : 0, 'opacity' : 0.5}).stop(true);		//Set timer to starting state
-				/* If option 'pauseOnHover' is enabled and cursor is not over accordion start timer of active slide
+				//Set timer to starting state
+				$('.timer', e.$slide).css({width : 0, 'opacity' : 0.5}).stop(true);
+
+				/* If option 'pauseOnHover' is enabled and cursor is not over
+				 * accordion start timer of active slide
 			 	 * or option 'pauseOnHover' is disabled.
-				 * Note: Value 5000 has to be same as value of option 'autoplayInterval' which is set a few lines above.
+				 * Note: Value 5000 has to be same as value of option
+				 * 'autoplayInterval' which is set a few lines above.
 				 */
          
 				if (!this.isPaused()) {
@@ -131,16 +183,34 @@
 			},
 			onResume : function(e) {
 				/* Resume animation of timer.
-				 * Note: It's necessary to resume the animation only if no slide is animated, imagine this situation:
-				 * User moves his cursor over non-open slide - cursor is over accordion so autoplay pauses and then user
-				 * moves his cursor off accordion before the opening slide is fully open so autoplay starts and event onResume
-				 * is triggered and animation of timer starts, which is too early because opening slide is not fully open.
+				 * Note: It's necessary to resume the animation only if no
+				 * slide is animated, imagine this situation:
+				 * User moves his cursor over non-open slide - cursor is over
+				 * accordion so autoplay pauses and then user
+				 * moves his cursor off accordion before the opening slide is
+				 * fully open so autoplay starts and event onResume
+				 * is triggered and animation of timer starts, which is too
+				 * early because opening slide is not fully open.
 				 */
 				if (!this.isAnimated()) {
-					$('.timer', this.getActiveSlide()).stop(true).animate({'width' : '100%'}, e.remainingTime, 'linear');
+					$('.timer', this.getActiveSlide()).stop(true)
+						.animate({'width' : '100%'}, e.remainingTime,
+								'linear');
 				}
-			}
+			},
 		});
+
+
+		$('.post-content').slimScroll({
+			alwaysVisible: true,
+			color: '#ffffff',
+			opacity: 1,
+			distance: '0px',
+			height: '530px',
+		});
+
+		$('.right-image').imagefill();
+		$('.social_update').imagefill();
 	});
 </script>
   
@@ -183,11 +253,27 @@ jQuery(document).ready(function($){
 
 
 </script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "2cc6a5b8-6f47-4831-95ae-8368305bb28f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 
 <body class="blog-body">
+	<div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '621495787905796',
+          status     : true,
+          xfbml      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 	<div id="page" class="blog-page">
 		<header id="masthead" class="site-header" role="banner">
 			<div class="top-header">

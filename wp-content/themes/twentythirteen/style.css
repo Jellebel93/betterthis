@@ -639,13 +639,19 @@ button,
 input,
 textarea {
 	border: 2px solid #d4d0ba;
-	font-family: inherit;
 	padding: 5px;
+	font-family: inherit;
 }
 
 input,
 textarea {
 	color: #141412;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+    font-family: 'Futura-Medium', tahoma;
 }
 
 input:focus,
@@ -4241,7 +4247,7 @@ color:#bbbdbf;
 .main-header .blog-logo {
 	float: left;
 	margin: 20px 0px 0px 40px;
-	background: url('images/betterthis-black_2.png') no-repeat center;
+	background: url('images/logo-awesomeness.png') no-repeat center;
 	height: 215px;
 	width: 215px;
 	position: relative;
@@ -4427,38 +4433,43 @@ color:#bbbdbf;
 }
 
 .blog-page .post-container {
-
+	height: 705px;
 }
 
 .post-container .left-detail-post {
+	height: 705px;
 	width: 373px;
 	float: left;
-	padding: 0px 20px 60px 20px;
+	padding: 0px 0px 60px 20px;
 	background: #ff3aff; 
 	color:#fff;
 	position: relative;
 }
 
 .post-container .left-detail-post .post-content {
-
+	padding-right: 10px;
 }
 
 .post-container .left-detail-post .share-content {
 	position: absolute;
-	bottom: 20px;
-	left: 45px;
-	right: 0px;
+	left: 5px;
+	bottom: 10px;
 }
 
 .post-container .left-detail-post .share-content a {
 	margin: 5px;
 }
 
+.post-container .left-detail-post .share-content a:hover {
+	opacity: 0.5;
+}
+
 .post-container .right-image {
 	margin-left:373px;
 	width: 651px;
-  overflow: hidden;
-  position: relative;
+	overflow: hidden;
+	position: relative;
+	height: 705px;
 }
 
 .post-container .right-image .container{
@@ -4550,11 +4561,9 @@ color:#bbbdbf;
   line-height: 12px;
 }
 .blog-page .container li.social_update {
-	height:334px;
-  padding:10px;
-  padding-right:20px;
-  background: #f6f7f8;
-  overflow: hidden;
+	height:332px;
+	background: #f6f7f8;
+	overflow: hidden;
 }
 .blog-page .container li.social_update .social_update_text {
 	text-transform: uppercase;
@@ -4580,6 +4589,10 @@ color:#bbbdbf;
 	line-height: 32px;
 }
 
+.blog-page .container li.post-item .the-social a:hover {
+	opacity: 0.5;
+}
+
 .blog-page .nodege-container .cat-name {
 	line-height: 60px;
 	font-size: 46px;
@@ -4594,7 +4607,7 @@ color:#bbbdbf;
 }
 
 .blog-page .icon-nudege {
-	background: url('images/nudge-x.png') no-repeat center;
+	background: url('images/nudge.png') no-repeat center;
 	width: 250px;
 	height: 60px;
 	margin:auto;
@@ -4702,13 +4715,11 @@ a.opacity:hover {
 }
 
 .content-say .wpcf7-textarea {
-  font-family: "Futura-Medium",Bitter, Georgia, serif;
   border: none;
   width: 737px; height: 100px;
 }
 
 .content-say input.text {
-  font-family: "Futura-Medium",Bitter, Georgia, serif;
   border: none;
   width: 310px; height: 50px;
 }
@@ -4753,12 +4764,14 @@ a.opacity:hover {
   font-size: 13pt;
 }
 .get-glued input.text {
-  font-family: "Futura-Medium",Bitter, Georgia, serif;
   border: none;
   width: 310px; height: 30px;
 }
 .get-glued input.submit {
   border: none;
   width: 100px; height: 40px;
+}
+.accordion .jAccordion-slide {
+	margin: 0 10px;
 }
 

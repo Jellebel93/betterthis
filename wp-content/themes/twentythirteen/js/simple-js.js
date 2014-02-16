@@ -1,4 +1,17 @@
 (function ($) {
+
+    $(document).on('click', '.post-info', function() {
+        window.location.href = $(this).data('link');
+    });
+
+    $(document).on('mouseover', '.post-info', function() {
+        $(this).addClass('opacity-hover').removeClass('opacity-out');
+    });
+
+    $(document).on('mouseout','.post-info', function() {
+        $(this).addClass('opacity-out').removeClass('opacity-hover');
+    });
+
     window.Load = {};
     window.Resize = new Array(); //push
     Load.pdTop = function () {
@@ -24,27 +37,7 @@
         //	items.css('margin', '0px ' + (margin - 2) + 'px');
     }
 
-    Load.postLoad = function () {
-        var parent = $('.post-container');
-        var detail = parent.find('.left-detail-post:first');
-        var leftImg = parent.find('.right-image:first');
-        var w = leftImg.width();
-        leftImg.find('img').load(function () {
-            $(this).css({
-               width: w + 'px'
-            });
-            var h = $(this).height();
-            detail.css('height', h + 'px');
-            var post = detail.find('.post-content');
-            h = (h - detail.find('h2:first').height() - 54 - 40);
-            if(post.height() > h) {
-              post.css('height', h + 'px')
-                  .css('overflow-y', 'auto');
-            }
-        });
-        //leftImg.css('height', h + 'px');
-        
-    }
+   Load.postLoad = function () {}
     
     
     Load.onload = function() {
@@ -52,17 +45,12 @@
       var nude = $('a.icon-nudege');
       var i = nude.find('i:first');
       i.on('mouseover', function() {
-          i.addClass('shake animated');
+           i.addClass('shake animated');
           //i.css('background-position-y', '-50px').stop();
           //i.animate({'background-position-y': '0px'}, 200);
-      });
-      
-      var posts = $('.post-info');
-      posts.each(function(index) {
-          var p = $(this);
-          p.on('mouseover', function() { p.addClass('opacity-hover').removeClass('opacity-out'); })
-           .on('mouseout', function() { p.addClass('opacity-out').removeClass('opacity-hover'); })
-           .on('click', function() {window.location.href = $(this).attr('data-link');})
+      })
+      .on('mouseout', function() { 
+        i.attr('class', 'text-nude'); 
       });
       
       var items = $('li.m-item');
@@ -80,13 +68,26 @@
     }
 
     Load.nextPage = function () {
-      var host = window.location.href;
-      if(window.location.reload) {
-        window.location.reload();
-      } else {
-        window.location.href = host;
-      }
-    }
+		$.ajax(location.href, {
+			cache: false,
+			success: function(data) {
+				var new_posts = $('.post-item', data);
+				var i = 0;
+				$('.posts-container .post-item').each(function() {
+					$(this).fadeOut(parseInt(Math.random() * 1000), function() {
+						if (i < new_posts.length) {
+							$(new_posts[i++]).hide().insertBefore(this)
+								.fadeIn(parseInt(Math.random() * 1000), function() {
+										if ($(this).hasClass('social_update'))
+											$(this).imagefill();
+									});
+						}
+						$(this).remove();
+					});
+				});
+			},
+		});
+    };
 
     Load.loadPost = function(perPage, cateName) {
       var url_ = window.rootPath + '/posts-blog/';
@@ -124,54 +125,22 @@
       what.find('.close-what').off('click').on('click', Load.closeLayer);
     }
     
-    Load.msgWarn = function(txt, msg) {
-      var done = true;
-      if(!txt.val() || txt.val().length === 0) {
-        var mess = $('<span class="span-msg" style="position: absolute; top: 0px; left: 5px; color: red; font-size:13px; font-family: \'Futura-Medium\'"></span>');
-        txt.parents('span:first').append(mess.html(msg));
-        done = false;
-      }  
-      return done;
-    }
-    
-    function IsEmail(email) {
-      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      if(regex.test(email.val()) === false) {
-        var mess = $('<span class="span-msg" style="position: absolute; top: 0px; left: 5px; color: red; font-size:13px; font-family: \'Futura-Medium\'"></span>');
-        email.parents('span:first').append(mess.html("Your email is not correct!"));
-        return false;
-      }
-      return true;
-    }
-    
     //say-here
     // Attach a submit handler to the form
     function loadSubmit() {
-      
-
-        $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
-         
-          // Stop form from submitting normally
-          event.preventDefault();
-          
-          var $form = $( this );
-          var done = Load.msgWarn($form.find('.wpcf7-textarea'), 'You must write something on it');
-          
-          done &= Load.msgWarn($form.find('input.wpcf7-text'), 'You must write your name');
-          
-          done &= (Load.msgWarn($form.find('input.wpcf7-email'), 'You must write your email') && IsEmail($form.find('input.wpcf7-email')))
-          
-          
-          if(done) {
-            var info = $form.serialize();
-            
-            $.post( window.rootPath + "/contact/?" + info, function( data ) {
-              Load.closeLayerThank($('#say-here-open'), 'content-say', 'say');
-            });
-          } else {
-              setTimeout(function() {$('span.span-msg').hide(100).remove();} , 1000);
-          }
+      $('#say-here-open').find( "form.sayFrom" ).submit(function( event ) {
+       
+        // Stop form from submitting normally
+        event.preventDefault();
+        var $form = jQuery( this );
+        var info = $form.serialize();
+        
+        $.post( window.rootPath + "/contact/?" + info, function( data ) {
+          console.log(data);
+          Load.closeLayer();
         });
+        
+      });
     }
     Load.displaySay = function() {
       var say = $('#say-here').clone().attr('id','say-here-open');
@@ -186,29 +155,20 @@
       
     }
     
-    Load.closeLayerThank = function(elm, clazz1, clazz2) {
-      var c = elm.find('.'+ clazz1);
-      c.html('<div class="'+clazz2+'" style="text-align:center">THANK YOU</div>');
-      elm.animate({'height': c.height() + 'px'}, 300, function() {setTimeout(Load.closeLayer, 1200); });
-    }
-    
     //open-glued
     function loadSubmitGlued() {
       $('#glued-open').find( "form.glued" ).submit(function( event ) {
+       
         // Stop form from submitting normally
         event.preventDefault();
-
-        var $form = $( this );
-        var done = Load.msgWarn($form.find('input.wpcf7-text'), 'You must write your name');
-        done &= (Load.msgWarn($form.find('input.wpcf7-email'), 'You must write your email') && IsEmail($form.find('input.wpcf7-email')));
-        if(done) {
-          var info = $form.serialize();
-          $.post( window.rootPath + "/glued/?" + info, function( data ) {
-            Load.closeLayerThank($('#glued-open'), 'content-glued', 'glued');
-          });
-        } else {
-            setTimeout(function() {$('span.span-msg').hide(100).remove();} , 1000);
-        }
+        var $form = jQuery( this );
+        var info = $form.serialize();
+        
+        $.post( window.rootPath + "/glued/?" + info, function( data ) {
+          console.log(data);
+          Load.closeLayer();
+        });
+        
       });
     }
     
@@ -245,6 +205,8 @@
     });
     
     
-  window.closeLayer = Load.closeLayer;
     
+    
+    
+  window.closeLayer = Load.closeLayer;
 })(jQuery);
